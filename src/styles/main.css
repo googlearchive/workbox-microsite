@@ -1,0 +1,80 @@
+/*
+=================================
+Fonts
+=================================
+
+font-family: 'Open Sans', sans-serif;
+
+Body Copy
+font-family: 'Open Sans', sans-serif;
+font-size: 28px;
+font-weight: 300;
+color: #616261;
+
+Code Examples
+font-family: Arial, sans-serif;
+color: #000000;
+
+command line instructions
+font-family: Arial, sans-serif;
+color: #616261;
+font-size: 28px;
+
+Links within Body Copy
+color: #f47c20;
+*/
+
+/*
+=================================
+Headings
+=================================
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+@import "./variables/colors.css";
+@import "./variables/z-index.css";
+@import "./components/navigation.css";
+@import "./components/page-header.css";
+@import "./components/callout.css";
+@import "./components/footer.css";
+
+html {
+  min-height: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+main {
+  padding: 40px;
+  color: var(--dark-grey);
+}
+
+main *:first-child {
+  margin-top: 0;
+}
+
+main a {
+  color: var(--link-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--dark-grey);
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 18px;
+}

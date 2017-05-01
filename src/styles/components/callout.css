@@ -1,0 +1,12 @@
+.callout {
+  background: linear-gradient(45deg, var(--callout-gradient-left), var(--callout-gradient-right));
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.callout h1, .callout h2, .callout h3 {
+  margin: 0;
+  font-weight: 300;
+  color: white;
+}

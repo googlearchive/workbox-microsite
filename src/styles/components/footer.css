@@ -1,0 +1,8 @@
+footer {
+  background-color: var(--dark-grey);
+  padding: 40px;
+}
+
+.footer__project-logos {
+  margin-bottom: 40px;
+}

@@ -1,0 +1,20 @@
+.page-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+
+.page-header__inner-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 80%;
+  padding: 60px;
+}
+
+.page-header h1 {
+  margin: 0;
+}
