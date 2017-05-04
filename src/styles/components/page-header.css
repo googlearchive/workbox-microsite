@@ -6,21 +6,28 @@
   color: var(--dark-grey);
 }
 
+.page-header h1 {
+  margin: 0;
+  text-indent: 9999999px;
+  overflow: hidden;
+}
+
 .page-header__inner-section {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   width: 80%;
-  height: calc(var(--vertical-spacing) * 18);
-  margin: calc(var(--vertical-spacing) * 15) calc(var(--horizontal-spacing) * 1);
+  height: calc(var(--vertical-spacing) * 8);
+  margin: calc(var(--vertical-spacing) * 12) calc(var(--horizontal-spacing) * 4);
   background-image: url('../../images/workbox-logo-grey.min.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.page-header h1 {
-  margin: 0;
-  text-indent: 9999999px;
-  overflow: hidden;
+@media (min-width: 700px) {
+  .page-header__inner-section {
+    height: calc(var(--vertical-spacing) * 15);
+    margin: calc(var(--vertical-spacing) * 12) calc(var(--horizontal-spacing) * 4);
+  }
 }

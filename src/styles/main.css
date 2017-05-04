@@ -51,7 +51,7 @@ html, body {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: var(--base-font-size);
+  font-size: var(--base-font-size-mobile);
   font-weight: 300;
 }
 
@@ -71,19 +71,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: var(--h1-font-size);
-  font-weight: 700;
+  font-size: var(--h1-font-size-mobile);
   letter-spacing: var(--h1-letter-spacing);
-  margin-bottom: calc(var(--vertical-spacing) * 4);
+  margin-bottom: calc(var(--vertical-spacing) * 3);
+  font-weight: 700;
 }
 
 h2 {
-  font-size: var(--h2-font-size);
+  font-size: var(--h2-font-size-mobile);
+  letter-spacing: var(--h2-letter-spacing);
   font-weight: 600;
 }
 
 p {
-  margin: 0 0 calc(var(--vertical-spacing) * 5) 0;
+  margin: 0 0 calc(var(--vertical-spacing) * 4) 0;
 }
 
 a {
@@ -98,4 +99,18 @@ hr {
   background-color: var(--hr-color);
   margin: calc(var(--vertical-spacing) * 9) 0;
   padding: 0;
+}
+
+@media (min-width: 700px) {
+  body {
+    font-size: var(--base-font-size-desktop);
+  }
+
+  h1 {
+    font-size: var(--h1-font-size-desktop);
+  }
+
+  h2 {
+    font-size: var(--h2-font-size-desktop);
+  }
 }
