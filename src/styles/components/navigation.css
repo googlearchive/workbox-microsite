@@ -5,14 +5,27 @@
   background-color: var(--header-bg);
 }
 
-.menu-btn {
-  background: none;
-  border: none;
-  padding: calc(var(--vertical-spacing) * 2.5);
-}
-
 .menu-btn svg {
   fill: var(--nav-selected-color);
+}
+
+.menu-close-btn svg {
+  fill: var(--menu-close-btn-color);
+}
+
+.nav-drawer__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: var(--hr-color);
+  margin: 0 calc(var(--horizontal-spacing) * 2);
+}
+
+.nav-drawer__wb-logo {
+  height: calc(var(--horizontal-spacing) * 4);
 }
 
 .nav-content nav {
@@ -26,6 +39,29 @@
   will-change: transform;
   transform: translateX(-240px);
   transition: transform 0.4s ease-in-out;
+  overflow-y: auto;
+}
+
+.nav-content li.has-drop-down .drop-down-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-content li.has-drop-down .drop-down-btn:after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url('../../images/down-arrow.min.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  will-change: transform;
+}
+
+.nav-content li.has-drop-down .drop-down-btn.is-dropped-down:after {
+  transform: rotateZ(180deg);
 }
 
 .nav-content nav.is-open {
@@ -42,11 +78,18 @@
   padding: 0;
 }
 
+.svg-btn.menu-close-btn {
+  padding: calc(var(--vertical-spacing) * 2.5) 0;
+}
+
+.nav-content a {
+  padding: calc(var(--vertical-spacing) * 2.5) calc(var(--horizontal-spacing) * 2);
+}
+
 .nav-content a {
   display: block;
-  padding: calc(var(--vertical-spacing) * 2.5) calc(var(--horizontal-spacing) * 2);
   text-transform: uppercase;
-  font-size: var(--navigation-font-size);
+  font-size: var(--navigation-font-size-mobile);
   font-weight: 700;
   color: var(--dark-grey);
   text-decoration: none;
@@ -73,6 +116,14 @@
 }
 
 @media (min-width: 700px) {
+  .nav-drawer__header {
+    display: none;
+  }
+
+  .nav-content .drop-down-container {
+    display: none;
+  }
+
   .menu-btn {
     display: none;
   }
@@ -97,6 +148,7 @@
   .nav-content a {
     display: inline-block;
     color: var(--nav-unselected-color);
+    font-size: var(--navigation-font-size-desktop);
   }
 
   .nav-content li.current-section a {

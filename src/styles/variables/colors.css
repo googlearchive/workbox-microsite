@@ -1,10 +1,10 @@
 :root {
   --dark-grey:  #616261;
   --light-grey: #f5f5f5;
+  --workbox-orange: #ED6D23;
 
   --btn-bg-color: #fcb64d;
   --btn-bg-color-hover: #f47c20;
-  --orange-breadcrumb-bar: #ED6D23;
   --code-bg-color: #fff3e1;
   --link-color: #f17e33;
 
@@ -13,6 +13,7 @@
   --nav-selected-color: #ffffff;
   --mobile-nav-bg-color: #f5f5f5;
   --nav-backdrop-color: rgba(0, 0, 0, 0.8);
+  --menu-close-btn-color: var(--workbox-orange);
 
   --callout-gradient-left: #ed6d23;
   --callout-gradient-right: #e86024;

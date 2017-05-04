@@ -101,6 +101,12 @@ hr {
   padding: 0;
 }
 
+.svg-btn {
+  background: none;
+  border: none;
+  padding: calc(var(--vertical-spacing) * 2.5);
+}
+
 @media (min-width: 700px) {
   body {
     font-size: var(--base-font-size-desktop);

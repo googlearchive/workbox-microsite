@@ -24,9 +24,40 @@
     </div>
 
     <nav class="js-nav-drawer">
+      <section class="nav-drawer__header">
+        <img class="nav-drawer__wb-logo" src="../images/workbox-logo-grey-small.min.svg" alt="Small Workbox Logo" />
+
+        <button class="svg-btn menu-close-btn js-menu-close-btn">
+          <svg height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </button>
+      </section>
       <ul>
-        <li class="current-section current-page"><a href="#getting-started">Getting Started</a></li>
-        <li class=" "><a href="#recipes">Recipes</a></li>
+        <li class="has-drop-down current-section current-page">
+          <a class="drop-down-btn" href="#getting-started">Getting Started</a>
+          <ul class="drop-down-container">
+            <li>Example Entry One</li>
+            <li>Example Entry Two</li>
+            <li>Example Entry Three</li>
+          </ul>
+        </li>
+        <li class="has-drop-down">
+          <a class="drop-down-btn is-dropped-down" href="#recipes">Recipes</a>
+          <ul class="drop-down-container">
+            <li>Example Entry One</li>
+            <li>
+              <span class="drop-down-btn is-dropped-down">Example Entry Two</span>
+              <ul class="drop-down-container">
+                <li>Example Entry One</li>
+                <li>Example Entry Two</li>
+                <li>Example Entry Three</li>
+              </ul>
+            </li>
+            <li>Example Entry Three</li>
+          </ul>
+        </li>
         <li class=" "><a href="#advanced">Advanced</a></li>
         <li class=" "><a href="#examples">Examples</a></li>
         <li class=" "><a href="#reference">Reference</a></li>
@@ -119,10 +150,9 @@
   </footer>
 </body>
 
-<script src="//googlechrome.github.io/sw-helpers/themes/jekyll/scripts/detabinator.js" rel="stylesheet" async defer></script>
-<script src="//googlechrome.github.io/sw-helpers/themes/jekyll/scripts/nav-drawer.js" rel="stylesheet" async defer></script>
-<script src="//googlechrome.github.io/sw-helpers/themes/jekyll/scripts/jsdocs-collapse.js" rel="stylesheet" async defer></script>
-<script src="//googlechrome.github.io/sw-helpers/themes/jekyll/scripts/navigation-controller.js" rel="stylesheet" async defer></script>
-<script src="//googlechrome.github.io/sw-helpers/themes/jekyll/third_party/anchor-js/anchor.min.js" rel="stylesheet" id="anchorjsscript" async defer></script>
+<script src="../scripts/detabinator.js" rel="stylesheet" async defer></script>
+<script src="../scripts/nav-drawer.js" rel="stylesheet" async defer></script>
+<script src="../scripts/navigation-controller.js" rel="stylesheet" async defer></script>
+<script src="../third_party/anchor-js/anchor.min.js" rel="stylesheet" id="anchorjsscript" async defer></script>
 
 </html>
