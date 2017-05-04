@@ -8,9 +8,11 @@
   --code-bg-color: #fff3e1;
   --link-color: #f17e33;
 
-  --nav-unselected-color: #b6b7b6;
+  --nav-unselected-color-mobile: var(--dark-grey);
+  --nav-unselected-color-desktop: #b6b7b6;
   --nav-hover-color: #dadbda;
-  --nav-selected-color: #ffffff;
+  --nav-selected-color-mobile: var(--workbox-orange);
+  --nav-selected-color-desktop: #ffffff;
   --mobile-nav-bg-color: #f5f5f5;
   --nav-backdrop-color: rgba(0, 0, 0, 0.8);
   --menu-close-btn-color: var(--workbox-orange);
