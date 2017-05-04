@@ -3,6 +3,20 @@ footer {
   padding: 40px;
 }
 
-.footer__project-logos {
-  margin-bottom: 40px;
+.footer__workbox-logo {
+  height: calc(var(--horizontal-spacing) * 10);
+  text-indent: 99999999px;
+  overflow: hidden;
+  background-image: url('../../images/workbox-logo-white.min.svg');
+  background-repeat: no-repeat;
+}
+
+.footer__project-logos a {
+  display: inline-block;
+  height: 42px;
+  text-decoration: none;
+}
+
+.footer__project-logos a img {
+  height: 42px;
 }

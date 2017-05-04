@@ -12,9 +12,15 @@
   align-items: center;
   flex-direction: row;
   width: 80%;
-  padding: 60px;
+  height: calc(var(--vertical-spacing) * 18);
+  margin: calc(var(--vertical-spacing) * 15) calc(var(--horizontal-spacing) * 1);
+  background-image: url('../../images/workbox-logo-grey.min.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .page-header h1 {
   margin: 0;
+  text-indent: 9999999px;
+  overflow: hidden;
 }

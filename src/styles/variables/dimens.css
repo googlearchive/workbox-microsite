@@ -1,3 +1,14 @@
 :root {
-  
+  --vertical-spacing: 8px;
+  --horizontal-spacing: 10px;
+
+  --base-font-size: 28px;
+  --h1-font-size: 32px;
+  --h1-letter-spacing: 0.7px;
+  --h2-font-size: 28px;
+
+  --navigation-font-size: 18px;
+  --callout-h1-font-size: 48px;
+
+  --main-content-max-width: 1140px;
 }

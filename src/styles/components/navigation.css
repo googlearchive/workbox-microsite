@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: var(--header-bg);
-  padding: 0 12px;
+  padding: 0 calc(var(--horizontal-spacing) * 5);
 }
 
 .menu-btn {
@@ -38,9 +38,9 @@
 
 .nav-content a {
   display: block;
-  padding: 18px 12px;
+  padding: calc(var(--vertical-spacing) * 3.5) calc(var(--horizontal-spacing) * 2.5);
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: var(--navigation-font-size);
   font-weight: 700;
   color: var(--dark-grey);
   text-decoration: none;
