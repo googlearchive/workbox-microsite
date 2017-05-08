@@ -23,19 +23,49 @@ class NavDrawer {
     };
 
     this._detabinator = new window.Detabinator(this._navDrawer);
-    this._addClickHandlers();
+    this._addNavDrawerClickHandlers();
+    this._addDropDownClickHandlers();
   }
 
   /**
    * Add handlers so that clicks on the nav drawer and / or the backdrop
    * closes the nav drawer.
    */
-  _addClickHandlers() {
+  _addNavDrawerClickHandlers() {
     const clickHandler = () => {
       this.close();
     };
     this._navDrawer.addEventListener('click', clickHandler);
     this._backdrop.addEventListener('click', clickHandler);
+  }
+
+  _addDropDownClickHandlers() {
+    const dropDowns = document.querySelectorAll('.js-drop-down-wrapper');
+    dropDowns.forEach((dropDownElement) => {
+      const dropdownBtn = dropDownElement.querySelector('.js-drop-down-btn');
+      const dropdownList = dropDownElement.querySelector('.js-drop-down-list');
+      if (!dropdownBtn || !dropdownList) {
+        console.warn('Found a drop down without a drop down button or list',
+          dropDownElement);
+        return;
+      }
+
+      dropdownBtn.classList.add('is-closed');
+      dropdownList.classList.add('is-closed');
+
+      dropdownBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (dropdownList.classList.contains('is-closed')) {
+          dropdownBtn.classList.remove('is-closed');
+          dropdownList.classList.remove('is-closed');
+        } else {
+          dropdownBtn.classList.add('is-closed');
+          dropdownList.classList.add('is-closed');
+        }
+      });
+    });
   }
 
   /**
