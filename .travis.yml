@@ -21,7 +21,7 @@ install:
   - rvm . do bundle install
 
 script:
-  'if [ ${TRAVIS_BRANCH} = "master" ]; then
+  'if [ ${TRAVIS_PULL_REQUEST} = "false" ] && [ ${TRAVIS_BRANCH} = "master" ]; then
       npm run deploy -- --token "$FIREBASE_TOKEN";
   else
       npm run test;
