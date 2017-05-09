@@ -1,4 +1,5 @@
 # workbox-microsite
+[![Build Status](https://travis-ci.org/GoogleChrome/workbox-microsite.svg?branch=master)](https://travis-ci.org/GoogleChrome/workbox-microsite)
 
 ## Testing
 
