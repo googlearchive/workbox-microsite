@@ -25,6 +25,7 @@
     "del": "^2.2.2",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
+    "firebase-tools": "^3.7.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-connect": "^5.0.0",
     "gulp-htmlmin": "^3.0.0",
