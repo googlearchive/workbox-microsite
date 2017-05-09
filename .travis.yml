@@ -1,0 +1,28 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+node_js:
+  - '7'
+
+before_install:
+  # Dirty hack for https://github.com/travis-ci/travis-ci/issues/5092
+  - PATH=`echo $PATH | sed "s/\.\/node_modules\/\.bin//g"`;
+
+  - rvm install 2.2.0
+  - rvm use 2.2.0
+
+  # Dirty hack for https://github.com/travis-ci/travis-ci/issues/5092
+  - export PATH=$PATH:./node_modules/.bin;
+
+install:
+  - npm install
+  - gem install bundler
+  - rvm . do bundle install
+
+script:
+  'if [ ${TRAVIS_BRANCH} = "master" ]; then
+      npm run deploy;
+  else
+      npm run test;
+  fi'
