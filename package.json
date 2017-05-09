@@ -1,0 +1,23 @@
+{
+  "name": "workbox-microsite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The microsite for https://workboxjs.com",
+  "scripts": {
+    "build": "jekyll build --trace --source ./src/ --config ./src/_config.yml",
+    "serve": "jekyll serve --trace --source ./src/ --config ./src/_config.yml",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoogleChrome/workbox-microsite.git"
+  },
+  "keywords": [
+    "workbox"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/GoogleChrome/workbox-microsite/issues"
+  },
+  "homepage": "https://github.com/GoogleChrome/workbox-microsite#readme"
+}
