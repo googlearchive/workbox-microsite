@@ -1,3 +1,6 @@
+@import "../variables/dimens.css";
+@import "../variables/colors.css";
+
 footer {
   display: flex;
   flex-direction: column;

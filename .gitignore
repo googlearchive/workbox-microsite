@@ -1,1 +1,3 @@
 build-site/
+build-prod-assets/
+node_modules/

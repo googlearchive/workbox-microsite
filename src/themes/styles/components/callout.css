@@ -1,3 +1,6 @@
+@import "../variables/dimens.css";
+@import "../variables/colors.css";
+
 .callout {
   /* The gradients aren't variables as this doesn't work in Chrome */
   background: linear-gradient(45deg, var(--callout-gradient-left), var(--callout-gradient-right));

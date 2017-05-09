@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/GoogleChrome/workbox-microsite/issues"
   },
-  "homepage": "https://github.com/GoogleChrome/workbox-microsite#readme"
+  "homepage": "https://github.com/GoogleChrome/workbox-microsite#readme",
+  "devDependencies": {
+    "cssnano": "^3.10.0",
+    "del": "^2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-postcss": "^7.0.0",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-import": "^9.1.0"
+  }
 }

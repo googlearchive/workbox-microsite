@@ -1,3 +1,7 @@
+@import "../variables/dimens.css";
+@import "../variables/colors.css";
+@import "../variables/z-index.css";
+
 :root {
   --top-level-horizontal-padding: calc(var(--horizontal-spacing) * 2);
   --top-level-vertical-padding: calc(var(--horizontal-spacing) * 2);
@@ -181,7 +185,7 @@
   .navigation-links > ul > li > *:first-child {
     display: inline-block;
     font-size: var(--navigation-font-size-desktop);
-    color: var(--navigation-unselected-color-desktop);
+    color: var(--nav-unselected-color-desktop);
   }
 
   .navigation-links > ul > li > *:first-child:hover, .navigation-links > ul > .drop-down-container:hover > .navigation-drop-down-btn, .drop-down-list a:hover {
