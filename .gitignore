@@ -1,3 +1,4 @@
 build-site/
-build-prod-assets/
+build-prod/
 node_modules/
+npm-debug.log

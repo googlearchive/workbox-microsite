@@ -4,9 +4,9 @@
   "private": true,
   "description": "The microsite for https://workboxjs.com",
   "scripts": {
-    "build": "jekyll build --trace --source ./src/ --config ./src/_config.yml",
-    "serve": "jekyll serve --trace --source ./src/ --config ./src/_config.yml",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint '.'",
+    "test": "npm run lint && gulp build",
+    "deploy": "npm run test && firebase deploy"
   },
   "repository": {
     "type": "git",
@@ -23,9 +23,15 @@
   "devDependencies": {
     "cssnano": "^3.10.0",
     "del": "^2.2.2",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.2.0",
     "gulp-postcss": "^7.0.0",
     "postcss-cssnext": "^2.10.0",
-    "postcss-import": "^9.1.0"
+    "postcss-import": "^9.1.0",
+    "postcss-url": "^6.0.4"
   }
 }

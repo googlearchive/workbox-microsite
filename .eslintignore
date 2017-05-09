@@ -1,0 +1,4 @@
+third_party/
+/src/themes/_jsdoc/*.js
+build-site/
+build-prod/
