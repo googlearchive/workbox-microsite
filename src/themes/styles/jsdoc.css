@@ -61,12 +61,6 @@ span.this, .method-info-table .param-attributes, .extends {
   opacity: 0.7;
 }
 
-/** .method-name .return-arrow {
-  color: var(--primary-font-color);
-}
-
-**/
-
 .method-info-table, .method-info-table th, .method-info-table td  {
   text-align: left;
   vertical-align: top;
@@ -87,6 +81,10 @@ span.this, .method-info-table .param-attributes, .extends {
 
 .collapse-details {
   padding-top: calc(var(--vertical-spacing) * 2);
+}
+
+.collapse-details.is-closed {
+  padding-top: 0;
 }
 
 .collapse-details.is-closed {
