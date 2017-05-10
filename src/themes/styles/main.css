@@ -74,10 +74,8 @@ a {
 }
 
 main a {
-  text-decoration: none;
-  border-bottom: solid;
-  border-width: 1px;
-  border-color: var(--link-color);
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .anchorjs-link  {
