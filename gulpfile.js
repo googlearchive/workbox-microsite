@@ -37,6 +37,8 @@ gulp.task('build', gulp.series([
   ]),
 ]));
 
+gulp.task('serve', gulp.series(['jekyll:serve']));
+
 gulp.task('serve:prod', gulp.series(['build', () => {
   connect.server({
     root: global.config.dest,
