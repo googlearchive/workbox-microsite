@@ -26,6 +26,7 @@
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "firebase-tools": "^3.7.0",
+    "fs-extra": "^3.0.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-connect": "^5.0.0",
     "gulp-htmlmin": "^3.0.0",
@@ -33,6 +34,7 @@
     "gulp-postcss": "^7.0.0",
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",
-    "postcss-url": "^6.0.4"
+    "postcss-url": "^6.0.4",
+    "sw-build": "0.0.25"
   }
 }

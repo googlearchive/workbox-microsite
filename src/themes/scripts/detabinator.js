@@ -15,8 +15,6 @@
  * limitations under the License.
  */
 
-/* eslint-env browser */
-
 /**
  * Usage:
  * const detabinator = new Detabinator(element);

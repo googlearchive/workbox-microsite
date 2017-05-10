@@ -7,6 +7,10 @@
 
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ project_title | escape }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.github.project_tagline }}{% endif %}">
+  <meta name="theme-color" content="#616261">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="{{ project_root_url }}/manifest.json">
 
   <!-- The docs server over HTTPS, but site.github.url points to HTTP resouce causing mixed content -->
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: project_root_url }}">
