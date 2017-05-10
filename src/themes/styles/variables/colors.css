@@ -27,4 +27,6 @@
 
   --page-header-color: #ffffff;
   --code-bg-color: var(--light-grey);
+
+  --jsdoc-highlight-font-color: var(--workbox-orange);
 }

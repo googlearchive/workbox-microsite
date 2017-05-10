@@ -10,7 +10,7 @@ class NavigationController {
    */
   constructor() {
     this._navDrawer = new window.__npmPublishScripts.NavDrawer();
-    // this._jsdocCollapse = new window.__npmPublishScripts.JSDocCollapse();
+    this._jsdocCollapse = new window.__npmPublishScripts.JSDocCollapse();
 
     this._configureMenuBtn();
     this._configureAnchors();
