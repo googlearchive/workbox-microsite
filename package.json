@@ -33,6 +33,7 @@
     "gulp-postcss": "^7.0.0",
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",
-    "postcss-url": "^6.0.4"
+    "postcss-url": "^6.0.4",
+    "sw-build": "0.0.25"
   }
 }

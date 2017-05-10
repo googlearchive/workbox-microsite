@@ -9,7 +9,7 @@
   --link-color: #f17e33;
 
   --nav-unselected-color-mobile: var(--dark-grey);
-  --nav-unselected-color-desktop: #b6b7b6;
+  --nav-unselected-color-desktop: #e7e8e7;
   --nav-hover-color: #dadbda;
   --nav-selected-color-mobile: var(--workbox-orange);
   --nav-selected-color-desktop: #ffffff;
@@ -27,4 +27,6 @@
 
   --page-header-color: #ffffff;
   --code-bg-color: var(--light-grey);
+
+  --jsdoc-highlight-font-color: var(--workbox-orange);
 }

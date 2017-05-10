@@ -10,6 +10,12 @@
   --h2-font-size-mobile: 20px;
   --h2-font-size-desktop: 24px;
   --h2-letter-spacing: 0.7px;
+  --h3-font-size-mobile: 19px;
+  --h3-font-size-desktop: 23px;
+  --h3-letter-spacing: 0.7px;
+  --h4-font-size-mobile: 18px;
+  --h4-font-size-desktop: 22px;
+  --h4-letter-spacing: 0.7px;
 
   --navigation-font-size-mobile: 16px;
   --navigation-font-size-desktop: 16px;
@@ -18,4 +24,10 @@
   --callout-h1-font-size-desktop: 42px;
 
   --main-content-max-width: 1140px;
+
+  --pre-vertical-padding: calc(var(--vertical-spacing) * 2);
+  --code-caption-font-size: 14px;
+
+  --small-jsdoc-font-size: 14px;
+  --jsdoc-param-table-font-size: 16px;
 }

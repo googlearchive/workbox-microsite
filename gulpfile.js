@@ -35,6 +35,7 @@ gulp.task('build', gulp.series([
     'scripts',
     'extras',
   ]),
+  'sw',
 ]));
 
 gulp.task('serve', gulp.series(['jekyll:serve']));
