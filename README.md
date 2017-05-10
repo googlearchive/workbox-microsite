@@ -9,7 +9,7 @@ When working on docs or the themes, you can just run Jekyll to watch and serve
 the site:
 
 ```
-gulp jekyll:serve
+gulp serve
 ```
 
 
