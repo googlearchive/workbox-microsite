@@ -1,0 +1,25 @@
+---
+layout: page
+---
+
+<p>
+  {{ content }}
+</p>
+
+<p>
+  <h2>Explore the Code</h2>
+  {% include components/sw-include.html %}
+  {% include components/js-include.html %}
+  See all the details by opening your browser's
+  <a href="https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps" target="_blank">Developer Tools</a>.
+</p>
+
+{% if page.link_to_workbox_sw %}
+<p>
+  <h2>See a Full Example</h2>
+  <p>
+    This is only part of the picture! <a href="">Learn more</a> about how module
+    can be used as part of the larger <code>workbox-sw</code> library.
+  </p>
+</p>
+{% endif %}

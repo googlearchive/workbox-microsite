@@ -1,0 +1,14 @@
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js');
+    });
+  } else {
+    console.warn('Your browser does not support service workers.');
+  }
+</script>
+
+<details open>
+  <summary>Service Worker</summary>
+  {% highlight js %}{% include_relative sw.js %}{% endhighlight %}
+</details>
