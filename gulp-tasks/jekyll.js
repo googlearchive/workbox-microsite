@@ -4,14 +4,20 @@ const gulp = require('gulp');
 const path = require('path');
 const spawn = require('child_process').spawn;
 
-const runJekyllCommand = (command) => {
+const runJekyllCommand = (command, additionalParams) => {
   return new Promise((resolve, reject) => {
-    const jekyllProcess = spawn('jekyll', [
+    let params = [
       command,
       '--trace',
       '--source', path.join(__dirname, '..', 'src'),
       '--config', path.join(__dirname, '..', 'src', '_config.yml'),
-    ], {
+    ];
+
+    if (additionalParams) {
+      params = params.concat(additionalParams);
+    }
+
+    const jekyllProcess = spawn('jekyll', params, {
       stdio: 'inherit',
     });
 
@@ -40,5 +46,5 @@ gulp.task('jekyll:build', () => {
 });
 
 gulp.task('jekyll:serve', () => {
-  return runJekyllCommand('serve');
+  return runJekyllCommand('serve', ['--incremental']);
 });

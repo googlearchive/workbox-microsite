@@ -27,7 +27,7 @@ body {
 main {
   max-width: var(--main-content-max-width);
   color: var(--dark-grey);
-  padding: calc(var(--vertical-spacing) * 5) calc(var(--horizontal-spacing) * 4);
+  padding: calc(var(--vertical-spacing) * 5) var(--main-content-horizontal-spacing);
   margin: 0 auto;
 }
 
@@ -115,6 +115,11 @@ pre {
   background: none;
   border: none;
   padding: calc(var(--vertical-spacing) * 2.5);
+}
+
+/** Hide button links until the iframe has loaded **/
+.github-buttons {
+  display: none;
 }
 
 @media (min-width: 700px) {

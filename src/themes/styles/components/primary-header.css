@@ -2,20 +2,64 @@
 @import "../variables/colors.css";
 
 .primary-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: var(--light-grey);
   color: var(--dark-grey);
 }
 
-.primary-header h1 {
-  margin: 0;
-  text-indent: 9999999px;
-  overflow: hidden;
+.primary-header__inner-section {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  max-width: var(--main-content-max-width);
+  margin: 0 auto;
+  padding: calc(var(--vertical-spacing) * 4) var(--main-content-horizontal-spacing);
+  box-sizing: border-box;
 }
 
-.primary-header__inner-section {
+.primary-header__left-section {
+  flex: 1;
+}
+
+.primary-header__wb-logo {
+  width: 100%;
+  margin-bottom: var(--vertical-spacing);
+}
+
+.primary-header__tagline {
+    text-align: center;
+}
+
+.primary-header__right-section {
+  display: none;
+}
+
+.primary-header__feature-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.primary-header__feature-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: calc(var(--h4-font-size-desktop) - 4px);
+}
+
+.primary-header__feature-list li img {
+  width: var(--primary-header-feature-icon-size);
+  height: var(--primary-header-feature-icon-size);
+  padding-right: var(--horizontal-spacing);
+}
+
+/** .primary-header__inner-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,11 +70,27 @@
   background-image: url('../../images/workbox-logo-grey.min.svg');
   background-repeat: no-repeat;
   background-position: center;
-}
+}**/
 
 @media (min-width: 700px) {
-  .primary-header__inner-section {
+  /** .primary-header__inner-section {
     height: calc(var(--vertical-spacing) * 15);
     margin: calc(var(--vertical-spacing) * 12) calc(var(--horizontal-spacing) * 4);
+  }**/
+
+  .primary-header__wb-logo {
+    width: 50%;
+  }
+
+  .primary-header__tagline {
+    text-align: left;
+  }
+
+  .primary-header__right-section {
+    display: block;
+  }
+
+  .primary-header__github-buttons {
+    display: block;
   }
 }

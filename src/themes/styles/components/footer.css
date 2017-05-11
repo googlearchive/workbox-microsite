@@ -2,10 +2,19 @@
 @import "../variables/colors.css";
 
 footer {
-  display: flex;
-  flex-direction: column;
   background-color: var(--dark-grey);
-  padding: calc(var(--vertical-spacing) * 8) calc(var(--horizontal-spacing) * 6);
+}
+
+.footer__inner-section {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: var(--main-content-max-width);
+  margin: 0 auto;
+  padding: calc(var(--vertical-spacing) * 4) var(--main-content-horizontal-spacing);
+  box-sizing: border-box;
 }
 
 .footer__logo-row {
@@ -13,7 +22,7 @@ footer {
   flex-direction: row;
   justify-content: space-around;
 
-  margin-bottom: calc(var(--vertical-spacing) * 8);
+  margin-bottom: calc(var(--vertical-spacing) * 4);
 }
 
 .footer__logo-row:last-child {
@@ -26,8 +35,8 @@ footer {
   text-decoration: none;
 }
 
-.footer__project-logos a img {
-  height: 42px;
+.footer__btn img {
+  height: 32px;
 }
 
 .footer__btn {
@@ -44,17 +53,17 @@ footer {
 }
 
 @media (min-width: 700px) {
-  footer {
+  /**footer {
     flex-direction: row;
     justify-content: space-between;
     padding: calc(var(--vertical-spacing) * 12) calc(var(--horizontal-spacing) * 8);
-  }
+  }**/
 
-  .footer__right-logos {
+  .footer__right-section {
     padding-top: calc(var(--vertical-spacing) * 3);
   }
 
   .footer__workbox-btn img {
-    max-height: calc(var(--vertical-spacing) * 12);
+    max-height: calc(var(--vertical-spacing) * 8);
   }
 }

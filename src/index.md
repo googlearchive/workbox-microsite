@@ -14,7 +14,7 @@ more.
 ## A service worker in two minutes
 
 Use [sw-cli](sw-cli) to add a service worker to an existing project in under two
-minutes. 
+minutes.
 
 ## A build script in ten minutes
 

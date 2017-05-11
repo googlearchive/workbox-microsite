@@ -24,10 +24,13 @@
   --callout-h1-font-size-desktop: 42px;
 
   --main-content-max-width: 1140px;
+  --main-content-horizontal-spacing: calc(var(--horizontal-spacing) * 4);
 
   --pre-vertical-padding: calc(var(--vertical-spacing) * 2);
   --code-caption-font-size: 14px;
 
   --small-jsdoc-font-size: 14px;
   --jsdoc-param-table-font-size: 16px;
+
+  --primary-header-feature-icon-size: 42px;
 }
