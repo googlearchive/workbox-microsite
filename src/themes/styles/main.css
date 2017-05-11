@@ -31,7 +31,7 @@ main {
   margin: 0 auto;
 }
 
-main *:first-child {
+main > *:first-child {
   margin-top: 0;
 }
 
