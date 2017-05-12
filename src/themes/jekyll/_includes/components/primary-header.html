@@ -1,5 +1,26 @@
 <header class="primary-header">
-  <div class="primary-header__inner-section">
-    <h1>{{include.title}}</h1>
+  <div class="primary-header__inner-section content-sizing">
+    <div class="primary-header__left-section">
+      <div class="primary-header__wb-logo">
+        {% include svgs/workbox-logo-grey.min.svg %}
+      </div>
+      <h4 class="primary-header__tagline">JavaScript Libraries for Progressive Web Apps</h4>
+    </div>
+    <div class="primary-header__right-section">
+      <ul class="primary-header__feature-list">
+        <li>
+          <img src="{{ project_root_url }}{{ site.theme_location }}/themes/images/offline.min.svg" alt="Offline Icon" />
+          <span>Offline Caching</span>
+        </li>
+        <li>
+          <img src="{{ project_root_url }}{{ site.theme_location }}/themes/images/analytics.min.svg" alt="Offline Analytics Icon" />
+          <span>Offline Analytics</span>
+        </li>
+        <li>
+          <img src="{{ project_root_url }}{{ site.theme_location }}/themes/images/bg-sync.min.svg" alt="Background Sync Icon" />
+          <span>Background Sync</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </header>
