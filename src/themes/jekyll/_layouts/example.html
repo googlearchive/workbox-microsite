@@ -1,0 +1,34 @@
+---
+layout: page
+---
+
+<p>
+  {{ content }}
+</p>
+
+<p>
+  <h2>Messages</h2>
+  <ul id="example-log"></ul>
+</p>
+
+<p>
+  <h2>Explore the Code</h2>
+  {% include components/sw-include.html %}
+  {% include components/js-include.html %}
+  See all the details by opening your browser's
+  <a href="https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps" target="_blank">Developer Tools</a>.
+</p>
+
+{% if page.link_to_workbox_sw %}
+<p>
+  <h2>We have a higher-level library, too</h2>
+  <p>
+    This example is of small module that solves a specific problem.
+    We've bundled up a number of these modules to create the
+    <code>workbox-sw</code> library, and there's a
+    <a href="../workbox-sw/">full example</a> of how everything works together.
+  </p>
+</p>
+{% endif %}
+
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/example-bootstrap.js"></script>
