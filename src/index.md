@@ -9,7 +9,7 @@ styles:
 
 <div class="content-sizing" markdown="1">
 
-# Getting Started
+# Get Started
 
 ## Choose your build tool to get started:
 
