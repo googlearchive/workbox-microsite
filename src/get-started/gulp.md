@@ -15,29 +15,30 @@ install the module then cut and paste the code sample.
     npm install workbox-build --save-dev
     ```
 
-1. Require `workbox-build` in your build script.
+1. Require `workbox-build` in your gulp `gulpfile.js`.
 
     ```
     const wbBuild = require('workbox-build');
     ```
 
-1. Add the following to your `gulpfile.js`:
+1. Also in `gulpfile.js` add a task to build a service worker.
 
-    ```gulp.task('generate-sw', () => {
-        return wbBuild.generateSW({
-          globDirectory: './app/',
-          swDest: './app/sw.js',
-          staticFileGlobs: ['**\/*.{html,js,css}'],
-          globIgnores: ['admin.html'],
-          templatedUrls: {
-            '/shell': ['shell.hbs', 'main.css', 'shell.css'],
-          },
-        })
-        .then(() => {
-          console.log('Service worker generated.');
-        })
-        .catch((err) => {
-          console.log('[ERROR] This happened: ' + err);
-        });
-        })
+    ```
+    gulp.task('generate-sw', () => {
+      return wbBuild.generateSW({
+        globDirectory: './app/',
+        swDest: './app/sw.js',
+        staticFileGlobs: ['**\/*.{html,js,css}'],
+        globIgnores: ['admin.html'],
+        templatedUrls: {
+          '/shell': ['shell.hbs', 'main.css', 'shell.css'],
+        },
+      })
+      .then(() => {
+        console.log('Service worker generated.');
+      })
+      .catch((err) => {
+        console.log('[ERROR] This happened: ' + err);
+      });
+    })
     ```
