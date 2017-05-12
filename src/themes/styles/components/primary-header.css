@@ -11,10 +11,8 @@
   width: 100%;
   flex-direction: row;
   align-items: center;
-  max-width: var(--main-content-max-width);
-  margin: 0 auto;
-  padding: calc(var(--vertical-spacing) * 4) var(--main-content-horizontal-spacing);
-  box-sizing: border-box;
+  padding-top: calc(var(--vertical-spacing) * 6);
+  padding-bottom: calc(var(--vertical-spacing) * 6);
 }
 
 .primary-header__left-section {

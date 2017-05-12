@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Recipes > Gulp
+title: Get Started > Gulp
 ---
 
 # Gulp
