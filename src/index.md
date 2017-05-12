@@ -9,7 +9,7 @@ styles:
 
 <div class="content-sizing" markdown="1">
 
-# Installation
+# Get Started
 
 ## Choose your build tool to get started:
 
@@ -65,7 +65,7 @@ importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
 
 <div class="index__features" markdown="1">
 <div class="index__features-left-section" markdown="1">
-## Easy runtime caching
+## Easy precaching
 
 {% highlight javascript %}
 importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
