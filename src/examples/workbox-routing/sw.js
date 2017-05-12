@@ -5,17 +5,17 @@ self.addEventListener('activate', () => self.clients.claim());
 
 const crossOriginExpressRoute = new goog.routing.ExpressRoute({
   path: 'https://httpbin.org/(.*)',
-  handler: ({request}) => {
+  handler: ({event}) => {
     console.log('Request made to httpbin.org.');
-    return fetch(request);
+    return fetch(event.request);
   },
 });
 
 const localRegExpRoute = new goog.routing.RegExpRoute({
-  regExp: /\.jpg$/,
-  handler: ({request}) => {
-    console.log('Request made for a local .jpg file.');
-    return fetch(request);
+  regExp: /\.json/,
+  handler: ({event}) => {
+    console.log('Request made for a local .json file.');
+    return fetch(event.request);
   },
 });
 

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ project_title | escape }}{% endif %}</title>
+  <title>{% if page.title %}{{ page.title | strip_html }}{% else %}{{ project_title | escape }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.github.project_tagline }}{% endif %}">
   <meta name="theme-color" content="#616261">
 
@@ -24,5 +24,7 @@
 
   {% if page.layout == 'jsdoc' %}
   <link href="{{ project_root_url }}{{ site.theme_location }}/themes/styles/jsdoc.css" rel="stylesheet" type="text/css">
+  {% elsif page.layout == 'example' %}
+  <link href="{{ project_root_url }}{{ site.theme_location }}/themes/styles/example.css" rel="stylesheet" type="text/css">
   {% endif %}
 </head>
