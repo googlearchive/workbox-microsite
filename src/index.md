@@ -61,7 +61,7 @@ importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
 </div>
 
 <div class="content-sizing content-padding" markdown="1">
-# Features - hello
+# Features
 
 <div class="index__features" markdown="1">
 <div class="index__features-left-section" markdown="1">
