@@ -11,6 +11,8 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').then(() => {
       log('info', `This example's service worker has been registered.`);
+    }).catch((error) => {
+      log('warn', `Service worker registration failed: ${error}`);
     });
   });
 } else {
