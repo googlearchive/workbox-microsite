@@ -51,6 +51,11 @@ class NavigationController {
    */
   _configureAnchors() {
     const anchorScriptElement = document.querySelector('#anchorjsscript');
+    if (!anchorScriptElement) {
+      // This page doesn't have the anchorjs script.
+      return;
+    }
+
     const loadAnchors = () => {
       window.anchors.options = {
         placement: 'left',
