@@ -1,5 +1,6 @@
 {
   "hosting": {
-    "public": "build-prod"
+    "public": "build-prod",
+    "cleanUrls": true,
   }
 }

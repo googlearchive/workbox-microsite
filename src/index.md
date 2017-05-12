@@ -9,20 +9,20 @@ styles:
 
 <div class="content-sizing" markdown="1">
 
-# Get Started 
+# Installation
 
 ## Choose your build tool to get started:
 
 <div class="index__install-options">
-  <a href="./get-started/webpack.html" class="index__install-option index__install-webpack">
+  <a href="./get-started/webpack" class="index__install-option index__install-webpack">
     <img src="/images/third_party/webpack-logo.svg" alt="Install Workbox's Webpack plugin" />
   </a>
 
-  <a href="./get-started/gulp.html" class="index__install-option index__install-gulp">
+  <a href="./get-started/gulp" class="index__install-option index__install-gulp">
     <img src="/images/third_party/gulp-logo.svg" alt="Install Workbox to work with Gulp" />
   </a>
 
-  <a href="./get-started/npm-script.html" class="index__install-option index__install-npm">
+  <a href="./get-started/npm-script" class="index__install-option index__install-npm">
     <img src="/images/third_party/npm-logo.svg" alt="Install Workbox to work with NPM Scripts" />
   </a>
 </div>
@@ -65,7 +65,7 @@ importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
 
 <div class="index__features" markdown="1">
 <div class="index__features-left-section" markdown="1">
-## Easy precaching
+## Easy runtime caching
 
 {% highlight javascript %}
 importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
