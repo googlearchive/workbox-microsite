@@ -1,12 +1,13 @@
 'use strict';
 
 /* eslint-env node */
-/* eslint-disable no-console */
+/* eslint-disable no-console, require-jsdoc */
 
 const gulp = require('gulp');
 const fs = require('fs');
 const path = require('path');
-const connect = require('gulp-connect');
+const spawn = require('child_process').spawn;
+const os = require('os');
 
 global.config = {
   src: './build-site',
@@ -40,11 +41,24 @@ gulp.task('build', gulp.series([
 
 gulp.task('serve', gulp.series(['jekyll:serve']));
 
-gulp.task('serve:prod', gulp.series(['build', () => {
-  connect.server({
-    root: global.config.dest,
-    open: true,
+function processPromiseWrapper(command, args) {
+  return new Promise((resolve, reject) => {
+    const process = spawn(command, args, {stdio: 'inherit'});
+    process.on('error', reject);
+    process.on('close', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(`Error ${code} returned from ${command} ${args}`);
+      }
+    });
   });
+}
+
+gulp.task('serve:prod', gulp.series(['build', () => {
+  const nodeCommand = os.platform() === 'win32' ? 'npm.cmd' : 'npm';
+  return processPromiseWrapper(nodeCommand,
+    ['run', 'serve']);
 }]));
 
 gulp.task('default', gulp.parallel(['build']));
