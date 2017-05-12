@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint '.'",
     "test": "npm run lint && gulp build",
-    "deploy": "npm run test && firebase deploy"
+    "deploy": "npm run test && firebase deploy",
+    "serve": "firebase serve"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,6 @@
     "firebase-tools": "^3.7.0",
     "fs-extra": "^3.0.1",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-connect": "^5.0.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.2.0",
     "gulp-postcss": "^7.0.0",
