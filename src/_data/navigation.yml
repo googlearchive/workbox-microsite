@@ -1,23 +1,5 @@
-- title: Getting Started
-  url: /
-- title: sw-cli
-  url: /sw-cli
-- title: sw-build
-  url: /sw-build
-- title: sw-lib
-  url: /sw-lib
-- title: Recipes
-  dropdown:
-  - title: Web Pack
-    url: /recipes/webpack
-  - title: Gulp
-    url: /recipes/gulp
-  - title: Rollup
-    url: /recipes/rollup
-  - title: Grunt
-    url: /recipes/grunt
-- title: Examples
-  url: /examples
+- title: Get Started
+  url: /#get-started
 - title: Reference
   dropdown:
   - title: sw-background-sync-queue
@@ -40,3 +22,5 @@
     url: /reference-docs/stable/latest/module-sw-routing.html
   - title: sw-runtime-caching
     url: /reference-docs/stable/latest/module-sw-runtime-caching.html
+- title: Github
+  url: https://github.com/GoogleChrome/workbox

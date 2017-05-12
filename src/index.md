@@ -2,33 +2,115 @@
 layout: index
 title: Welcome to Workbox
 navigation_weight: 0
+styles:
+ - /styles/index.css
 ---
+<div class="index__install-section" markdown="1">
 
-# Welcome to Workbox
+<div class="content-sizing" markdown="1">
 
-Workbox is a suite of helper libraries for service workers and progressive web
-apps that lets you implement precaching in a manner of minutes. Its features
-support runtime caching, routing, offline analytics, background syncing, and
-more.
+# Get Started 
 
-## A service worker in two minutes
+## Choose your build tool to get started:
 
-Use [sw-cli](sw-cli) to add a service worker to an existing project in under two
-minutes. 
+<div class="index__install-options">
+  <a href="./get-started/webpack" class="index__install-option index__install-webpack">
+    <img src="/images/third_party/webpack-logo.svg" alt="Install Workbox's Webpack plugin" />
+  </a>
 
-## A build script in ten minutes
+  <a href="./get-started/gulp" class="index__install-option index__install-gulp">
+    <img src="/images/third_party/gulp-logo.svg" alt="Install Workbox to work with Gulp" />
+  </a>
 
-Generate a service worker in your build process
-using [sw-build](sw-build).
+  <a href="./get-started/npm-script" class="index__install-option index__install-npm">
+    <img src="/images/third_party/npm-logo.svg" alt="Install Workbox to work with NPM Scripts" />
+  </a>
+</div>
 
-## Much more
+## Not using a build tool?
 
-Go beyond the basics. If you'd like to use the Workbox libraries, and you
-already have your own service worker, then checkout
-[sw-lib](sw-lib) which lets
-you add to what you've already got.
+Install our command-line interface:
 
-If you've been using Workbox for a while, or you're
-ambitious, you can delve into its more advanced features. Browse the
-[recipes section](recipes), try the [examples](examples), or look up
-something in the [mobules reference](reference-docs/stable/latest/).
+</div>
+
+{% highlight bash %}
+$ npm install workbox-cli --global
+
+# Generate a service worker with some smart defaults
+$ workbox generate:sw
+{% endhighlight %}
+
+<div class="content-sizing" markdown="1">
+## Want to work directly in your service worker?
+
+We support that too with workbox-sw.
+</div>
+
+{% highlight bash %}
+$ npm install workbox-sw --save
+{% endhighlight %}
+
+<div class="content-sizing" markdown="1">
+Then just reference the file from your service worker:
+</div>
+
+{% highlight javascript %}
+importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
+{% endhighlight %}
+
+</div>
+
+<div class="content-sizing content-padding" markdown="1">
+# Features
+
+<div class="index__features" markdown="1">
+<div class="index__features-left-section" markdown="1">
+## Easy precaching
+
+{% highlight javascript %}
+importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
+
+goog.swlib.precache([
+  {
+    url: '/index.html',
+    revision: 'sdfsdflkhwernsdv32pijaasd',
+  }, {
+    url: '/styles/main.css',
+    revision: 'sdfhxcvnaldkqqwesdvclknsd',
+  }, {
+    url: '/scripts/main.js',
+    revision: 'asdxcvxcvoiyuqwebsdfiuhen',
+  }
+]);
+{% endhighlight %}
+
+## Powerful debugging support
+![Example of Workbox Logging.](/images/workbox-logging.png)
+
+</div>
+
+<div class="index__features-right-section" markdown="1">
+## Comprehensive caching strategies
+
+{% highlight javascript %}
+const networkFirst = swlib.strategies.networkFirst();
+swlib.router.registerRoute('/schedule', networkFirst);
+{% endhighlight %}
+
+<div class="index_strategy-list" markdown="1">
+- Cache only
+- Network only
+- Cache first falling back to network
+- Network first falling back to cache
+- Cache with network update
+</div>
+## The next version of sw-precache & sw-toolbox
+
+Workbox is a rethink of our previous service worker libraries with a focus
+on modularity. It aims to reduce the friction with a better surface API,
+while making the overall size of the library 20% smaller. Same great features,
+easier to use and cross-browser compatible.
+
+</div>
+</div>
+</div>

@@ -1,6 +1,9 @@
 @import "./variables/colors.css";
 @import "./variables/dimens.css";
 @import "./variables/z-index.css";
+
+@import "./pygments.css";
+
 @import "./components/navigation.css";
 @import "./components/primary-header.css";
 @import "./components/page-header.css";
@@ -22,17 +25,29 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: var(--base-font-size-mobile);
   font-weight: 300;
-}
-
-main {
-  max-width: var(--main-content-max-width);
   color: var(--dark-grey);
-  padding: calc(var(--vertical-spacing) * 5) calc(var(--horizontal-spacing) * 4);
-  margin: 0 auto;
 }
 
-main *:first-child {
+.content-sizing, .highlight pre {
+  max-width: var(--main-content-max-width);
+  padding-left: calc(var(--main-content-horizontal-spacing) / 2);
+  padding-right: calc(var(--main-content-horizontal-spacing) / 2);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.content-padding {
+  padding-top: calc(var(--main-content-vertical-spacing) / 2);
+  padding-bottom: calc(var(--main-content-vertical-spacing) / 2);
+}
+
+.content-padding > *:first-child {
   margin-top: 0;
+}
+
+.content-padding > *:last-child {
+  margin-bottom: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -43,13 +58,14 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: var(--h1-font-size-mobile);
   letter-spacing: var(--h1-letter-spacing);
-  margin-bottom: calc(var(--vertical-spacing) * 3);
+  margin-bottom: calc(var(--vertical-spacing) * 1.5);
   font-weight: 700;
 }
 
 h2 {
   font-size: var(--h2-font-size-mobile);
   letter-spacing: var(--h2-letter-spacing);
+  margin-bottom: calc(var(--p-margin) / 2);
   font-weight: 600;
 }
 
@@ -66,7 +82,7 @@ h4 {
 }
 
 p {
-  margin: 0 0 calc(var(--vertical-spacing) * 4) 0;
+  margin: 0 0 var(--p-margin) 0;
 }
 
 a {
@@ -109,17 +125,37 @@ a code {
   background: none;
 }
 
-pre {
+pre, .content-sizing .highlight pre {
   width: 100%;
   overflow-x: auto;
   padding: var(--pre-vertical-padding) calc(var(--horizontal-spacing) * 2);
+  margin: 0 0 var(--p-margin) 0;
   box-sizing: border-box;
+  color: var(--dark-grey);
+  font-size: 14px;
+}
+
+pre code {
+  background: none;
+}
+
+figure {
+  margin: 0 0 var(--p-margin) 0;
+}
+
+figure pre {
+  margin-bottom: 0;
 }
 
 .svg-btn {
   background: none;
   border: none;
   padding: calc(var(--vertical-spacing) * 2.5);
+}
+
+/** Hide button links until the iframe has loaded **/
+.github-buttons {
+  display: none;
 }
 
 @media (min-width: 700px) {
@@ -133,5 +169,15 @@ pre {
 
   h2 {
     font-size: var(--h2-font-size-desktop);
+  }
+
+  .content-sizing, .highlight pre {
+    padding-left: var(--main-content-horizontal-spacing);
+    padding-right: var(--main-content-horizontal-spacing);
+  }
+
+  .content-padding {
+    padding-top: var(--main-content-vertical-spacing);
+    padding-bottom: var(--main-content-vertical-spacing);
   }
 }
