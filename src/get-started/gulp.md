@@ -5,38 +5,40 @@ title: Get Started > Gulp
 
 # Gulp
 
+Use gulp and `workbox-build` to build a precaching service worker. Simply
+install the module then cut and paste the code sampel
+
 1. [Install Node.js](https://nodejs.org/en/).
 1. Install the module with NPM.
 
     ```
-    npm install --save-dev sw-build
+    npm install workbox-build --save
     ```
 
-1. Require `sw-build` in your build script.
+1. Require `workbox-build` in your build script.
 
     ```
-    const swBuild = require('sw-build');
+    const wbBuild = require('workbox-build');
     ```
 
 1. Add the following to your `gulpfile.js`:
 
-    ```
-    gulp.task('build', () => {
-      const swBuild = require('sw-build');
-      return swBuild.generateSW({
-        rootDirectory: './build/',
-        swDest: './build/sw.js',
-        globPatterns: ['**\/*.{html,js,css}'],
-        globIgnores: ['admin.html'],
-        templatedUrls: {
-          '/shell': ['shell.hbs', 'main.css', 'shell.css'],
-        },
-      })
-      .then(() => {
-        console.log('Service worker generated.');
-      })
-      .catch((err) => {
-        console.log('[ERROR] This happened: ' + err);
-      });
-    })
+    ```gulp.task('test', () => {
+        return wbBuild.generateSW({
+          rootDirectory: './app/',
+          globDirectory: './app/',
+          swDest: './app/sw.js',
+          staticFileGlobs: ['**\/*.{html,js,css}'],
+          globIgnores: ['admin.html'],
+          templatedUrls: {
+            '/shell': ['shell.hbs', 'main.css', 'shell.css'],
+          },
+        })
+        .then(() => {
+          console.log('Service worker generated.');
+        })
+        .catch((err) => {
+          console.log('[ERROR] This happened: ' + err);
+        });
+        })
     ```
