@@ -24,7 +24,7 @@ install the module then cut and paste the code sample.
 1. Also in `gulpfile.js` add a task to build a service worker.
 
     ```
-    gulp.task('generate-sw', () => {
+    gulp.task('bundle-sw', () => {
       return wbBuild.generateSW({
         globDirectory: './app/',
         swDest: './app/sw.js',
@@ -41,4 +41,22 @@ install the module then cut and paste the code sample.
         console.log('[ERROR] This happened: ' + err);
       });
     })
+    ```
+
+   **Note:** The gulp task for generating the service worker should always be
+   run as the last step in each build. This ensures that your service worker
+   contains any changes made during development. An example is shown below.
+   
+
+    ```
+    gulp.task('build:dist', ['clean'], callback => {
+      process.env.NODE_ENV = 'production';
+      sequence(
+        ['bundle-app', 'bundle-third-party', 'copy-static', 'sass', 'lint'],
+        'uglify-js',
+        'version-assets',
+        'bundle-sw',
+        callback
+      );
+    });
     ```
