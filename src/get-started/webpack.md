@@ -5,12 +5,14 @@ title: Get Started > Webpack
 
 # Webpack
 
-Here are a few examples that can get you started with Workbox and webpack relatively quickly.
+Here are a few examples that can get you started with Workbox and webpack
+relatively quickly using the
+[workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin).
 
 ## Install
 
 1. [Install Node.js](https://nodejs.org/en/).
-1. Install the module with NPM.
+1. Install the plugin with NPM.
 
     ```
     npm install workbox-webpack-plugin --save-dev
@@ -18,12 +20,11 @@ Here are a few examples that can get you started with Workbox and webpack relati
 
 ## Precaching
 
-The following example uses the
-[workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin)
-to create a precaching service worker to your webpack build process. This will
-give you a new service worker every time you run it.
+The following example uses the plugin to create a precaching service worker to
+your webpack build process. This will give you a new service worker every time
+you run it.
 
-Add the following to your `webpack.config.js`.
+Aafter installing the Webpack plugin add the following to your `webpack.config.js`.
 
 ```
 const path = require('path');
