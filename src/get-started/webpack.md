@@ -48,4 +48,4 @@ module.exports = { /* Do the usual webpack stuff. */
 };
 ```
 
-	## Runtime Caching
+## Runtime Caching
