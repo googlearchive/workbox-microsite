@@ -5,7 +5,11 @@ title: Get Started > NPM Script
 
 # NPM Script
 
+If you already have a build process based on npm scripts
+
 Use npm and `workbox-build` to build a precaching service worker. Simply install the module then cut and paste the code sample.
+
+It's for developers who already have a build process that's based on npm scripts, and for those developers, chaining in a call to workbox-cli (which will read in a saved config) is an easy way to get started.
 
 1. [Install Node.js](https://nodejs.org/en/).
 1. Install the module with NPM.
