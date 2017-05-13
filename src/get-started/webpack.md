@@ -20,7 +20,7 @@ relatively quickly using the
 
 ## Precaching
 
-The following example uses the plugin to create a precaching service worker to
+The following example uses the plugin to create a precaching service worker in
 your webpack build process. This will give you a new service worker every time
 you run it.
 
