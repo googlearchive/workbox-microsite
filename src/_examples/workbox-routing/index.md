@@ -1,8 +1,9 @@
 ---
 layout: example
-title: <a href="/examples/">Examples</a> > workbox-routing
-show_page_js: true
 link_to_workbox_sw: true
+module: workbox-routing
+show_page_js: true
+title: <a href="/examples/">Examples</a> > workbox-routing
 ---
 
 The `workbox-routing` module makes it easy to handle network requests using the

@@ -5,3 +5,8 @@ includes_dir: ./themes/jekyll/_includes/
 
 # This adds github pages data
 gems: ['jekyll-github-metadata']
+
+# See http://jekyllrb.com/docs/collections/
+collections:
+  examples:
+    output: true

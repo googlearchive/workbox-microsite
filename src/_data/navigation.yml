@@ -1,5 +1,7 @@
 - title: Get Started
   url: /#get-started
+- title: Examples
+  url: /examples/
 - title: Reference
   dropdown:
   - title: sw-background-sync-queue
