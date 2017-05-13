@@ -81,10 +81,11 @@ const buildJSDocs = (docPath, version) => {
         }
       });
     });
-
-    /** const jsdocPath = findup(
-      path.join('node_modules', '.bin', 'jsdoc'));**/
 };
+
+gulp.task('ref-docs:watch', () => {
+
+});
 
 gulp.task('ref-docs', () => {
   return remoteGitTags(GIT_REPO)
