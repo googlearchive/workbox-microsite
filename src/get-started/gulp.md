@@ -45,18 +45,4 @@ install the module then cut and paste the code sample.
 
    **Note:** The gulp task for generating the service worker should always be
    run as the last step in each build. This ensures that your service worker
-   contains any changes made during development. An example is shown below.
-   
-
-    ```
-    gulp.task('build:dist', ['clean'], callback => {
-      process.env.NODE_ENV = 'production';
-      sequence(
-        ['bundle-app', 'bundle-third-party', 'copy-static', 'sass', 'lint'],
-        'uglify-js',
-        'version-assets',
-        'bundle-sw',
-        callback
-      );
-    });
-    ```
+   contains any changes made during development.
