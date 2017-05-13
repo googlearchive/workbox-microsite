@@ -1,5 +1,7 @@
-.highlight pre { background-color: #404040 }
-.highlight .hll { background-color: #404040 }
+@import "./variables/colors.css";
+
+.highlight pre { background-color: var(--code-bg-color) }
+.highlight .hll { background-color: var(--code-bg-color) }
 .highlight .c { color: #999999; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .g { color: #d0d0d0 } /* Generic */

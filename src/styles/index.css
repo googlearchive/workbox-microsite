@@ -44,6 +44,10 @@
   padding-bottom: var(--main-content-vertical-spacing);
 }
 
+.index__install-section .highlighter-rouge, .index__install-section .highlight {
+  background-color: var(--code-bg-color);
+}
+
 .index__install-section > *:last-child {
   margin-bottom: 0;
 }
