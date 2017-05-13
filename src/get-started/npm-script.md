@@ -5,13 +5,9 @@ title: Get Started > NPM Script
 
 # NPM Script
 
-If you already have a build process based on npm scripts
+If you already have a build process based on npm scripts you can use `workbox-cli` to generate a service worker.
 
-Use npm and `workbox-build` to build a precaching service worker. Simply install the module then cut and paste the code sample.
-
-It's for developers who already have a build process that's based on npm scripts, and for those developers, chaining in a call to workbox-cli (which will read in a saved config) is an easy way to get started.
-
-1. [Install Node.js](https://nodejs.org/en/).
+1. [Install Node.js](https://nodejs.org/en/) and create a new project using `npm-init`.
 1. Install the module with NPM.
 
     ```
@@ -22,35 +18,18 @@ It's for developers who already have a build process that's based on npm scripts
 
     ```
 	"scripts": {
-	    "createsw": "node createsw.js"
+	    "build": "workbox-cli generate:sw"
 	},
 	```
 
-1. In the root of your project, create a file named `createsw.js`.
-1. Open `createsw.js` and add the following code:
+	Or add just the middle line if your `package.json` already has a scripts section.
+
+    **Note:** The npm task for generating the service worker should always be run as the last step in each build. This ensures that your service worker contains any changes made during development. For example, you could do something like this:
+
 
     ```
-    use strict';
-
-	const wbBuild = require('workbox-build');
-
-	function generateSW() {
-		return wbBuild.generateSW({
-			globDirectory: './app/',
-			swDest: './app/sw.js',
-			staticFileGlobs: ['**\/*.{html,js,css}'],
-			globIgnores: ['admin.html'],
-			templatedUrls: {
-				'/shell': ['shell.hbs', 'main.css', 'shell.css'],
-			},
-		})
-		.then(() => {
-			console.log('Service worker generated.');
-		})
-		.catch((err) => {
-			console.log('[ERROR] This happened: ' + err);
-		});
-	}
-
-	generateSW();
+	"scripts": {
+		"_build_static": "NOT SURE WHAT GOES HERE"
+	    "build": "_build_static && workbox-cli generate:sw"
+	},
 	```
