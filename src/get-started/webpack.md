@@ -1,15 +1,13 @@
 ---
 layout: page
-title: Get Started > Webpack
+title: Get Started > webpack
 ---
 
-# Webpack
+# webpack
 
-Here are a few examples that can get you started with Workbox and webpack
-relatively quickly using the
-[workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin).
-
-## Install
+The following example uses [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin)
+to create a precaching service worker in your webpack build process. This will
+give you a new service worker every time you run it.
 
 1. [Install Node.js](https://nodejs.org/en/).
 1. Install the plugin with NPM.
@@ -18,36 +16,30 @@ relatively quickly using the
     npm install workbox-webpack-plugin --save-dev
     ```
 
-## Precaching
+1. After installing the webpack plugin add the following to your `webpack.config.js`.
 
-The following example uses the plugin to create a precaching service worker in
-your webpack build process. This will give you a new service worker every time
-you run it.
+    ```
+    const path = require('path');
+    const WorkboxBuildWebpackPlugin = require('workbox-webpack-plugin');
 
-Aafter installing the Webpack plugin add the following to your `webpack.config.js`.
+    const DIST_DIR = 'dist';
 
-```
-const path = require('path');
-const WorkboxBuildWebpackPlugin = require('workbox-webpack-plugin');
+    module.exports = { /* Do the usual webpack stuff. */
+      entry: './app/index.js',
+      output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, DIST_DIR),
+      },
+      plugins: [ /* Call the plugin. */
+        new WorkboxBuildWebpackPlugin({
+          globDirectory: DIST_DIR,
+          staticFileGlobs: ['**/*.{html,js,css}'],
+          swDest: path.join(DIST_DIR, 'sw.js'),
+        }),
+      ]
+    };
+    ```
 
-const DIST_DIR = 'dist';
-
-module.exports = { /* Do the usual webpack stuff. */
-  entry: './app/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, DIST_DIR),
-  },
-  plugins: [ /* Call the plugin. */
-    new WorkboxBuildWebpackPlugin({
-      globDirectory: DIST_DIR,
-      staticFileGlobs: ['**/*.{html,js,css}'],
-      swDest: path.join(DIST_DIR, 'sw.js'),
-    }),
-  ]
-};
-```
-
-## Runtime Caching
-
-TBD
+   **Note:** The plugin for generating the service worker should always be
+   run as the last step in each build. This ensures that your service worker
+   contains any changes made during development.
