@@ -33,12 +33,12 @@ Install our command-line interface:
 
 </div>
 
-{% highlight bash %}
+```bash
 $ npm install workbox-cli --global
 
 # Generate a service worker with some smart defaults
 $ workbox generate:sw
-{% endhighlight %}
+```
 
 <div class="content-sizing" markdown="1">
 ## Want to work directly in your service worker?
@@ -46,17 +46,17 @@ $ workbox generate:sw
 We support that too with workbox-sw.
 </div>
 
-{% highlight bash %}
+```bash
 $ npm install workbox-sw --save
-{% endhighlight %}
+```
 
 <div class="content-sizing" markdown="1">
 Then just reference the file from your service worker:
 </div>
 
-{% highlight javascript %}
+```javascript
 importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
-{% endhighlight %}
+```
 
 </div>
 
@@ -67,7 +67,7 @@ importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
 <div class="index__features-left-section" markdown="1">
 ## Easy precaching
 
-{% highlight javascript %}
+```javascript
 importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
 
 goog.swlib.precache([
@@ -82,7 +82,7 @@ goog.swlib.precache([
     revision: 'asdxcvxcvoiyuqwebsdfiuhen',
   }
 ]);
-{% endhighlight %}
+```
 
 ## Powerful debugging support
 ![Example of Workbox Logging.](/images/workbox-logging.png)
@@ -92,10 +92,10 @@ goog.swlib.precache([
 <div class="index__features-right-section" markdown="1">
 ## Comprehensive caching strategies
 
-{% highlight javascript %}
+```javascript
 const networkFirst = swlib.strategies.networkFirst();
 swlib.router.registerRoute('/schedule', networkFirst);
-{% endhighlight %}
+```
 
 <div class="index_strategy-list" markdown="1">
 - Cache only

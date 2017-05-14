@@ -5,7 +5,6 @@
 
   --btn-bg-color: #fcb64d;
   --btn-bg-color-hover: #f47c20;
-  --code-bg-color: #fff3e1;
   --link-color: #EF6C00;
 
   --nav-unselected-color-mobile: var(--dark-grey);
@@ -26,7 +25,9 @@
   --hr-color: #fcad37;
 
   --page-header-color: #ffffff;
-  --code-bg-color: var(--light-grey);
+
+  --code-bg-color: #404040;
+  --code-font-color: var(--light-grey);
 
   --jsdoc-highlight-font-color: var(--workbox-orange);
 }
