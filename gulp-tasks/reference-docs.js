@@ -7,6 +7,8 @@ const fs = require('fs');
 const findup = require('findup-sync');
 const meow = require('meow');
 const chokidar = require('chokidar');
+const semver = require('semver');
+const fsExtra = require('fs-extra');
 
 const exitLifeCycle = require('./utils/exit-lifecycle');
 
@@ -104,6 +106,9 @@ gulp.task('ref-docs:watch', () => {
     return Promise.resolve();
   }
 
+  global.jekyll = global.jekll || {};
+  global.jekyll.debug = true;
+
   const DEVELOPMENT_TAG = 'v0.0.0';
   const codePath = path.join(process.cwd(), cli.flags.code);
   let outputPath;
@@ -138,11 +143,13 @@ gulp.task('ref-docs:watch', () => {
 });
 
 gulp.task('ref-docs', () => {
+  let allTags = [];
   return remoteGitTags(GIT_REPO)
   .then((tags) => {
     const tagObject = {};
     tags.forEach((value, key) => {
       tagObject[key] = value;
+      allTags.push(key);
     });
 
     return Object.keys(tagObject).filter((tag) => {
@@ -169,7 +176,25 @@ gulp.task('ref-docs', () => {
         return buildJSDocs(docPath, tag);
       });
     });
-    return promiseChain;
+    return promiseChain
+    .then(() => {
+      if(allTags.length === 0) {
+        return;
+      }
+
+      allTags.sort(semver.rcompare);
+      let latestTag = allTags[0];
+      let tagPath = path.join(
+        __dirname, '..', 'src', 'reference-docs', latestTag
+      );
+      let latestPath = path.join(
+        __dirname, '..', 'src', 'reference-docs', 'latest'
+      );
+      return del(latestPath)
+      .then(() => {
+        fsExtra.copySync(tagPath, latestPath);
+      });
+    });
   })
   .catch((err) => {
     console.error('Problem pulling reference docs and generating them.');
@@ -177,8 +202,5 @@ gulp.task('ref-docs', () => {
   })
   .then(() => {
      return del(TMP_PATH);
-  })
-  .then(() => {
-    // Put latest tag content into latest.
   });
 });

@@ -3,3 +3,4 @@ build-prod/
 node_modules/
 npm-debug.log
 .jekyll-metadata
+_site/
