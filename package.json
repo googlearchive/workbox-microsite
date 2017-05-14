@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/GoogleChrome/workbox-microsite#readme",
   "devDependencies": {
+    "chokidar": "^1.7.0",
     "cssnano": "^3.10.0",
     "del": "^2.2.2",
     "eslint": "^3.19.0",
@@ -35,6 +36,7 @@
     "gulp-postcss": "^7.0.0",
     "jsdoc": "^3.4.3",
     "jsdoc-strip-async-await": "^0.1.0",
+    "meow": "^3.7.0",
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",
     "postcss-url": "^6.0.4",

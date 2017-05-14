@@ -5,6 +5,10 @@ const del = require('del');
 const path = require('path');
 const fs = require('fs');
 const findup = require('findup-sync');
+const meow = require('meow');
+const chokidar = require('chokidar');
+
+const exitLifeCycle = require('./utils/exit-lifecycle');
 
 const REFERENCE_DOCS_DIR = 'reference-docs';
 const GIT_REPO = 'github.com/GoogleChrome/workbox';
@@ -84,7 +88,53 @@ const buildJSDocs = (docPath, version) => {
 };
 
 gulp.task('ref-docs:watch', () => {
+  let fileWatchers = [];
 
+  const cli = meow();
+  if (!cli.flags.code) {
+    console.warn(`
+
+      If you want to build the latest refernce docs
+      please run serve with the "--code" flag, passing
+      in the path to the workbox repo.
+
+          gulp serve --code ../workbox/
+
+      `);
+    return Promise.resolve();
+  }
+
+  const DEVELOPMENT_TAG = 'v0.0.0';
+  const codePath = path.join(process.cwd(), cli.flags.code);
+  let outputPath;
+
+  exitLifeCycle.addEventListener('exit', () => {
+    if (fileWatchers && fileWatchers.length > 0) {
+      fileWatchers.forEach((watcher) => {
+        watcher.close();
+      });
+    }
+
+    // This must be sync, otherwise the exit lifecycle
+    // process.exit() will prevent the files from
+    // actually deleting.
+    del.sync(outputPath);
+  });
+
+  return buildJSDocs(codePath, DEVELOPMENT_TAG)
+  .then((jsdocPath) => {
+    outputPath = jsdocPath;
+    const watcher = chokidar.watch([
+      path.join(codePath, '**', '*.*'),
+      path.join(__dirname, 'src', 'themes', '**', '*.*'),
+    ], {
+      recursive: true,
+    });
+    watcher.on('change', () => {
+      return buildJSDocs(codePath, DEVELOPMENT_TAG);
+    });
+    fileWatchers.push(watcher);
+  });
 });
 
 gulp.task('ref-docs', () => {
