@@ -28,6 +28,7 @@ gulpTaskFiles.forEach((taskFile) => {
 
 gulp.task('build', gulp.series([
   'clean',
+  'ref-docs',
   'jekyll:build',
   gulp.parallel([
     'styles',
@@ -39,7 +40,8 @@ gulp.task('build', gulp.series([
   'sw',
 ]));
 
-gulp.task('serve', gulp.series(['jekyll:serve']));
+gulp.task('serve', gulp.series(['ref-docs:watch', 'jekyll:serve']));
+gulp.task('serve:fast', gulp.series(['ref-docs:watch', 'jekyll:serve-fast']));
 
 function processPromiseWrapper(command, args) {
   return new Promise((resolve, reject) => {

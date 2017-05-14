@@ -101,6 +101,5 @@ span.this, .method-info-table .param-attributes, .extends {
 .code-caption {
   font-style: italic;
   font-size: var(--code-caption-font-size);
-  margin-top: var(--pre-vertical-padding);
-  margin-bottom: calc(-1 * var(--pre-vertical-padding));
+  margin-bottom: 0;
 }

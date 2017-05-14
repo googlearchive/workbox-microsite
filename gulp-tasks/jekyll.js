@@ -10,8 +10,16 @@ const runJekyllCommand = (command, additionalParams) => {
       command,
       '--trace',
       '--source', path.join(__dirname, '..', 'src'),
-      '--config', path.join(__dirname, '..', 'src', '_config.yml'),
     ];
+
+    let configFiles = path.join(__dirname, '..', 'src', '_config.yml');
+    if (global.jekyll && global.jekyll.debug) {
+      configFiles += ',' +
+        path.join(__dirname, '..', 'src', '_debug-config.yml');
+    }
+
+    params.push('--config');
+    params.push(configFiles);
 
     if (additionalParams) {
       params = params.concat(additionalParams);
@@ -46,5 +54,9 @@ gulp.task('jekyll:build', () => {
 });
 
 gulp.task('jekyll:serve', () => {
+  return runJekyllCommand('serve');
+});
+
+gulp.task('jekyll:serve-fast', () => {
   return runJekyllCommand('serve', ['--incremental']);
 });

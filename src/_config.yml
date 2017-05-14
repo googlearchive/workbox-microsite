@@ -3,6 +3,11 @@ destination:  ./build-site/
 layouts_dir: ./themes/jekyll/_layouts/
 includes_dir: ./themes/jekyll/_includes/
 
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
 # This adds github pages data
 gems: ['jekyll-github-metadata']
 

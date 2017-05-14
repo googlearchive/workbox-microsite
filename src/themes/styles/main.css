@@ -30,7 +30,7 @@ body {
   color: var(--dark-grey);
 }
 
-.content-sizing, .highlight pre {
+.content-sizing, .highlight pre, .highlighter-rouge pre {
   max-width: var(--main-content-max-width);
   padding-left: calc(var(--main-content-horizontal-spacing) / 2);
   padding-right: calc(var(--main-content-horizontal-spacing) / 2);
@@ -119,22 +119,26 @@ code, pre {
   font-family: 'Cutive Mono', monospace;
 }
 
-code, pre {
+pre {
+  color: var(--code-font-color);
   background-color: var(--code-bg-color);
+}
+
+code {
+  background-color: var(--light-grey);
 }
 
 a code {
   background: none;
 }
 
-pre, .content-sizing .highlight pre {
+pre, .content-sizing .highlight pre, .content-sizing .highlighter-rouge pre {
   width: 100%;
   overflow-x: auto;
   padding: var(--pre-vertical-padding) calc(var(--horizontal-spacing) * 2);
   margin: 0 0 var(--p-margin) 0;
   box-sizing: border-box;
-  color: var(--dark-grey);
-  font-size: 14px;
+  font-size: 18px;
 }
 
 pre code {
@@ -173,7 +177,7 @@ figure pre {
     font-size: var(--h2-font-size-desktop);
   }
 
-  .content-sizing, .highlight pre {
+  .content-sizing, .highlight pre, .highlighter-rouge pre {
     padding-left: var(--main-content-horizontal-spacing);
     padding-right: var(--main-content-horizontal-spacing);
   }

@@ -25,6 +25,7 @@
 
       <!-- Actual Links -->
       <ul>
+        {% include/components/navigation-entry.html entry=site.data.reference %}
         {% for topLevelEntry in site.data.navigation %}
           {% include/components/navigation-entry.html entry=topLevelEntry %}
         {% endfor %}

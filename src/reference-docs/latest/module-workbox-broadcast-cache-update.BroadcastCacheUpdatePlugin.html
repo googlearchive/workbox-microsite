@@ -1,0 +1,56 @@
+---
+layout: jsdoc
+title: "Class: BroadcastCacheUpdatePlugin"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>BroadcastCacheUpdatePlugin</h2>
+        
+            <p>Can be used to compare two <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Responses</a>
+and uses the <a href="https://developers.google.com/web/updates/2016/09/broadcastchannel">Broadcast Channel API</a>
+to notify interested parties when those responses differ.</p>
+<p>For efficiency's sake, the underlying response bodies are not compared;
+only specific response headers are checked.</p>
+<p>This class is meant to be automatically invoked as a plugin to a
+<a href="module-workbox-runtime-caching.RequestWrapper.html#main">RequestWrapper</a>, which
+is used by the <code>workbox-sw</code> and <code>workbox-runtime-caching</code> modules.</p>
+<p>If you would like to use this functionality outside of the <code>RequestWrapper</code>
+context, please use the <code>BroadcastCacheUpdate</code> class directly.</p>
+        
+    
+
+    
+      
+          <h3>Example</h3>
+          
+        <p class="code-caption">Added as a "plugin" to a `RequestWrapper` to
+automatically dispatch messages on a cache update</p>
+    
+    <pre class="prettyprint"><code>const requestWrapper = new goog.runtimeCaching.RequestWrapper({
+  cacheName: 'runtime-cache',
+  plugins: [
+    new goog.broadcastCacheUpdate.Plugin({channelName: 'cache-updates'})
+  ]
+});
+const route = new goog.routing.RegExpRoute({
+  match: ({url}) => url.domain === 'example.com',
+  handler: new goog.runtimeCaching.StaleWhileRevalidate({requestWrapper})
+});</code></pre>
