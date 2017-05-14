@@ -1,26 +1,5 @@
 - title: Get Started
   url: /#get-started
-- title: Reference
-  dropdown:
-  - title: sw-background-sync-queue
-    url: /reference-docs/stable/latest/module-sw-background-sync-queue.html
-  - title: sw-broadcast-cache-update
-    url: /reference-docs/stable/latest/module-sw-broadcast-cache-update.html
-  - title: sw-build
-    url: /reference-docs/stable/latest/module-sw-build.html
-  - title: sw-cache-expiration
-    url: /reference-docs/stable/latest/module-sw-cache-expiration.html
-  - title: sw-cacheable-response
-    url: /reference-docs/stable/latest/module-sw-cacheable-response.html
-  - title: sw-lib
-    url: /reference-docs/stable/latest/module-sw-lib.html
-  - title: sw-offline-google-analytics
-    url: /reference-docs/stable/latest/module-sw-offline-google-analytics.html
-  - title: sw-precaching
-    url: /reference-docs/stable/latest/module-sw-precaching.html
-  - title: sw-routing
-    url: /reference-docs/stable/latest/module-sw-routing.html
-  - title: sw-runtime-caching
-    url: /reference-docs/stable/latest/module-sw-runtime-caching.html
+- reference: true
 - title: Github
   url: https://github.com/GoogleChrome/workbox

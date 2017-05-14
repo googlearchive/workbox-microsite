@@ -1,0 +1,104 @@
+---
+layout: jsdoc
+title: "Source: packages/workbox-webpack-plugin/index.js"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+---
+
+
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const swBuild = require('workbox-build');
+
+/**
+ * Use the instance of this in the plugins array of the webpack config.
+ * @example
+ * const SwBuildWebpackPlugin = require('workbox-webpack-plugin');
+ * .
+ * .
+ * plugins: [
+ * 	new SwBuildWebpackPlugin({
+ * 		rootDirectory: './build/',
+ * 		swDest: './build/sw.js',
+ * 		globPatterns: ['**\/*.{html,js,css}'],
+ * 		globIgnores: ['admin.html'],
+ * 		templatedUrls: {
+ * 			'/shell': ['shell.hbs', 'main.css', 'shell.css'],
+ * 		},
+ * 	});
+ * ]
+ *
+ * @class SwBuildWebpackPlugin
+ */
+class SwBuildWebpackPlugin {
+	/**
+	 * Creates an instance of SwBuildWebpackPlugin.
+	 *
+	 * @param {Object} [config] all the options as passed to `swbuild`
+	 * @memberOf SwBuildWebpackPlugin
+	 */
+	constructor(config) {
+		this._config = config || {};
+	}
+
+  /**
+   * @private
+   * @param {Object} compilation The [compilation](https://github.com/webpack/docs/wiki/how-to-write-a-plugin#accessing-the-compilation),
+   * passed from Webpack to this plugin.
+   * @return {Object} The configuration for a given compilation.
+   */
+	getConfig(compilation) {
+		let config = this._config;
+
+		// If no root directory is given, fallback to
+		// output path directory of webpack
+		if (!config.rootDirectory) {
+			config.rootDirectory = compilation.options.output.path;
+		}
+
+		return config;
+	}
+
+	/**
+	 * @param {Object} [compiler] default compiler object passed from webpack
+	 *
+	 * @memberOf SwBuildWebpackPlugin
+	 */
+	apply(compiler) {
+		compiler.plugin('after-emit', (compilation, callback) => {
+			const config = this.getConfig(compilation);
+			if (config.swSrc) {
+				swBuild.injectManifest(config)
+					.then(() => callback())
+					.catch((e) => callback(e));
+			} else {
+				swBuild.generateSW(config)
+				.then(() => callback())
+				.catch((e) => callback(e));
+			}
+		});
+	}
+}
+
+module.exports = SwBuildWebpackPlugin;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
