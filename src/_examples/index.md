@@ -3,7 +3,7 @@ layout: page
 title: Examples
 ---
 
-# Module-specific Examples
+# Examples of Workbox Modules
 
 <ul>
 {% for example in site.examples %}
