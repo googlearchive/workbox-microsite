@@ -1,0 +1,7 @@
+I'm included in the manifest passed to workboxSW.precache([]), so I'll be
+added to the cache automatically whenever the service worker is registered.
+
+Additionally, I'll always be served with a cache-first strategy, even though
+there's also a runtime caching route that matches /\.txt$/. The cache-first
+route that .precache() sets up always takes precedence over any runtime
+caching routes.
