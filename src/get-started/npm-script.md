@@ -11,7 +11,7 @@ cli` to generate a service worker.
 1. Install the module with NPM.
 
     ```
-    npm install --save-dev sw-build
+    npm install --save-dev workbox-cli
     ```
 
 1. From your project folder, run `workbox-cli` from a command line. A wizard
@@ -36,5 +36,5 @@ cli` to generate a service worker.
 	delete `workbox-cli-config.json` and rerun the wizard.
 
     **Note:** Always run the npm task for generating the service worker as the
-    last step in each build. This ensures that your service worker contains any
-    changes made during development. 
+    last step in your site's build process. This ensures that your service
+    worker contains any changes made during development. 
