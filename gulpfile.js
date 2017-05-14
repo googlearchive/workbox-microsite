@@ -28,6 +28,7 @@ gulpTaskFiles.forEach((taskFile) => {
 
 gulp.task('build', gulp.series([
   'clean',
+  'ref-docs',
   'jekyll:build',
   gulp.parallel([
     'styles',

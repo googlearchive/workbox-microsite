@@ -11,7 +11,7 @@ the site:
 ```
 gulp serve
 ```
-#### Build with JSDocs
+#### Development + JSDocs
 
 If you want to build the site **and** build a version of the reference docs you
 need to run with the `--code` flag and pass in a path to the workbox repo.
