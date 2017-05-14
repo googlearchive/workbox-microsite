@@ -6,10 +6,9 @@ title: Get Started > webpack
 # webpack
 
 The following example uses [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin)
-to create a precaching service worker in your webpack build process. This will
-give you a new service worker every time you run it.
+to create a service worker in your webpack build process to precache resources. Every run of the build will
+update the service worker with the latest file changes.
 
-1. [Install Node.js](https://nodejs.org/en/).
 1. Install the plugin with NPM.
 
     ```
@@ -20,7 +19,7 @@ give you a new service worker every time you run it.
 
     ```
     const path = require('path');
-    const WorkboxBuildWebpackPlugin = require('workbox-webpack-plugin');
+    const workboxPlugin = require('workbox-webpack-plugin');
 
     const DIST_DIR = 'dist';
 
@@ -31,7 +30,7 @@ give you a new service worker every time you run it.
         path: path.resolve(__dirname, DIST_DIR),
       },
       plugins: [ /* Call the plugin. */
-        new WorkboxBuildWebpackPlugin({
+        new workboxPlugin({
           globDirectory: DIST_DIR,
           staticFileGlobs: ['**/*.{html,js,css}'],
           swDest: path.join(DIST_DIR, 'sw.js'),
@@ -40,6 +39,6 @@ give you a new service worker every time you run it.
     };
     ```
 
-   **Note:** The plugin for generating the service worker should always be
-   run as the last step in each build. This ensures that your service worker
-   contains any changes made during development.
+    **Note:** Always run the plugin for generating the service worker as the
+    last step in your site's build process. This ensures that your service
+    worker contains any changes made during development. 
