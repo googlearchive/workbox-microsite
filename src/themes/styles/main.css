@@ -9,6 +9,7 @@
 @import "./components/page-header.css";
 @import "./components/callout.css";
 @import "./components/footer.css";
+@import "./components/standalone-project.css";
 @import "./components/toast.css";
 
 html {
