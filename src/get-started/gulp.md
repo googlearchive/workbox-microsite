@@ -5,28 +5,30 @@ title: Get Started > Gulp
 
 # Gulp
 
+Use gulp and `workbox-build` to build a precaching service worker. Simply
+install the module then cut and paste the code sample.
+
 1. [Install Node.js](https://nodejs.org/en/).
 1. Install the module with NPM.
 
     ```
-    npm install --save-dev sw-build
+    npm install workbox-build --save-dev
     ```
 
-1. Require `sw-build` in your build script.
+1. Require `workbox-build` in your gulp `gulpfile.js`.
 
     ```
-    const swBuild = require('sw-build');
+    const wbBuild = require('workbox-build');
     ```
 
-1. Add the following to your `gulpfile.js`:
+1. Also in `gulpfile.js` add a task to build a service worker.
 
     ```
-    gulp.task('build', () => {
-      const swBuild = require('sw-build');
-      return swBuild.generateSW({
-        rootDirectory: './build/',
-        swDest: './build/sw.js',
-        globPatterns: ['**\/*.{html,js,css}'],
+    gulp.task('bundle-sw', () => {
+      return wbBuild.generateSW({
+        globDirectory: './app/',
+        swDest: './app/sw.js',
+        staticFileGlobs: ['**\/*.{html,js,css}'],
         globIgnores: ['admin.html'],
         templatedUrls: {
           '/shell': ['shell.hbs', 'main.css', 'shell.css'],
@@ -40,3 +42,7 @@ title: Get Started > Gulp
       });
     })
     ```
+
+   **Note:** The gulp task for generating the service worker should always be
+   run as the last step in each build. This ensures that your service worker
+   contains any changes made during development.
