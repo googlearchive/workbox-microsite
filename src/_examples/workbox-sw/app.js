@@ -28,7 +28,7 @@ const buttonHandlers = {
   hello: () => fetchAndLog('hello.txt'),
   notmatched: () => fetchAndLog('not-matched.dat'),
   delay: () => fetchAndLog(
-    `https://httpbin.org/delay/${Math.floor(Math.random() * 10) + 1}`),
+    `https://httpbin.org/delay/${Math.floor(Math.random() * 5) + 1}`),
   image: () => {
     const nextImageFormat = httpBinImageFormats.shift(httpBinImageFormats);
     httpBinImageFormats.push(nextImageFormat);
