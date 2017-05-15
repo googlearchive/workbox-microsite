@@ -40,7 +40,7 @@ cli` to generate a service worker.
 
     The next time you run `npm run build`, Workbox uses the JSON file to
     regenerate the service worker. If you need to update the
-    `workbox-cli-config.json`, you can either do it by hand or delte the file
+    `workbox-cli-config.json`, you can either do it by hand or delete the file
     rerun the wizard.
 
 
