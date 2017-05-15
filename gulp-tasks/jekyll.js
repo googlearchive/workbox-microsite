@@ -16,7 +16,7 @@ const addNpmDependencies = () => {
     const dest = path.join('src/themes/third_party', path.basename(src));
     fse.copySync(src, dest);
   }
-}
+};
 
 
 const runJekyllCommand = (command, additionalParams) => {
