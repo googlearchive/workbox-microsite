@@ -13,9 +13,9 @@ module.exports = {
     'no-console': 0,
   },
   globals: {
-    goog: false,
     log: false,
     workbox: false,
     BroadcastChannel: false,
+    WorkboxSW: false,
   },
 };
