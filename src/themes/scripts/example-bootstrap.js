@@ -10,8 +10,8 @@ function log(level, message) {
 async function logCachedFiles(cacheName) {
   const cache = await caches.open(cacheName);
   const requests = await cache.keys();
-  const urls = requests.map((request) => request.url.split('/').pop());
-  log('info', `Entries cached in ${cacheName}: ${JSON.stringify(urls)}`);
+  const files = requests.map((request) => request.url.split('/').pop());
+  log('info', `Entries cached in ${cacheName}: ${JSON.stringify(files)}`);
 }
 
 if ('serviceWorker' in navigator) {
