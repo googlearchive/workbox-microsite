@@ -2,6 +2,8 @@
   url: /#get-started
 - title: Examples
   url: /examples/
+- title: How Tos
+  url: /how_tos/
 - reference: true
 - title: Github
   url: https://github.com/GoogleChrome/workbox
