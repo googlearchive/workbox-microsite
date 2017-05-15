@@ -4,7 +4,8 @@ importScripts('https://unpkg.com/workbox-broadcast-cache-update@0.0.2/build/impo
 const testFileUrl = new URL('test.txt', location).toString();
 const cacheName = 'workbox-broadcast-cache-update-example';
 
-const broadcastCacheUpdate = new workbox.broadcastCacheUpdate.BroadcastCacheUpdate({
+const broadcastCacheUpdate =
+  new workbox.broadcastCacheUpdate.BroadcastCacheUpdate({
   // Choose whatever channel name you'd like. You can also set up multiple
   // instances that broadcast to different channel names.
   channelName: 'test-file-updates',
