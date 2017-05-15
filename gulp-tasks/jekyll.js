@@ -1,11 +1,28 @@
 'use strict';
 
+const fse = require('fs-extra');
 const gulp = require('gulp');
 const path = require('path');
 const spawn = require('child_process').spawn;
 
+
+const addNpmDependencies = () => {
+  const deps = [
+    './node_modules/anchor-js/anchor.min.js',
+    './node_modules/autotrack/autotrack.js',
+  ];
+
+  for (const src of deps) {
+    const dest = path.join('src/themes/third_party', path.basename(src));
+    fse.copySync(src, dest);
+  }
+}
+
+
 const runJekyllCommand = (command, additionalParams) => {
   return new Promise((resolve, reject) => {
+    addNpmDependencies();
+
     let params = [
       command,
       '--trace',
