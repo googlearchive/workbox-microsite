@@ -1,0 +1,13 @@
+<p class="standalone-project">
+  <h3><img class="standalone-project__logo" src="{{ include.img-src }}"> {{ include.name }}</h3>
+  <div>
+    {{ include.description }}
+  </div>
+  {% if include.source %}
+    [<a href="{{ include.source }}">source</a>]
+  {% endif %}
+  {% if include.demo %}
+    [<a href="{{ include.demo }}">demo</a>]
+  {% endif %}
+</p>
+
