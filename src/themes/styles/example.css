@@ -1,4 +1,5 @@
 @import "./variables/colors.css";
+@import "./variables/dimens.css";
 
 #example-log {
   background-color: var(--code-bg-color);
