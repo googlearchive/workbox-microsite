@@ -4,6 +4,7 @@ for (let button of [...buttons]) {
     const url = button.dataset.url;
     log('info', `Requesting ${url}...`)
       .then(() => fetch(button.dataset.url))
-      .then(() => log('info', '...request complete.'));
+      .then(() => log('info', '...request complete.'))
+      .catch((error) => log('warn', `...fetch failed due to '${error}'.`));
   });
 }
