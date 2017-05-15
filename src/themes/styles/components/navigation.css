@@ -161,7 +161,7 @@
   .navigation-container {
     justify-content: flex-end;
     color: var(--nav-unselected-color-desktop);
-    padding: 0 calc(var(--horizontal-spacing) * 4);
+    padding: 0;
   }
 
   .navigation-container ul {
@@ -177,7 +177,7 @@
     overflow-y: visible;
     position: relative;
     background: none;
-    width: auto;
+    width: 100%;
     min-width: auto;
     transform: none;
   }

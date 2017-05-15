@@ -8,13 +8,24 @@ function log(level, message) {
 }
 
 if ('serviceWorker' in navigator) {
+  const swUrl = new URL('sw.js', location).href;
+
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').then(() => {
-      log('info', `This example's service worker has been registered.`);
-    }).catch((error) => {
+    navigator.serviceWorker.register(swUrl).catch((error) => {
       log('warn', `Service worker registration failed: ${error}`);
     });
   });
+
+  const currentController = navigator.serviceWorker.controller;
+  if (currentController && currentController.scriptURL === swUrl) {
+    log('info', 'The example service worker is controlling this page.');
+  } else {
+    navigator.serviceWorker.oncontrollerchange = (event) => {
+      if (event.target.controller.scriptURL === swUrl) {
+        log('info', 'The example service worker is controlling this page.');
+      }
+    };
+  }
 } else {
   log('warn', 'Your browser does not support service workers.');
 }

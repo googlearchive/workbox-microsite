@@ -1,16 +1,39 @@
 @import "./variables/colors.css";
+@import "./variables/dimens.css";
+
+#content-and-messages {
+  display: flex;
+}
+
+#content {
+  margin-right: var(--pre-vertical-padding);
+}
 
 #example-log {
   background-color: var(--code-bg-color);
-  padding-top: var(--pre-vertical-padding);
-  padding-bottom: var(--pre-vertical-padding);
+  font-size: var(--example-log-font-size);
+  height: 50vh;
+  width: 30vw;
+  list-style: none;
+  padding: var(--pre-vertical-padding);
+  overflow: auto;
 }
 
 #example-log > li {
-  margin-top: var(--pre-vertical-padding);
-  margin-bottom: var(--pre-vertical-padding);
+  color: white;
+  margin: var(--vertical-spacing);
 }
 
 #example-log > li.warn {
   font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  #content-and-messages {
+    flex-direction: column;
+  }
+
+  #example-log {
+    width: auto;
+  }
 }

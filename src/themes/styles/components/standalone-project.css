@@ -1,0 +1,7 @@
+@import "../variables/dimens.css";
+
+.standalone-project__logo {
+  max-height: var(--primary-header-feature-icon-size);
+  max-width: var(--primary-header-feature-icon-size);
+  vertical-align: middle;
+}
