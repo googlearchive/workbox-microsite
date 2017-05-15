@@ -160,7 +160,7 @@ figure pre {
 }
 
 /** Hide button links until the iframe has loaded **/
-.github-buttons {
+.github-button {
   display: none;
 }
 
