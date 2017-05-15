@@ -8,7 +8,10 @@ title: Examples
 <ul>
 {% for example in site.examples %}
   {% if example.module %}
-    <li><a href="{{ example.url }}">{{ example.module }}</a></li>
+    <li>
+      <a href="{{ example.url }}">{{ example.module }}</a>
+      <p>{{ example.description | capitalize }}</p>
+    </li>
   {% endif %}
 {% endfor %}
 </ul>

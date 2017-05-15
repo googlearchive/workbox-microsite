@@ -9,9 +9,14 @@ const fetchAndLog = async (url) => {
   }
 };
 
-const randomBytesUpdates = new BroadcastChannel('random-bytes-updated');
-randomBytesUpdates.addEventListener('message', (event) => {
-  log('info', `${event.data.payload.updatedUrl} was updated.
+/**
+ * Any precached assets that are updated will automatically generate a message
+ * using the BroadcastChannel API. Our page can listen for this message and
+ * find out what was updated.
+ */
+const precacheUpdates = new BroadcastChannel('precache-updates');
+precacheUpdates.addEventListener('message', (event) => {
+  log('info', `${event.data.payload.url} was updated.
       The new value will be used the next time a request is made.`);
 });
 
@@ -29,7 +34,6 @@ const buttonHandlers = {
     httpBinImageFormats.push(nextImageFormat);
     httpBinImgElement.src = `https://httpbin.org/image/${nextImageFormat}`;
   },
-  random: () => fetchAndLog('https://httpbin.org/bytes/5'),
 };
 
 const buttons = document.querySelectorAll('button');

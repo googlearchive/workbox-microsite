@@ -1,6 +1,11 @@
 importScripts('https://unpkg.com/workbox-sw@0.0.1/build/importScripts/workbox-sw.dev.v0.0.1.js');
 
-const workboxSW = new goog.SWLib();
+/**
+ * Create an instance of WorkboxSW.
+ * Setting clientsClaims to true tells our service worker to take control as
+ * soon as it's activated.
+ */
+const workboxSW = new goog.SWLib({clientsClaim: true});
 
 /**
  * precache() is passed a manifest of URLs and versions, and does the following
@@ -8,7 +13,7 @@ const workboxSW = new goog.SWLib();
  *   - Adds all new URLs to a cache.
  *   - Refreshes the previously cached response if the URL isn't new, but the
  *     revision changes. This will also trigger a BroadcastChannel API message
- *     thanks to workbox-broadcast-cache-update.
+ *     sent to the channel 'precache-updates'.
  *   - Removes entries for URLs that used to be in the list, but aren't anymore.
  *   - Sets up a fetch handler to respond to any requests for URLs in this
  *     list using a cache-first strategy.
@@ -95,24 +100,6 @@ workboxSW.router.registerRoute(
 
 /**
  * Set up a route that will match any URL requested that starts with
- * https://httpbin.org/bytes/.
- * Handle those requests using a stale-while-revalidate strategy, storing them
- * in a dedicated cache named 'random-bytes'.
- * Whenever there's an update to a previous cached entry with the same URL,
- * a message will be sent using the BroadcastChannel API to the channel
- * named 'random-bytes-updates'.
- */
-workboxSW.router.registerRoute(
-  'https://httpbin.org/bytes/(.*)',
-  workboxSW.strategies.staleWhileRevalidate({
-    cacheName: 'random-bytes',
-    broadcastCacheUpdate: {channelName: 'random-bytes-updated'},
-  })
-);
-
-
-/**
- * Set up a route that will match any URL requested that starts with
  * https://httpbin.org/image/.
  * Handle those requests using a cache-first strategy, storing them in a
  * dedicated cache named 'images'.
@@ -135,4 +122,3 @@ workboxSW.router.registerRoute(
     cacheableResponse: {statuses: [0, 200]},
   })
 );
-
