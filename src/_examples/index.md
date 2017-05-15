@@ -16,9 +16,7 @@ title: Examples
 {% endfor %}
 </ul>
 
-# Standalone Projects
-
-These projects are using Workbox for their service worker:
+# Projects Using Workbox
 
 {% include components/standalone-project.html
    name='iFixit PWA'

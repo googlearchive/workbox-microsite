@@ -1,19 +1,13 @@
 <p class="standalone-project">
-  <h2><img class="standalone-project__logo" src="{{ include.img-src }}"> {{ include.name }}</h2>
+  <h3><img class="standalone-project__logo" src="{{ include.img-src }}"> {{ include.name }}</h3>
   <div>
     {{ include.description }}
   </div>
-  <ul>
-    {% if include.source %}
-    <li>
-      <a href="{{ include.source }}">source</a>
-    </li>
-    {% endif %}
-    {% if include.demo %}
-    <li>
-      <a href="{{ include.demo }}">demo</a>
-    </li>
-    {% endif %}
-  </ul>
+  {% if include.source %}
+    [<a href="{{ include.source }}">source</a>]
+  {% endif %}
+  {% if include.demo %}
+    [<a href="{{ include.demo }}">demo</a>]
+  {% endif %}
 </p>
 
