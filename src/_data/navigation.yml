@@ -1,5 +1,7 @@
 - title: Get Started
   url: /#get-started
+- title: How Tos
+  url: /how_tos/
 - title: Examples
   url: /examples/
 - reference: true

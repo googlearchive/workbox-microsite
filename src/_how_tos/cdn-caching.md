@@ -1,7 +1,9 @@
 ---
-layout: index
-title: Caching CDN Requests or Non-200 Responses
-navigation_weight: 3
+layout: page
+title: <a href="/how_tos/">How Tos</a> > Caching CDN Requests or Non-200 Responses
+short_title: Caching CDN Requests or Non-200 Responses
+description: Cache third-party content in sw-lib or lower level modules.
+publish: true
 ---
 
 # Caching CDN Requests or Non-200 Responses
