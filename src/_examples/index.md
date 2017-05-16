@@ -40,5 +40,6 @@ smaller, standalone modules into your existing service worker code.
    name='React HN'
    description='A React-based web app using workbox-cli in an npm scripts-based build process.'
    img-src='/images/third_party/react-hn.png'
-   source='https://github.com/insin/react-hn/tree/sw-helpers'
+   source='https://github.com/insin/react-hn'
+   demo='https://react-hn.appspot.com/'
 %}
