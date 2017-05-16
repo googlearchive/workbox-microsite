@@ -1,46 +1,47 @@
 ---
-layout: index
-title: sw-cli
-navigation_weight: 1
+layout: page
+title: <a href="/how_tos/">How Tos</a> > Generate a Service Worker with workbox-cli
+short_title: Generate a Service Worker with workbox-cli
+description: Get a precaching service worker in about two minutes.
+publish: true
 ---
 
-# sw-cli
+# Generate a Service Worker with workbox-cli
 
-Get a precaching service worker in about two minutes with the `sw-cli` module.
+Get a precaching service worker in about two minutes with the `workbox-cli` module.
 Simply install the module then run it from a command line.
 
 ## Install
 
-1. [Install Node.js](https://nodejs.org/en/).
-2. Install the module with NPM.
+Install the module with NPM.
 
-```
-npm install -g sw-cli
-```
+    ```
+    npm install workbox-cli --global
+    ```
 
-## Generating a Service Worker
+## Generate a Service Worker
 
-To generate a service worker, run `sw-cli` with the 'generate:sw' command in the root of
+To generate a service worker, run `workbox-cli` with the 'generate:sw' command in the root of
 your project.
 
 ```
-sw-cli generate:sw
+workbox-cli generate:sw
 ```
 
-This will ask a range of questions about your web app, such as which directory
+This asks a range of questions about your web app, such as which directory
 contains the assets for your site, and which assets you'd like to cache.
 
-![Screenshot of the sw-cli command.](./images/sw-cli-questions.png)
+![Screenshot of the workbox-cli command.](../images/workbox-cli-questions.png)
 
-After the command has run you'll have two new files, a
+After the command runs you'll have two new files, a
 `sw-lib.vX.X.X.min.js` and `sw.js` file (unless you changed
 the file name).
 
-## Creating a Config File
+## Create a Config File
 
-One of the questions asked by `sw-cli generate:sw` is whether you'd like to save
+One of the questions asked by `workbox-cli generate:sw` is whether you'd like to save
 your responses to a configuration file. Answering `Y` will save your responses
-to `sw-cli-config.json`. Subsequent runs of the cli will regenerate the service
+to `workbox-cli-config.json`. Subsequent runs of the cli will regenerate the service
 worker based on the config file, which makes building faster. 
 
 ## Using the Generated Service Worker
@@ -68,7 +69,7 @@ For those who are curious, let's look at what's in the
 generated service worker.
 
 ```
-importScripts('sw-lib.v0.0.13.min.js');
+importScripts('workbox-sw.prod.v0.0.2.js');
 
 /**
  * DO NOT EDIT THE FILE MANIFEST ENTRY
@@ -87,10 +88,11 @@ const fileManifest = [
   ....
 ];
 
-self.goog.swlib.precache(fileManifest);
+const workboxSW = new self.WorkboxSW();
+workboxSW.precache(fileManifest);
 ```
 
-The service worker imports the `sw-lib` file which is
+The service worker imports the `workbox-sw` file which is
 a library that manages the precaching and returning
 of assets when the browser requests them.
 
@@ -99,41 +101,42 @@ web app. Each file entry consists of a URL and a revision.
 This is used to download the files whenever they change.
 
 The service worker then calls
-`goog.swlib.precache()` which will download
+`workboxSW.precache()` which downloads
 all the assets during the service worker install event.
 
 ## What Next?
 
 If you only need precaching and serving of assets then
-you can carry on using `sw-cli` as is.
+you can carry on using `workbox-cli` as is.
 
 Otherwise maybe you'll want to explore one of the following.
 
 ### Generating SW in a Build Process
 
-If you have a build process, you might want to use the
-`sw-build` module instead of `sw-cli`.
+If you have a build process, you might want to use the `workbox-build` module
+instead of `workbox-cli`. The `workbox-build` module allows you to generate the
+service worker programmatically.
 
-The `sw-build` module allows you to generate the service worker  
-programmatically.
+[Learn more about workbox-build here](../reference-docs/latest/module-workbox-build.html)
 
-[Learn More About sw-build Here](../reference-docs/stable/latest/module-sw-build.html#main)
+It's also possible to use `workbox-cli` in a npm-based build process.
+
+[Learn more about using workbox-cli with npm here](../get-started/npm-script.html)
 
 ### Precaching in Your Own Service Worker
 
 Instead of generating a service worker, you may want some
-of the features provided by `sw-cli` but added to your
+of the features provided by `workbox-cli` but added to your
 own service worker.
 
 For this you have a few options.
 
-Both `sw-cli` and `sw-build` can be used to produce a
+Both `workbox-cli` and `workbox-build` produce a
 list of assets in your web app with revision
-information which can be used for precaching. We have
-[recipes on how to do this](../recipes#main).
+information which can be used for precaching. 
 
-You can then use `sw-lib` to perform the precaching and
+You can then use `workbox-sw` to perform the precaching and
 you can define custom routes and add anything else you
 desire to your service worker.
 
-[Learn More About sw-lib Here](../reference-docs/stable/latest/module-sw-lib.html#main)
+[Learn more about workbox-sw here](../reference-docs/latest/module-workbox-sw.html)
