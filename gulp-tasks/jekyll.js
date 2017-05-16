@@ -49,14 +49,22 @@ const runJekyllCommand = (command, additionalParams) => {
   });
 };
 
-gulp.task('jekyll:build', () => {
+gulp.task('npm-dependencies', () => {
+  return gulp.src([
+    'node_modules/anchor-js/anchor.min.js',
+    'node_modules/autotrack/autotrack.js',
+  ])
+  .pipe(gulp.dest('themes/third_party'));
+});
+
+gulp.task('jekyll:build', gulp.series('npm-dependencies', () => {
   return runJekyllCommand('build');
-});
+}));
 
-gulp.task('jekyll:serve', () => {
+gulp.task('jekyll:serve', gulp.series('npm-dependencies', () => {
   return runJekyllCommand('serve');
-});
+}));
 
-gulp.task('jekyll:serve-fast', () => {
+gulp.task('jekyll:serve-fast', gulp.series('npm-dependencies', () => {
   return runJekyllCommand('serve', ['--incremental']);
-});
+}));

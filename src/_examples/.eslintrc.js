@@ -14,6 +14,7 @@ module.exports = {
   },
   globals: {
     log: false,
+    logCachedFiles: false,
     workbox: false,
     BroadcastChannel: false,
     WorkboxSW: false,

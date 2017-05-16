@@ -1,23 +1,41 @@
 {% include variables.html %}
 
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/detabinator.js" rel="stylesheet" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/nav-drawer.js" rel="stylesheet" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/jsdocs-collapse.js" rel="stylesheet" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/navigation-controller.js" rel="stylesheet" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/sw-controller.js" rel="stylesheet" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/toast.js" rel="stylesheet" async defer></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/detabinator.js" async defer></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/nav-drawer.js" async defer></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/jsdocs-collapse.js" async defer></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/navigation-controller.js" async defer></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/sw-controller.js" async defer></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/toast.js" async defer></script>
 <script src="https://buttons.github.io/buttons.js" async defer></script>
 {% if layout.anchors != false %}
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/third_party/anchor-js/anchor.min.js" rel="stylesheet" id="anchorjsscript" async defer></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/third_party/anchor.min.js" id="anchorjsscript" async defer></script>
 {% endif %}
 
+
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-98793201-1', 'auto');
-  ga('send', 'pageview');
-
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};
+ga('create', 'UA-98793201-1', 'auto');
+ga('set', 'transport', 'beacon');
+ga('require', 'cleanUrlTracker', {
+  stripQuery: true,
+  queryDimensionIndex: 1,
+  trailingSlash: 'add',
+  indexFilename: 'index.html',
+});
+ga('require', 'maxScrollTracker', {
+  sessionTimeout: 30,
+  timeZone: 'America/Los_Angeles',
+  maxScrollMetricIndex: 3,
+});
+ga('require', 'outboundLinkTracker', {
+  events: ['click', 'auxclick', 'contextmenu'],
+});
+ga('require', 'pageVisibilityTracker', {
+  sendInitialPageview: true,
+  pageLoadsMetricIndex: 1,
+  visibleMetricIndex: 2,
+  timeZone: 'America/Los_Angeles',
+});
 </script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+<script src="{{ project_root_url }}{{ site.theme_location }}/themes/third_party/autotrack.js" async></script>
