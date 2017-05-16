@@ -1,6 +1,6 @@
 ---
 layout: jsdoc
-title: "Class: SwBuildWebpackPlugin"
+title: "Module: workbox-background-sync"
 jsdocNav: 
   - Modules:
     - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
@@ -22,51 +22,28 @@ jsdocNav:
 
 
     
-        <h2>SwBuildWebpackPlugin</h2>
+        
+            
         
     
 
     
-      
-          <h3>Example</h3>
-          
-    <pre class="prettyprint"><code>const SwBuildWebpackPlugin = require('workbox-webpack-plugin');
-.
-.
-plugins: [
-	new SwBuildWebpackPlugin({
-		rootDirectory: './build/',
-		swDest: './build/sw.js',
-		globPatterns: ['**\/*.{html,js,css}'],
-		globIgnores: ['admin.html'],
-		templatedUrls: {
-			'/shell': ['shell.hbs', 'main.css', 'shell.css'],
-		},
-	});
-]</code></pre>
-
-      
-
-      
-        <h2 class="subsection-title">Constructor</h2>
-
-        <div class="subsection-constructor">
+        
+            <div class="description"><h1 id="workbox-background-sync">workbox-background-sync</h1>
+<p>Queues failed requests and uses the Background Sync API to replay those
+requests at a later time when the network state has changed.</p>
+<p><strong>Install:</strong> <code>npm install --save-dev workbox-background-sync</code></p></div>
         
 
-<div class="collapsing-entry method-type-class start-open">
+        
+            
 
+<div class="collapsing-entry method-type-module ">
 
-    <h4 class="js-collapse-title" id="SwBuildWebpackPlugin">new SwBuildWebpackPlugin<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"></span></h4>
 
 
 <div class="collapse-details js-collapse-details">
 
-
-  
-
-  <div class="description">
-    <p>Use the instance of this in the plugins array of the webpack config.</p>
-  </div>
 
 
 
@@ -144,22 +121,11 @@ plugins: [
 
 </div>
 
-        </div>
-      
-
+        
     
 
     
 
-    
-        <h2 class="subsection-title">Classes</h2>
-
-        <div class="subsection-classes">
-        <dl>
-            <dt><a href="SwBuildWebpackPlugin.SwBuildWebpackPlugin.html#main">SwBuildWebpackPlugin</a></dt>
-            <dd></dd>
-        </dl>
-        </div>
     
 
      
@@ -178,7 +144,7 @@ plugins: [
 <div class="collapsing-entry method-type-function ">
 
 
-    <h4 class="js-collapse-title" id="apply"><span class="this">this.</span>apply<span class="signature">(<span class="signature-args">compiler</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="js-collapse-title" id=".getResponse"><span class="type-attribs">(static) </span><span class="this">this.</span>getResponse<span class="signature">(<span class="signature-args">id</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Object</span></h4>
 
 
 <div class="collapse-details js-collapse-details">
@@ -187,7 +153,7 @@ plugins: [
   
 
   <div class="description">
-    
+    <p>This function returns the fetched response for the given id of the request</p>
   </div>
 
 
@@ -212,28 +178,18 @@ plugins: [
 
         <tr>
             
-              <td class="name">compiler</td>
+              <td class="name">id</td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">String</span>
 
 
 
             
 
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
             
             </td>
 
@@ -244,7 +200,8 @@ plugins: [
             <tr>
               <td></td>
               <td class="description last">
-                <p>default compiler object passed from webpack</p>
+                <p>The ID of the request given back by the broaadcast
+channel</p>
                 
               </td>
             </tr>
@@ -312,6 +269,29 @@ plugins: [
 
 
 
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Object</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>response Fetched response of the request.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
 
 
 </table>

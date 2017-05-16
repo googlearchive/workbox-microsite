@@ -15,3 +15,5 @@ gems: ['jekyll-github-metadata']
 collections:
   examples:
     output: true
+  how_tos:
+    output: true

@@ -1,6 +1,8 @@
 build-site/
 build-prod/
+src/themes/third_party/
 node_modules/
 npm-debug.log
 .jekyll-metadata
 _site/
+src/reference-docs/v0.0.0/
