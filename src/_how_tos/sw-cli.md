@@ -69,7 +69,7 @@ For those who are curious, let's look at what's in the
 generated service worker.
 
 ```
-importScripts('workbox-sw.prod.v0.0.2.js');
+importScripts('workbox-sw.prod.vX.Y.Z.js');
 
 /**
  * DO NOT EDIT THE FILE MANIFEST ENTRY

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Get Started > NPM
+title: Get Started > NPM Script
 ---
 
 # NPM
@@ -13,9 +13,6 @@ cli` to generate a service worker.
     ```
     npm install --save-dev workbox-cli
     ```
-
-    **Note:** You can skip this step if you have already installed
-    `workbox-cli` globally.
 
 1. Add a command to the `scripts` section of your `package.json`:
 
