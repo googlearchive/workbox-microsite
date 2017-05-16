@@ -1,6 +1,9 @@
 ---
 layout: page
-title: Recipes > Rollup Bundling
+title: <a href="/how_tos/">How Tos</a> > Rollup Bundling
+short_title: Rollup Bundling
+description: Use Rollup Bundling and Workbox code directly in your own service worker.
+publish: true
 ---
 
 # Rollup Bundling

@@ -1,11 +1,11 @@
-importScripts('https://unpkg.com/workbox-routing@0.0.1/build/importScripts/workbox-routing.dev.v0.0.1.js');
+importScripts('https://unpkg.com/workbox-routing@0.0.2/build/importScripts/workbox-routing.dev.v0.0.2.js');
 
-const router = new goog.routing.Router();
+const router = new workbox.routing.Router();
 
 // This route uses Express-style path matching.
 // Because we're using a path that starts with with 'https', it will also match
 // cross-origin requests.
-const crossOriginExpressRoute = new goog.routing.ExpressRoute({
+const crossOriginExpressRoute = new workbox.routing.ExpressRoute({
   path: 'https://httpbin.org/(.*)',
   handler: ({event}) => {
     console.log('Routed through the httpbin.org handler.');
@@ -16,7 +16,7 @@ const crossOriginExpressRoute = new goog.routing.ExpressRoute({
 // This route uses RegExp matching.
 // If the RegExp matches any part of the request URL, then the route will be
 // triggered.
-const localRegExpRoute = new goog.routing.RegExpRoute({
+const localRegExpRoute = new workbox.routing.RegExpRoute({
   regExp: /\.json$/,
   handler: ({event}) => {
     console.log('Routed through the /\.json$/ handler.');
