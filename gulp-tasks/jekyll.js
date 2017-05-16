@@ -1,38 +1,24 @@
 'use strict';
 
-const fse = require('fs-extra');
 const gulp = require('gulp');
 const path = require('path');
 const spawn = require('child_process').spawn;
 
-
-const addNpmDependencies = () => {
-  const deps = [
-    './node_modules/anchor-js/anchor.min.js',
-    './node_modules/autotrack/autotrack.js',
-  ];
-
-  for (const src of deps) {
-    const dest = path.join('src/themes/third_party', path.basename(src));
-    fse.copySync(src, dest);
-  }
-};
-
+const JEKYLL_ROOT = path.join(__dirname, '..', 'src');
+const NODE_MODULES = path.join(__dirname, '..', 'node_modules');
 
 const runJekyllCommand = (command, additionalParams) => {
   return new Promise((resolve, reject) => {
-    addNpmDependencies();
-
     let params = [
       command,
       '--trace',
-      '--source', path.join(__dirname, '..', 'src'),
+      '--source', JEKYLL_ROOT,
     ];
 
-    let configFiles = path.join(__dirname, '..', 'src', '_config.yml');
+    let configFiles = path.join(JEKYLL_ROOT, '_config.yml');
     if (global.jekyll && global.jekyll.debug) {
       configFiles += ',' +
-        path.join(__dirname, '..', 'src', '_debug-config.yml');
+        path.join(JEKYLL_ROOT, '_debug-config.yml');
     }
 
     params.push('--config');
@@ -66,14 +52,22 @@ const runJekyllCommand = (command, additionalParams) => {
   });
 };
 
-gulp.task('jekyll:build', () => {
+gulp.task('npm-dependencies', () => {
+  return gulp.src([
+    path.join(NODE_MODULES, 'anchor-js', 'anchor.min.js'),
+    path.join(NODE_MODULES, 'autotrack', 'autotrack.js'),
+  ])
+  .pipe(gulp.dest(path.join(JEKYLL_ROOT, 'themes', 'third_party')));
+});
+
+gulp.task('jekyll:build', gulp.series('npm-dependencies', () => {
   return runJekyllCommand('build');
-});
+}));
 
-gulp.task('jekyll:serve', () => {
+gulp.task('jekyll:serve', gulp.series('npm-dependencies', () => {
   return runJekyllCommand('serve');
-});
+}));
 
-gulp.task('jekyll:serve-fast', () => {
+gulp.task('jekyll:serve-fast', gulp.series('npm-dependencies', () => {
   return runJekyllCommand('serve', ['--incremental']);
-});
+}));
