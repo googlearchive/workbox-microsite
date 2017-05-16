@@ -4,21 +4,18 @@ const gulp = require('gulp');
 const path = require('path');
 const spawn = require('child_process').spawn;
 
-const JEKYLL_ROOT = path.join(__dirname, '..', 'src');
-const NODE_MODULES = path.join(__dirname, '..', 'node_modules');
-
 const runJekyllCommand = (command, additionalParams) => {
   return new Promise((resolve, reject) => {
     let params = [
       command,
       '--trace',
-      '--source', JEKYLL_ROOT,
+      '--source', path.join(__dirname, '..', 'src'),
     ];
 
-    let configFiles = path.join(JEKYLL_ROOT, '_config.yml');
+    let configFiles = path.join(__dirname, '..', 'src', '_config.yml');
     if (global.jekyll && global.jekyll.debug) {
       configFiles += ',' +
-        path.join(JEKYLL_ROOT, '_debug-config.yml');
+        path.join(__dirname, '..', 'src', '_debug-config.yml');
     }
 
     params.push('--config');
@@ -54,10 +51,10 @@ const runJekyllCommand = (command, additionalParams) => {
 
 gulp.task('npm-dependencies', () => {
   return gulp.src([
-    path.join(NODE_MODULES, 'anchor-js', 'anchor.min.js'),
-    path.join(NODE_MODULES, 'autotrack', 'autotrack.js'),
+    'node_modules/anchor-js/anchor.min.js',
+    'node_modules/autotrack/autotrack.js',
   ])
-  .pipe(gulp.dest(path.join(JEKYLL_ROOT, 'themes', 'third_party')));
+  .pipe(gulp.dest('themes/third_party'));
 });
 
 gulp.task('jekyll:build', gulp.series('npm-dependencies', () => {
