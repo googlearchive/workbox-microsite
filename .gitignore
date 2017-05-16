@@ -1,5 +1,6 @@
 build-site/
 build-prod/
+src/themes/third_party/
 node_modules/
 npm-debug.log
 .jekyll-metadata
