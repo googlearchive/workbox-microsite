@@ -6,3 +6,4 @@ npm-debug.log
 .jekyll-metadata
 _site/
 src/reference-docs/v0.0.0/
+themes/third_party/
