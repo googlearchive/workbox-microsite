@@ -11,6 +11,7 @@ module.exports = {
   },
   rules: {
     'no-console': 0,
+    'valid-jsdoc': 0,
   },
   globals: {
     log: false,
