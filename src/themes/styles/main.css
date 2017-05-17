@@ -173,8 +173,12 @@ figure pre {
   display: inline-block;
   padding: var(--vertical-spacing) var(--horizontal-spacing);
   color: var(--btn-font-color);
-  background-color: var(--btn-bg);
+  background-color: var(--btn-bg-color);
   text-decoration: none;
+}
+
+.btn:hover, button:hover {
+  background-color: var(--btn-bg-color-hover);
 }
 
 @media (min-width: 700px) {

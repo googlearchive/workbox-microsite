@@ -1,5 +1,5 @@
 @import "../../themes/styles/variables/dimens.css";
-@import "../variables/dimens.css";
+@import "../../themes/styles/variables/colors.css";
 
 .example-project-wb {
   display: flex;
@@ -22,5 +22,5 @@
 
 .example-project-wb__src-link {
   background: none;
-  color: var(--btn-bg);
+  color: var(--btn-bg-color);
 }
