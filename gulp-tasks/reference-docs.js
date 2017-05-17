@@ -142,7 +142,7 @@ gulp.task('ref-docs:watch', () => {
   });
 });
 
-gulp.task('ref-docs', () => {
+const refDocsProd = () => {
   let allTags = [];
   return remoteGitTags(GIT_REPO)
   .then((tags) => {
@@ -203,4 +203,34 @@ gulp.task('ref-docs', () => {
   .then(() => {
      return del(TMP_PATH);
   });
+};
+
+const refDocsDev = () => {
+  const cli = meow();
+
+  global.jekyll = global.jekll || {};
+  global.jekyll.debug = true;
+
+  const DEVELOPMENT_TAG = 'v0.0.0';
+  const codePath = path.join(process.cwd(), cli.flags.code);
+
+  return buildJSDocs(codePath, DEVELOPMENT_TAG);
+};
+
+gulp.task('ref-docs', () => {
+  const cli = meow();
+  if (!cli.flags.code) {
+    console.warn(`
+
+      If you want to build the latest refernce docs
+      please run serve with the "--code" flag, passing
+      in the path to the workbox repo.
+
+          gulp serve --code ../workbox/
+
+      `);
+    return refDocsProd();
+  }
+
+  return refDocsDev();
 });

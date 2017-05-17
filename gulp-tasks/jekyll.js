@@ -54,7 +54,7 @@ gulp.task('npm-dependencies', () => {
     'node_modules/anchor-js/anchor.min.js',
     'node_modules/autotrack/autotrack.js',
   ])
-  .pipe(gulp.dest('themes/third_party'));
+  .pipe(gulp.dest('src/themes/third_party'));
 });
 
 gulp.task('jekyll:build', gulp.series('npm-dependencies', () => {

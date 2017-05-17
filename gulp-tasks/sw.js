@@ -1,11 +1,11 @@
 'use strict';
 
 const gulp = require('gulp');
-const swBuild = require('sw-build');
+const workboxBuild = require('workbox-build');
 const path = require('path');
 
 gulp.task('sw', () => {
-  return swBuild.generateSW({
+  return workboxBuild.generateSW({
     globDirectory: global.config.dest,
     staticFileGlobs: ['**\/*.{html,js,css}'],
     globIgnores: [
