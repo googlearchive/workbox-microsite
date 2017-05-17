@@ -83,7 +83,7 @@ const buildJSDocs = (docPath, version) => {
         if (code === 0) {
           resolve(outputPath);
         } else {
-          reject();
+          reject(outputPath);
         }
       });
     });
@@ -127,6 +127,7 @@ gulp.task('ref-docs:watch', () => {
   });
 
   return buildJSDocs(codePath, DEVELOPMENT_TAG)
+  .catch((jsdocPath) => jsdocPath)
   .then((jsdocPath) => {
     outputPath = jsdocPath;
     const watcher = chokidar.watch([

@@ -10,7 +10,7 @@ This page contains examples for some of the Workbox modules.
 
 Workbox is a set of small modules that can be used on their own, but we've
 also combined the most common pieces into one module, `workbox-sw`. This module
-supports precaching, routing of fetch events, run time caching and more.
+supports precaching, routing of fetch events, runtime caching and more.
 
 ## Example of workbox-sw
 
@@ -23,7 +23,7 @@ exploration of everything you'd need to build a production-ready service worker.
 ## Lower Level Modules
 
 As an alternative to using the full `workbox-sw` library, you can use these
-smaller, standalone modules into your service worker.
+smaller, standalone modules in your service worker.
 
 <ul class="example-index__lower-level-modules-list">
 {% for example in site.examples %}

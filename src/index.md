@@ -36,7 +36,7 @@ Install our command-line interface:
 $ npm install workbox-cli --global
 
 # Generate a service worker with some smart defaults
-$ workbox generate:sw
+$ workbox-cli generate:sw
 ```
 
 <div class="content-sizing" markdown="1">
@@ -46,7 +46,7 @@ We support that too with workbox-sw.
 </div>
 
 ```bash
-$ npm install workbox-sw --save
+$ npm install --save workbox-sw
 ```
 
 <div class="content-sizing" markdown="1">
@@ -69,16 +69,17 @@ importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
 ```javascript
 importScripts('/node_modules/workbox-sw/build/workbox-sw.vX.X.X.prod.js');
 
-goog.swlib.precache([
+const workboxSW = new WorkboxSW();
+workboxSW.precache([
   {
     url: '/index.html',
-    revision: 'sdfsdflkhwernsdv32pijaasd',
+    revision: 'bb121c',
   }, {
     url: '/styles/main.css',
-    revision: 'sdfhxcvnaldkqqwesdvclknsd',
+    revision: 'acd123',
   }, {
     url: '/scripts/main.js',
-    revision: 'asdxcvxcvoiyuqwebsdfiuhen',
+    revision: 'a32caa',
   }
 ]);
 ```
@@ -92,23 +93,24 @@ goog.swlib.precache([
 ## Comprehensive caching strategies
 
 ```javascript
-const networkFirst = swlib.strategies.networkFirst();
-swlib.router.registerRoute('/schedule', networkFirst);
+const workboxSW = new WorkboxSW();
+const networkFirst = workboxSW.strategies.networkFirst();
+workboxSW.router.registerRoute('/schedule', networkFirst);
 ```
 
 <div class="index_strategy-list" markdown="1">
 - Cache only
 - Network only
-- Cache first falling back to network
-- Network first falling back to cache
-- Cache with network update
+- Cache first, falling back to network
+- Network first, falling back to cache
+- Cache, with network update
 </div>
 ## The next version of sw-precache & sw-toolbox
 
 Workbox is a rethink of our previous service worker libraries with a focus
-on modularity. It aims to reduce the friction with a better surface API,
-while making the overall size of the library 20% smaller. Same great features,
-easier to use and cross-browser compatible.
+on modularity. It aims to reduce friction with a unified interface, while
+keeping the overall library size small. Same great features, easier to use
+and cross-browser compatible.
 
 </div>
 </div>
