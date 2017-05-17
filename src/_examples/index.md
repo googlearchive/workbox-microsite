@@ -23,7 +23,7 @@ exploration of everything you'd need to build a production-ready service worker.
 ## Lower Level Modules
 
 As an alternative to using the full `workbox-sw` library, you can use these
-smaller, standalone modules into your service worker.
+smaller, standalone modules in your service worker.
 
 <ul class="example-index__lower-level-modules-list">
 {% for example in site.examples %}

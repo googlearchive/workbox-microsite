@@ -4,7 +4,7 @@ link_to_workbox_sw: true
 module: workbox-broadcast-cache-update
 show_page_js: true
 title: <a href="/examples/">Examples</a> > workbox-broadcast-cache-update
-description: uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API">BroadcastChannel API</a> to let you know when two responses are different.
+description: uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API">Broadcast Channel API</a> to let you know when two responses are different.
 ---
 
 `{{ page.module }}` {{ page.description }}
