@@ -3,8 +3,6 @@
   --light-grey: #f5f5f5;
   --workbox-orange: #ED6D23;
 
-  --btn-bg-color: #fcb64d;
-  --btn-bg-color-hover: #f47c20;
   --link-color: #EF6C00;
 
   --nav-unselected-color-mobile: var(--dark-grey);
@@ -30,4 +28,8 @@
   --code-font-color: var(--light-grey);
 
   --jsdoc-highlight-font-color: var(--workbox-orange);
+
+  --btn-bg-color: var(--link-color);
+  --btn-bg-color-hover: #f47c20;
+  --btn-font-color: #fff;
 }

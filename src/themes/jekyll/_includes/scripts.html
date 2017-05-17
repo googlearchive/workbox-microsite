@@ -7,7 +7,7 @@
 <script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/sw-controller.js" async defer></script>
 <script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/toast.js" async defer></script>
 <script src="https://buttons.github.io/buttons.js" async defer></script>
-{% if layout.anchors != false %}
+{% if layout.anchors != false and page.anchors != false %}
 <script src="{{ project_root_url }}{{ site.theme_location }}/themes/third_party/anchor.min.js" id="anchorjsscript" async defer></script>
 {% endif %}
 

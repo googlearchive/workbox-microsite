@@ -1,7 +1,6 @@
 ---
 layout: index
 title: Welcome to Workbox
-navigation_weight: 0
 styles:
  - /styles/index.css
 ---
