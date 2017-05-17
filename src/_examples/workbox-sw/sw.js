@@ -12,7 +12,7 @@ const workboxSW = new WorkboxSW({clientsClaim: true});
  * each time the service worker starts up:
  *   - Adds all new URLs to a cache.
  *   - Refreshes the previously cached response if the URL isn't new, but the
- *     revision changes. This will also trigger a BroadcastChannel API message
+ *     revision changes. This will also trigger a Broadcast Channel API message
  *     sent to the channel 'precache-updates'.
  *   - Removes entries for URLs that used to be in the list, but aren't anymore.
  *   - Sets up a fetch handler to respond to any requests for URLs in this
