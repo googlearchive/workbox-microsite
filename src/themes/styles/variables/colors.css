@@ -30,4 +30,7 @@
   --code-font-color: var(--light-grey);
 
   --jsdoc-highlight-font-color: var(--workbox-orange);
+
+  --btn-bg: var(--link-color);
+  --btn-font-color: #fff;
 }

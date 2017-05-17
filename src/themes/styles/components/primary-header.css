@@ -21,7 +21,7 @@
 
 .primary-header__wb-logo {
   width: 100%;
-  margin-bottom: var(--vertical-spacing);
+  margin-bottom: calc(var(--vertical-spacing) * 3);
 }
 
 .primary-header__tagline {
@@ -48,7 +48,7 @@
   flex-direction: row;
   align-items: center;
   text-transform: uppercase;
-  font-size: calc(var(--h4-font-size-desktop) - 4px);
+  font-size: var(--h5-font-size-desktop);
 }
 
 .primary-header__feature-list li img {

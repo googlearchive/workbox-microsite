@@ -3,8 +3,8 @@
   --horizontal-spacing: 10px;
   --p-margin: calc(var(--vertical-spacing) * 3);
 
-  --base-font-size-mobile: 20px;
-  --base-font-size-desktop: 22px;
+  --base-font-size-mobile: 18px;
+  --base-font-size-desktop: 18px;
   --h1-font-size-mobile: 24px;
   --h1-font-size-desktop: 28px;
   --h1-letter-spacing: 0.7px;
@@ -17,6 +17,9 @@
   --h4-font-size-mobile: 18px;
   --h4-font-size-desktop: 22px;
   --h4-letter-spacing: 0.7px;
+  --h5-font-size-mobile: 16px;
+  --h5-font-size-desktop: 18px;
+  --h5-letter-spacing: 0.7px;
 
   --navigation-font-size-mobile: 16px;
   --navigation-font-size-desktop: 16px;

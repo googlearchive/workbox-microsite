@@ -9,7 +9,6 @@
 @import "./components/page-header.css";
 @import "./components/callout.css";
 @import "./components/footer.css";
-@import "./components/standalone-project.css";
 @import "./components/toast.css";
 
 html {
@@ -83,6 +82,12 @@ h4 {
   font-weight: 600;
 }
 
+h4 {
+  font-size: var(--h5-font-size-mobile);
+  letter-spacing: var(--h5-letter-spacing);
+  font-weight: 600;
+}
+
 p {
   margin: 0 0 var(--p-margin) 0;
 }
@@ -93,7 +98,7 @@ a {
 
 main a {
   text-decoration: underline;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 h1 a {
@@ -164,6 +169,14 @@ figure pre {
   display: none;
 }
 
+.btn, button {
+  display: inline-block;
+  padding: var(--vertical-spacing) var(--horizontal-spacing);
+  color: var(--btn-font-color);
+  background-color: var(--btn-bg);
+  text-decoration: none;
+}
+
 @media (min-width: 700px) {
   body {
     font-size: var(--base-font-size-desktop);
@@ -175,6 +188,18 @@ figure pre {
 
   h2 {
     font-size: var(--h2-font-size-desktop);
+  }
+
+  h4 {
+    font-size: var(--h3-font-size-desktop);
+  }
+
+  h4 {
+    font-size: var(--h4-font-size-desktop);
+  }
+
+  h5 {
+    font-size: var(--h5-font-size-desktop);
   }
 
   .content-sizing, .highlight pre, .highlighter-rouge pre {

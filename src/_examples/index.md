@@ -1,34 +1,47 @@
 ---
 layout: page
 title: Examples
+anchors: false
+styles:
+ - /styles/examples-index.css
 ---
 
-# workbox-sw
+This page contains examples for some of the Workbox modules.
 
-The [workbox-sw example](workbox-sw/) demonstrates a complete service worker
-implementation, including precaching, routing, runtime caching, and cache
-expiration. It's an in-depth exploration of everything you'd need to build a
-production-ready service worker.
+Workbox is a set of small modules that can be used on their own, but we've
+also combined the most common pieces into one module, `workbox-sw`. This module
+supports precaching, routing of fetch events, run time caching and more.
 
-# Standalone Workbox Modules
+## Example of workbox-sw
 
-As an alternative to using the full workbox-sw library, you can mix these
-smaller, standalone modules into your existing service worker code.
+The `workbox-sw` example demonstrates a complete service worker
+implementation, demonstrating the common parts of the API. It's an in-depth
+exploration of everything you'd need to build a production-ready service worker.
 
-<ul>
+<a href="/examples/workbox-sw/" class="btn">View Example</a>
+
+## Lower Level Modules
+
+As an alternative to using the full `workbox-sw` library, you can use these
+smaller, standalone modules into your service worker.
+
+<ul class="example-index__lower-level-modules-list">
 {% for example in site.examples %}
   {% if example.module and example.module != 'workbox-sw' %}
     <li>
-      <a href="{{ example.url }}">{{ example.module }}</a>
+      <h3>{{ example.module }}</h3>
       <p>{{ example.description | capitalize }}</p>
+      <a href="{{ example.url }}" class="btn">View Example</a>
     </li>
   {% endif %}
 {% endfor %}
 </ul>
 
-# Projects Using Workbox
+## Projects Using Workbox
 
-{% include components/standalone-project.html
+Below are a list of example sites that are using the Workbox modules.
+
+{% include components/example-project-using-workbox.html
    name='iFixit PWA'
    description='A React-based web app using workbox-build in a gulp-based build process.'
    img-src='/images/third_party/ifixit.png'
@@ -36,7 +49,7 @@ smaller, standalone modules into your existing service worker code.
    demo='https://ifixit-pwa.appspot.com/'
 %}
 
-{% include components/standalone-project.html
+{% include components/example-project-using-workbox.html
    name='React HN'
    description='A React-based web app using workbox-cli in an npm scripts-based build process.'
    img-src='/images/third_party/react-hn.png'
