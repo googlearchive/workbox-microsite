@@ -1,6 +1,6 @@
 ---
 layout: jsdoc
-title: "Class: Queue"
+title: "Class: QueuePlugin"
 jsdocNav: 
   - Modules:
     - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
@@ -13,6 +13,7 @@ jsdocNav:
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
 ---
 
 
@@ -22,7 +23,8 @@ jsdocNav:
 
 
     
-        <h2>Queue</h2>
+        <h2>QueuePlugin <span class="extends">extends</span> <a href="module-workbox-background-sync.Queue.html#main">module:workbox-background-sync.Queue</a></span>
+        </h2>
         
             <p>Use the instance of this class to push the failed requests into the queue.</p>
         
@@ -32,364 +34,35 @@ jsdocNav:
       
           <h3>Example</h3>
           
-    <pre class="prettyprint"><code>When you want to push the requests manually
-let bgQueue = new workbox.backgroundSync.Queue();
-self.addEventListener('fetch', function(e) {
-		if (e.request.url.startsWith('https://jsonplaceholder.typicode.com')) {
-			const clone = e.request.clone();
-			e.respondWith(fetch(e.request).catch((err)=>{
-				bgQueue.pushIntoQueue({
-					request: clone,
-				});
-				throw err;
-			}));
-	 	}
-});</code></pre>
+        <p class="code-caption">When you want the workbox-sw framework to take care of
+failed requests.</p>
+    
+    <pre class="prettyprint"><code>let bgQueue = new workbox.backgroundSync.QueuePlugin({
+  callbacks: {
+    onResponse: async(hash, res) => {
+      self.registration.showNotification('Background sync demo', {
+        body: 'Product has been purchased.',
+        icon: '/images/shop-icon-384.png',
+       });
+    },
+    onRetryFailure: (hash) => {},
+  },
+});
+
+const requestWrapper = new workbox.runtimeCaching.RequestWrapper({
+  plugins: [bgQueue],
+});
+
+const route = new workbox.routing.RegExpRoute({
+  regExp: new RegExp('^https://jsonplaceholder.typicode.com'),
+  handler: new workbox.runtimeCaching.NetworkOnly({requestWrapper}),
+});
+
+const router = new workbox.routing.Router();
+router.registerRoute({route});</code></pre>
 
       
 
-      
-        <h2 class="subsection-title">Constructor</h2>
-
-        <div class="subsection-constructor">
-        
-
-<div class="collapsing-entry method-type-class start-open">
-
-
-    <h4 class="js-collapse-title" id="Queue">new Queue<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
-
-
-<div class="collapse-details js-collapse-details">
-
-
-  
-
-  <div class="description">
-    <p>Creates an instance of Queue with the given options</p>
-  </div>
-
-
-
-
-<table class="method-info-table">
-
-  
-
-  
-
-  
-
-
-  <tr>
-    <th>Parameters</th>
-    <td>
-      
-
-<table class="params">
-    
-
-        <tr>
-            
-              <td class="name">input</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                
-                
-                  <h6>Properties</h6>
-                  
-
-<table class="params">
-    
-
-        <tr>
-            
-              <td class="name">maxRetentionTime</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-                <td class="default">
-                
-                    5 days
-                
-                </td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Time for which a queued
-request will live in the queue(irespective of failed/success of replay).</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">callbacks</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Callbacks for successfull/ failed
-replay of a request.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">queueName</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Queue name inside db in which
-requests will be queued.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">broadcastChannel</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">BroadcastChannel</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>BroadcastChannel
-which will be used to publish messages when the request will be queued.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-</table>
-
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-</table>
-
-    </td>
-  </tr>
-
-
-<!--
-<tr>
-<th>Details</th>
-<td>
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-</td>
-</tr>
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-</table>
-
-</div>
-
-</div>
-
-        </div>
       
 
     
@@ -414,7 +87,7 @@ which will be used to publish messages when the request will be queued.</p>
 <div class="collapsing-entry method-type-function ">
 
 
-    <h4 class="js-collapse-title" id="getResponse"><span class="this">this.</span>getResponse<span class="signature">(<span class="signature-args">id, dbName</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Object</span></h4>
+    <h4 class="js-collapse-title" id="fetchDidFail"><span class="this">this.</span>fetchDidFail<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
 
 
 <div class="collapse-details js-collapse-details">
@@ -423,201 +96,10 @@ which will be used to publish messages when the request will be queued.</p>
   
 
   <div class="description">
-    <p>sets the dbName, which is used to store the queue and requests
-defaults to bgQueueSyncDB</p>
-  </div>
-
-
-
-
-<table class="method-info-table">
-
-  
-
-  
-
-  
-
-
-  <tr>
-    <th>Parameters</th>
-    <td>
-      
-
-<table class="params">
-    
-
-        <tr>
-            
-              <td class="name">id</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">dbName</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-</table>
-
-    </td>
-  </tr>
-
-
-<!--
-<tr>
-<th>Details</th>
-<td>
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-</td>
-</tr>
--->
-
-
-
-
-
-
-
-
-
-
-
-
-  <tr>
-  <th>Returns</th>
-  <td>
-  
-          
-
-
-
-<span class="param-type">Object</span>
-
-
-
-
-
-<div class="param-desc">
-    <p>response Fetched response of the request.</p>
-</div>
-
-
-      
-  </td>
-  </tr>
-
-
-</table>
-
-</div>
-
-</div>
-
-        
-            
-
-<div class="collapsing-entry method-type-function ">
-
-
-    <h4 class="js-collapse-title" id="pushIntoQueue"><span class="this">this.</span>pushIntoQueue<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
-
-
-<div class="collapse-details js-collapse-details">
-
-
-  
-
-  <div class="description">
-    <p>This function pushes a given request into the IndexedDb Queue</p>
+    <p>Wraps <code>pushIntoQueue</code> in a callback used by higher level framework.
+This function pushes a given request into the IndexedDb Queue.
+NOTE: If you are writting the fetch handler for background sync manually,
+please ignore this.</p>
   </div>
 
 
@@ -810,6 +292,380 @@ the queue.</p>
 <div class="collapsing-entry method-type-function ">
 
 
+    <h4 class="js-collapse-title" id="getResponse"><span class="this">this.</span>getResponse<span class="signature">(<span class="signature-args">id</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Object</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Sets the dbName, which is used to store the queue and requests
+defaults to bgQueueSyncDB.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">id</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The ID of the request.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-workbox-background-sync.Queue.html#getResponse">module:workbox-background-sync.Queue#getResponse</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Object</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Fetched response of the request.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="pushIntoQueue"><span class="this">this.</span>pushIntoQueue<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This function pushes a given request into the IndexedDb Queue.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">request</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Request</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The request which is to be queued</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-workbox-background-sync.Queue.html#pushIntoQueue">module:workbox-background-sync.Queue#pushIntoQueue</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Promise which resolves when the request is pushed in
+the queue.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
     <h4 class="js-collapse-title" id="replayRequests"><span class="this">this.</span>replayRequests<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
 
 
@@ -849,6 +705,11 @@ supported.</p>
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-workbox-background-sync.Queue.html#replayRequests">module:workbox-background-sync.Queue#replayRequests</a>
+    </li></ul></dd>
     
 
     

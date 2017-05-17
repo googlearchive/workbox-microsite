@@ -175,6 +175,8 @@ figure pre {
   color: var(--btn-font-color);
   background-color: var(--btn-bg-color);
   text-decoration: none;
+  border: none;
+  font-size: var(--base-font-size-mobile);
 }
 
 .btn:hover, button:hover {
@@ -183,6 +185,10 @@ figure pre {
 
 @media (min-width: 700px) {
   body {
+    font-size: var(--base-font-size-desktop);
+  }
+
+  .btn, button {
     font-size: var(--base-font-size-desktop);
   }
 

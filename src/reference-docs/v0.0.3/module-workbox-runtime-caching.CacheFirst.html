@@ -1,6 +1,6 @@
 ---
 layout: jsdoc
-title: "Class: QueuePlugin"
+title: "Class: CacheFirst"
 jsdocNav: 
   - Modules:
     - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
@@ -13,6 +13,7 @@ jsdocNav:
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
 ---
 
 
@@ -22,9 +23,15 @@ jsdocNav:
 
 
     
-        <h2>QueuePlugin</h2>
+        <h2>CacheFirst <span class="extends">extends</span> <a href="module-workbox-runtime-caching.Handler.html#main">module:workbox-runtime-caching.Handler</a></span>
+        </h2>
         
-            <p>Use the instance of this class to push the failed requests into the queue.</p>
+            <p>An implementation of a <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network">cache-first</a>
+request strategy.</p>
+<p>The important thing to note with this caching strategy is that once a
+response is cached, it will not be updated. This is useful for assets
+that are revisioned since it caches the asset long term and doesn't waste
+the user's data.</p>
         
     
 
@@ -32,27 +39,11 @@ jsdocNav:
       
           <h3>Example</h3>
           
-    <pre class="prettyprint"><code>When you want the workbox-sw framework to take care of failed
-// requests
-let bgQueue = new workbox.backgroundSync.QueuePlugin({callbacks:
-		{
-			onResponse: async(hash, res) => {
-				self.registration.showNotification('Background sync demo', {
- 				body: 'Product has been purchased.',
-	 	 			icon: 'https://shop.polymer-project.org/images/shop-icon-384.png',
-				});
-			},
-			onRetryFailure: (hash) => {},
-		},
-});
-
-const requestWrapper = new workbox.runtimeCaching.RequestWrapper({
-	plugins: [bgQueue],
-});
-
+    <pre class="prettyprint"><code>// Set up a route to match any requests made for URLs that end in .txt.
+// The requests are handled with a cache-first strategy.
 const route = new workbox.routing.RegExpRoute({
-	regExp: new RegExp('^https://jsonplaceholder.typicode.com'),
-	handler: new workbox.runtimeCaching.NetworkOnly({requestWrapper}),
+  regExp: /\.txt$/,
+  handler: new workbox.runtimeCaching.CacheFirst(),
 });
 
 const router = new workbox.routing.Router();
@@ -84,7 +75,7 @@ router.registerRoute({route});</code></pre>
 <div class="collapsing-entry method-type-function ">
 
 
-    <h4 class="js-collapse-title" id="fetchDidFail"><span class="this">this.</span>fetchDidFail<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+    <h4 class="js-collapse-title" id="handle"><span class="this">this.</span>handle<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;Response></span></h4>
 
 
 <div class="collapse-details js-collapse-details">
@@ -93,10 +84,9 @@ router.registerRoute({route});</code></pre>
   
 
   <div class="description">
-    <p>Wraps <code>pushIntoQueue</code> in a callback used by higher level framework.
-This function pushes a given request into the IndexedDb Queue.
-NOTE: If you are writting the fetch handler for background sync manually,
-please ignore this.</p>
+    <p>The handle method will be called by the
+<a href="module-workbox-routing.Route.html#main">Route</a> class when a route matches a
+request.</p>
   </div>
 
 
@@ -153,13 +143,13 @@ please ignore this.</p>
 
         <tr>
             
-              <td class="name">request</td>
+              <td class="name">event</td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Request</span>
+<span class="param-type">FetchEvent</span>
 
 
 
@@ -175,7 +165,8 @@ please ignore this.</p>
             <tr>
               <td></td>
               <td class="description last">
-                <p>The request which is to be queued</p>
+                <p>The event that triggered the service
+       worker's fetch handler.</p>
                 
               </td>
             </tr>
@@ -210,6 +201,11 @@ please ignore this.</p>
 
     
 
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-workbox-runtime-caching.Handler.html#handle">module:workbox-runtime-caching.Handler#handle</a>
+    </li></ul></dd>
     
 
     
@@ -260,15 +256,16 @@ please ignore this.</p>
 
 
 
-<span class="param-type">Promise</span>
+<span class="param-type">Promise.&lt;Response></span>
 
 
 
 
 
 <div class="param-desc">
-    <p>Promise which resolves when the request is pushed in
-the queue.</p>
+    <p>The response, either from the cache,
+         or if that isn't available, the request will be made on the
+         the network and the result will be cached for future use.</p>
 </div>
 
 
