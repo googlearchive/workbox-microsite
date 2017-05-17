@@ -5,25 +5,51 @@
   padding-bottom: calc(var(--vertical-spacing) * 3);
 }
 
-.subsection-classes a {
-  border: none;
+.subsection-title {
+  color: var(--workbox-orange);
+  margin-bottom: calc(var(--vertical-spacing) * 2);
 }
 
-.collapsing-entry h4{
+.subsection-classes a {
+  text-decoration: none;
+}
+
+.subsection-classes dl {
+  margin: 0;
+}
+
+.collapsing-entry h4 {
   cursor: pointer;
 }
 
 .collapsing-entry {
   padding-bottom: calc(var(--vertical-spacing) * 4);
-  padding-top: calc(var(--vertical-spacing) * 4);
+  margin-bottom: calc(var(--vertical-spacing) * 4);
 
   border-bottom-style: solid;
   border-width: 1px;
   border-color: var(--hr-color);
 }
 
+.collapsing-entry:first-child {
+  padding-top: 0;
+}
+
 .collapsing-entry:last-child {
   border-bottom-style: none;
+  margin-bottom: 0;
+}
+
+.collapsing-entry.method-type-module, .collapsing-entry.method-type-module .collapse-details {
+  padding-top: 0;
+}
+
+#example, .code-caption {
+  margin-bottom: var(--vertical-spacing);
+}
+
+.params .description h6 {
+  margin-top: var(--vertical-spacing);
 }
 
 .method-info-table {
@@ -92,14 +118,11 @@ span.this, .method-info-table .param-attributes, .extends {
   overflow: hidden;
 }
 
-.is-jsdoc-page #classes {
-  font-weight: 700;
-  margin-bottom: calc(var(--vertical-spacing) * 2);
-  margin-top: calc(var(--vertical-spacing) * 4);
-}
-
 .code-caption {
   font-style: italic;
   font-size: var(--code-caption-font-size);
-  margin-bottom: 0;
+}
+
+.type-attribs {
+  font-style: italic;
 }

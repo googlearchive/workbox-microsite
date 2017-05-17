@@ -13,6 +13,7 @@ jsdocNav:
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
 ---
 
 
@@ -28,32 +29,6 @@ jsdocNav:
 
     
       
-          <h3>Example</h3>
-          
-    <pre class="prettyprint"><code>const WorkboxBuildWebpackPlugin = require('workbox-webpack-plugin');
-.
-.
-module.exports = {
-  entry: {
-    app: './step1/app.js'
-  },
-  output: {
-    path: __dirname + '/step1/public/js',
-    publicPath: '/public/js/',
-    filename: '[name].js',
-  },
-  plugins: [
-  	new WorkboxBuildWebpackPlugin({
-     globDirectory: './build/',
-     staticFileGlobs: ['**\/*.{html,js,css}'],
-     globIgnores: ['admin.html'],
-     swSrc: './src/sw.js',
-     swDest: './build/sw.js',
-  	});
-  ]
-}</code></pre>
-
-      
 
       
         <h2 class="subsection-title">Constructor</h2>
@@ -64,7 +39,7 @@ module.exports = {
 <div class="collapsing-entry method-type-class start-open">
 
 
-    <h4 class="js-collapse-title" id="WorkboxBuildWebpackPlugin">new WorkboxBuildWebpackPlugin<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"></span></h4>
+    <h4 class="js-collapse-title" id="WorkboxBuildWebpackPlugin">new WorkboxBuildWebpackPlugin<span class="signature">(<span class="signature-args">config</span>)</span><span class="type-signature"></span></h4>
 
 
 <div class="collapse-details js-collapse-details">
@@ -73,129 +48,7 @@ module.exports = {
   
 
   <div class="description">
-    <p>Use the instance of this in the plugins array of the webpack config.</p>
-  </div>
-
-
-
-
-<table class="method-info-table">
-
-  
-
-  
-
-  
-
-
-
-<!--
-<tr>
-<th>Details</th>
-<td>
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-</td>
-</tr>
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-</table>
-
-</div>
-
-</div>
-
-        </div>
-      
-
-    
-
-    
-
-    
-        <h2 class="subsection-title">Classes</h2>
-
-        <div class="subsection-classes">
-        <dl>
-            <dt><a href="WorkboxBuildWebpackPlugin.WorkboxBuildWebpackPlugin.html#main">WorkboxBuildWebpackPlugin</a></dt>
-            <dd></dd>
-        </dl>
-        </div>
-    
-
-     
-
-    
-
-    
-
-    
-        <h2 class="subsection-title">Instance Methods</h2>
-
-        <div class="subsection-methods">
-        
-            
-
-<div class="collapsing-entry method-type-function ">
-
-
-    <h4 class="js-collapse-title" id="apply"><span class="this">this.</span>apply<span class="signature">(<span class="signature-args">compiler</span>)</span><span class="type-signature"></span></h4>
-
-
-<div class="collapse-details js-collapse-details">
-
-
-  
-
-  <div class="description">
-    
+    <p>Creates an instance of WorkboxBuildWebpackPlugin.</p>
   </div>
 
 
@@ -220,7 +73,7 @@ module.exports = {
 
         <tr>
             
-              <td class="name">compiler</td>
+              <td class="name">config</td>
             
 
             <td class="type">
@@ -252,7 +105,7 @@ module.exports = {
             <tr>
               <td></td>
               <td class="description last">
-                <p>default compiler object passed from webpack</p>
+                <p>All the options as passed to <code>workbox-build</code>.</p>
                 
               </td>
             </tr>
@@ -328,5 +181,4 @@ module.exports = {
 
 </div>
 
-        
         </div>

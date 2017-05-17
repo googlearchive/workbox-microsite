@@ -26,6 +26,12 @@
   <link href="{{ project_root_url }}{{ site.theme_location }}/themes/styles/jsdoc.css" rel="stylesheet" type="text/css">
   {% endif %}
 
+  {% if layout.styles %}
+  {% for style in layout.styles %}
+    <link href="{{ project_root_url }}{{ site.theme_location }}{{style}}" rel="stylesheet" type="text/css">
+  {% endfor %}
+  {% endif %}
+
   {% if page.styles %}
   {% for style in page.styles %}
     <link href="{{ project_root_url }}{{ site.theme_location }}{{style}}" rel="stylesheet" type="text/css">

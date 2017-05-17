@@ -7,12 +7,12 @@ const path = require('path');
 gulp.task('sw', () => {
   return workboxBuild.generateSW({
     globDirectory: global.config.dest,
-    staticFileGlobs: ['**\/*.{html,js,css}'],
+    staticFileGlobs: ['**/*.{html,js,css,svg}'],
     globIgnores: [
       // Only include the latest reference docs
-      'reference-docs/stable/*.*.*/**/*',
+      'reference-docs/*.*.*/**/*',
       // Only include the top level styles for css
-      'themes/styles/**/*',
+      'themes/styles/*/**/*',
     ],
     swDest: path.join(global.config.dest, 'sw.js'),
   });

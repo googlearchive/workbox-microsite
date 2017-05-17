@@ -1,6 +1,6 @@
 ---
 layout: jsdoc
-title: "Module: workbox-routing"
+title: "Module: workbox-webpack-plugin"
 jsdocNav: 
   - Modules:
     - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
@@ -30,12 +30,7 @@ jsdocNav:
 
     
         
-            <div class="description"><h1 id="workbox-routing">workbox-routing</h1>
-<p>It's common in service workers to want to assign specific behaviors and logic
-to a subset of requests that are received via the <code>fetch()</code> event.</p>
-<p>This library makes it easy to route requests to &quot;handlers&quot;, which can be
-existing behaviors from Workbox or functions for custom handling of a
-request.</p></div>
+            <div class="description"><p>Use the instance of this in the plugins array of the webpack config.</p></div>
         
 
         
@@ -48,6 +43,32 @@ request.</p></div>
 <div class="collapse-details js-collapse-details">
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const WorkboxBuildWebpackPlugin = require('workbox-webpack-plugin');
+.
+.
+module.exports = {
+  entry: {
+    app: './step1/app.js'
+  },
+  output: {
+    path: __dirname + '/step1/public/js',
+    publicPath: '/public/js/',
+    filename: '[name].js',
+  },
+  plugins: [
+   new WorkboxBuildWebpackPlugin({
+     globDirectory: './build/',
+     globPatterns: ['**\/*.{html,js,css}'],
+     globIgnores: ['admin.html'],
+     swSrc: './src/sw.js',
+     swDest: './build/sw.js',
+    });
+  ]
+}</code></pre>
 
 
 
@@ -123,30 +144,3 @@ request.</p></div>
 </div>
 
 </div>
-
-        
-    
-
-    
-
-    
-        <h2 class="subsection-title">Classes</h2>
-
-        <div class="subsection-classes">
-        <dl>
-            <dt><a href="module-workbox-routing.ExpressRoute.html#main">ExpressRoute</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-workbox-routing.NavigationRoute.html#main">NavigationRoute</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-workbox-routing.RegExpRoute.html#main">RegExpRoute</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-workbox-routing.Route.html#main">Route</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-workbox-routing.Router.html#main">Router</a></dt>
-            <dd></dd>
-        </dl>
-        </div>

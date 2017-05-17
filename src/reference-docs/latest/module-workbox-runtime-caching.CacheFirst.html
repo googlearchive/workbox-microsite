@@ -13,6 +13,7 @@ jsdocNav:
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
 ---
 
 
@@ -22,14 +23,14 @@ jsdocNav:
 
 
     
-        <h2>CacheFirst <span class="extends">extends</span> Handler</span>
+        <h2>CacheFirst <span class="extends">extends</span> <a href="module-workbox-runtime-caching.Handler.html#main">module:workbox-runtime-caching.Handler</a></span>
         </h2>
         
             <p>An implementation of a <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network">cache-first</a>
 request strategy.</p>
 <p>The important thing to note with this caching strategy is that once a
 response is cached, it will not be updated. This is useful for assets
-that are revisioned as it caches the asset long term and doesn't waste
+that are revisioned since it caches the asset long term and doesn't waste
 the user's data.</p>
         
     
@@ -201,6 +202,11 @@ request.</p>
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-workbox-runtime-caching.Handler.html#handle">module:workbox-runtime-caching.Handler#handle</a>
+    </li></ul></dd>
+    
 
     
 
@@ -258,7 +264,8 @@ request.</p>
 
 <div class="param-desc">
     <p>The response, either from the cache,
-         or if that isn't available, from the network.</p>
+         or if that isn't available, the request will be made on the
+         the network and the result will be cached for future use.</p>
 </div>
 
 
