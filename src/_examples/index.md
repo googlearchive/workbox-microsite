@@ -10,7 +10,7 @@ This page contains examples for some of the Workbox modules.
 
 Workbox is a set of small modules that can be used on their own, but we've
 also combined the most common pieces into one module, `workbox-sw`. This module
-supports precaching, routing of fetch events, run time caching and more.
+supports precaching, routing of fetch events, runtime caching and more.
 
 ## Example of workbox-sw
 
