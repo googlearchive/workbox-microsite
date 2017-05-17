@@ -145,6 +145,7 @@ gulp.task('ref-docs:watch', () => {
 
 const refDocsProd = () => {
   let allTags = [];
+  let error = null;
   return remoteGitTags(GIT_REPO)
   .then((tags) => {
     const tagObject = {};
@@ -200,9 +201,15 @@ const refDocsProd = () => {
   .catch((err) => {
     console.error('Problem pulling reference docs and generating them.');
     console.error(err);
+    error = err;
   })
   .then(() => {
      return del(TMP_PATH);
+  })
+  .then(() => {
+    if (error) {
+      throw error;
+    }
   });
 };
 
