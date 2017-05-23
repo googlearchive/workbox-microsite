@@ -20,3 +20,5 @@
     url: /reference-docs/latest/module-workbox-runtime-caching.html
   - title: workbox-sw
     url: /reference-docs/latest/module-workbox-sw.html
+  - title: workbox-webpack-plugin
+    url: /reference-docs/latest/module-workbox-webpack-plugin.html
