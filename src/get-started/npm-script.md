@@ -5,8 +5,8 @@ title: Get Started > NPM Script
 
 # NPM
 
-If you already have a build process based on npm scripts you can use `workbox-
-cli` to generate a service worker.
+If you already have a build process based on npm scripts you can use 
+`workbox-cli` to generate a service worker.
 
 1. From your project folder, install the module with NPM.
 
