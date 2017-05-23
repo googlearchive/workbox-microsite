@@ -50,7 +50,7 @@ $ npm install --save workbox-sw
 ```
 
 <div class="content-sizing" markdown="1">
-Then just reference the file from your service worker:
+Then reference the file from your service worker:
 </div>
 
 ```javascript
