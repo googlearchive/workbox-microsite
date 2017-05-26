@@ -15,9 +15,9 @@ Simply install the module then run it from a command line.
 
 Install the module with NPM.
 
-    ```
-    npm install workbox-cli --global
-    ```
+```
+npm install workbox-cli --global
+```
 
 ## Generate a Service Worker
 

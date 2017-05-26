@@ -23,7 +23,7 @@
   "homepage": "https://github.com/GoogleChrome/workbox-microsite#readme",
   "devDependencies": {
     "anchor-js": "^3.2.2",
-    "autotrack": "^2.3.2",
+    "autotrack": "^2.3.3",
     "broken-link-checker": "^0.7.5",
     "chokidar": "^1.7.0",
     "cssnano": "^3.10.0",
