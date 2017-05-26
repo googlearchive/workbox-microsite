@@ -7,7 +7,7 @@ const path = require('path');
 gulp.task('sw', () => {
   return workboxBuild.generateSW({
     globDirectory: global.config.dest,
-    staticFileGlobs: ['**/*.{html,js,css,svg,png}'],
+    globPatterns: ['**/*.{html,js,css,svg,png}'],
     globIgnores: [
       // Only include the latest reference docs
       'reference-docs/*.*.*/**/*',

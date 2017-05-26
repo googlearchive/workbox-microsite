@@ -47,6 +47,6 @@
     "remote-git-tags": "^2.0.0",
     "semver": "^5.3.0",
     "superstatic": "^4.1.0",
-    "workbox-build": "0.0.2"
+    "workbox-build": "1.0.0"
   }
 }
