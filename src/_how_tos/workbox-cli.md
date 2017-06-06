@@ -51,8 +51,8 @@ newly generated service worker file in your web page,
 which you can do like so:
 
 ```
-if(navigator.serviceworker) {
-  navigator.serviceworker.register('/sw.js')
+if(navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js')
   .catch(function(err) {
     console.error('Unable to register service worker.', err);
   });
