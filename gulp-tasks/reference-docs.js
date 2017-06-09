@@ -53,16 +53,14 @@ const generateReferenceDocs = (tagName) => {
 const buildJSDocs = (docPath, version) => {
   console.log(`    Building JSDocs @ '${docPath}'. Version: ${version}`);
 
-  const absoluteJSDocConf = path.join(process.cwd(), 'jsdoc.conf');
+  const jsdocConf = path.join(process.cwd(), 'jsdoc.conf');
 
     try {
-      fs.accessSync(absoluteJSDocConf, fs.F_OK);
+      fs.accessSync(jsdocConf, fs.F_OK);
     } catch (err) {
       console.log('Skipping JSDocs due to no jsdoc.conf');
       return;
     }
-
-    const jsdocConf = path.relative(docPath, absoluteJSDocConf);
 
     const outputPath = path.join(__dirname, '..', 'src',
       REFERENCE_DOCS_DIR, version);
@@ -249,6 +247,11 @@ gulp.task('ref-docs', () => {
 
       `);
     return refDocsProd();
+  }
+
+  if (process.env.TRAVIS) {
+    console.log('Reference docs can only be built locally.');
+    return Promise.resolve();
   }
 
   return refDocsDev();
