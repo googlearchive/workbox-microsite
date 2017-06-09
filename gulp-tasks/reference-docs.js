@@ -73,6 +73,7 @@ const buildJSDocs = (docPath, version) => {
       '-c', jsdocConf,
       '--template', path.join(__dirname, '..', 'src', 'themes', '_jsdoc'),
       '-d', outputPath,
+      '-r',
     ];
 
     const jsdocPath = findup(path.join('node_modules', '.bin', 'jsdoc'));
