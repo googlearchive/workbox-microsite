@@ -8,7 +8,6 @@ const findup = require('findup-sync');
 const meow = require('meow');
 const chokidar = require('chokidar');
 const semver = require('semver');
-const glob = require('glob');
 const fsExtra = require('fs-extra');
 
 const exitLifeCycle = require('./utils/exit-lifecycle');
@@ -48,11 +47,7 @@ const downloadTaggedRelease = (tagName) => {
 };
 
 const generateReferenceDocs = (tagName) => {
-  return downloadTaggedRelease(tagName)
-  .then((docPath) => {
-    console.log(glob.sync(path.join(docPath, '**', '*')));
-    return docPath;
-  });
+  return downloadTaggedRelease(tagName);
 };
 
 const buildJSDocs = (docPath, version) => {
@@ -73,8 +68,6 @@ const buildJSDocs = (docPath, version) => {
       '-c', jsdocConf,
       '--template', path.join(__dirname, '..', 'src', 'themes', '_jsdoc'),
       '-d', outputPath,
-      '-r',
-      docPath,
     ];
 
     const jsdocPath = findup(path.join('node_modules', '.bin', 'jsdoc'));
@@ -242,6 +235,10 @@ const refDocsDev = () => {
 };
 
 gulp.task('ref-docs', () => {
+  if (process.env.TRAVIS) {
+    console.warn('Unable to build docs on Travis so skipping.');
+    return;
+  }
   const cli = meow();
   if (!cli.flags.code) {
     console.warn(`
