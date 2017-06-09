@@ -53,19 +53,20 @@ const generateReferenceDocs = (tagName) => {
 const buildJSDocs = (docPath, version) => {
   console.log(`    Building JSDocs @ '${docPath}'. Version: ${version}`);
 
-  const jsdocConf = path.join(process.cwd(), 'jsdoc.conf');
+  const absoluteJSDocConf = path.join(process.cwd(), 'jsdoc.conf');
 
     try {
-      fs.accessSync(jsdocConf, fs.F_OK);
+      fs.accessSync(absoluteJSDocConf, fs.F_OK);
     } catch (err) {
       console.log('Skipping JSDocs due to no jsdoc.conf');
       return;
     }
 
+    const jsdocConf = path.relative(docPath, absoluteJSDocConf);
+
     const outputPath = path.join(__dirname, '..', 'src',
       REFERENCE_DOCS_DIR, version);
     const jsDocParams = [
-      '--debug',
       '-c', jsdocConf,
       '--template', path.join(__dirname, '..', 'src', 'themes', '_jsdoc'),
       '-d', outputPath,
