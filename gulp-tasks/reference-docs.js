@@ -8,6 +8,7 @@ const findup = require('findup-sync');
 const meow = require('meow');
 const chokidar = require('chokidar');
 const semver = require('semver');
+const glob = require('glob');
 const fsExtra = require('fs-extra');
 
 const exitLifeCycle = require('./utils/exit-lifecycle');
@@ -47,7 +48,11 @@ const downloadTaggedRelease = (tagName) => {
 };
 
 const generateReferenceDocs = (tagName) => {
-  return downloadTaggedRelease(tagName);
+  return downloadTaggedRelease(tagName)
+  .then((docPath) => {
+    console.log(glob.sync(path.join(docPath, '**', '*')));
+    return docPath;
+  });
 };
 
 const buildJSDocs = (docPath, version) => {
@@ -247,11 +252,6 @@ gulp.task('ref-docs', () => {
 
       `);
     return refDocsProd();
-  }
-
-  if (process.env.TRAVIS) {
-    console.log('Reference docs can only be built locally.');
-    return Promise.resolve();
   }
 
   return refDocsDev();
