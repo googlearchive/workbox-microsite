@@ -65,6 +65,7 @@ const buildJSDocs = (docPath, version) => {
     const outputPath = path.join(__dirname, '..', 'src',
       REFERENCE_DOCS_DIR, version);
     const jsDocParams = [
+      '--debug',
       '-c', jsdocConf,
       '--template', path.join(__dirname, '..', 'src', 'themes', '_jsdoc'),
       '-d', outputPath,
