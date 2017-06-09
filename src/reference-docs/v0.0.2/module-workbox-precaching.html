@@ -1,0 +1,165 @@
+---
+layout: jsdoc
+title: "Module: workbox-precaching"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+---
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+
+    
+        
+            <div class="description"><h1 id="workbox-precaching">workbox-precaching</h1>
+<p>The precaching module provides helpers that make it easy to cache files
+during the install step of your service worker.</p>
+<p><strong>Install:</strong> <code>npm install --save-dev workbox-precaching</code></p>
+<p>The revisioned caching will cache bust requests where appropriate and
+only cache assets that have a changed revision asset compared to
+the currently cached value.</p></div>
+        
+
+        
+            
+
+<div class="collapsing-entry method-type-module ">
+
+
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>importScripts('/&lt;Path to Module>/build/workbox-precaching.min.js');
+
+const revCacheManager = new workbox.precaching.RevisionedCacheManager();
+revCacheManager.addToCacheList({
+  revisionedFiles: [
+    '/styles/main.1234.css',
+    {
+      url: '/',
+      revision: '1234'
+    }
+  ],
+});
+
+const unrevCacheManager = new workbox.precaching.UnrevisionedCacheManager();
+unrevCacheManager.addToCacheList({
+  unrevisionedFiles: [
+    '/',
+    '/images/logo.png'
+  ]
+});
+
+self.addEventListener('install', (event) => {
+  const promiseChain = Promise.all([
+    revCacheManager.install(),
+    unrevCacheManager.install(),
+  ]);
+  event.waitUntil(promiseChain);
+});
+
+self.addEventListener('activate', (event) => {
+  const promiseChain = Promise.all([
+    revCacheManager.cleanup(),
+    unrevCacheManager.cleanup()
+  ]);
+  event.waitUntil(promiseChain);
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>

@@ -1,0 +1,2252 @@
+---
+layout: jsdoc
+title: "Global"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        <h2></h2>
+        
+    
+
+    
+        
+
+        
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h2 class="subsection-title">Member Variables</h2>
+
+        <div class="subsection-members">
+        
+            
+<div class="collapsing-entry member-type-member">
+<h4 class="js-collapse-title" id="ServerInstance"><span class="type-attribs">(constant) </span>ServerInstance</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>README:
+This test server is used in unit tests as well as
+by the 'gulp serve' task, so please make sure
+changes here work in all scenarios.</p>
+<p>There are two servers so tests can make requests to a foreign origin.</p>
+</div>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+        
+        </div>
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="buildJSBundle"><span class="this">this.</span>buildJSBundle<span class="signature">(<span class="signature-args">options</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will bundle JS with Rollup and write it out to disk.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">options</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">rollupConfig</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The configuration for rollup().</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">writeConfig</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The configuration for bundle.write().</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="buildPackage"><span class="this">this.</span>buildPackage<span class="signature">(<span class="signature-args">projectPath</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Builds a given project.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">projectPath</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The path to a project directory.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves if building succeeds, rejects if it fails.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="escapeRegExp"><span class="this">this.</span>escapeRegExp<span class="signature">(<span class="signature-args">string</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> string</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Escaping user input to be treated as a literal string within a regular
+expression can be accomplished by simple replacement.</p>
+<p>From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">string</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The string to be used as part of a regular
+                        expression</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">string</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>A string that is safe to use in a regular
+                        expression.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="generateBuildConfigs"><span class="this">this.</span>generateBuildConfigs<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Array.&lt;Object></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>A helper to generate Rollup build configurations.</p>
+<p>One build config is generated for each format given in formatToPath.
+Both minified and unminified build configs are generated.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">formatToPath</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object.&lt;String, String></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>A mapping of each format
+('iife', 'es', etc.) to the path to use for the output.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">baseDir</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The path of the project directory.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">moduleName</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The name of the module, for the iife output.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">shouldBuildProd</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Whether or not we should also build
+a production bundle. Defaults to true.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">entry</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Used to override the default entry value of
+<code>${baseDir}/src/index.js</code>.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="lernaWrapper"><span class="this">this.</span>lernaWrapper<span class="signature">(<span class="signature-args">&hellip;args</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Wrapper that runs the local node_modules/.bin/lerna binary, returning a
+promise when complete.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">args</td>
+            
+
+            <td class="type">
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Repeatable)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Arguments to pass to the local lerna binary.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="lintPackage"><span class="this">this.</span>lintPackage<span class="signature">(<span class="signature-args">projectPath</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Lints a given project.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">projectPath</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The path to a project directory.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves if linting succeeds, rejects if it fails.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="processPromiseWrapper"><span class="this">this.</span>processPromiseWrapper<span class="signature">(<span class="signature-args">command, args</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Wrapper on top of childProcess.spawn() that returns a promise which rejects
+when the child process has a non-zero exit code and resolves otherwise.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">command</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The command to spawn.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">args</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The parameters to pass to the command.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Settles once command completes. Resolves if the exit code
+                   is 0, and rejects otherwise.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="start"><span class="this">this.</span>start<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Calling start will create two servers. The primary port will be returned
+and the secondary server will be on the primary port + 1;</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="taskHarness"><span class="this">this.</span>taskHarness<span class="signature">(<span class="signature-args">task, projectOrStar, &hellip;args</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;*></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Helper function that runs a task against all projects, or just one of them.
+It will collect all the results and reject if any of the tasks rejects.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">task</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The function to run.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">projectOrStar</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Either the name of a project, or '*' for all.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">args</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional, Repeatable)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Optional additional arguments to pass to task.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves with null if all the promises resolve.
+                       Otherwise, rejects with a concatenated error.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="taskPromiseWrapper"><span class="this">this.</span>taskPromiseWrapper<span class="signature">(<span class="signature-args">promises</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;*></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Promise.all() rejects immediately as soon as the first Promise rejects.
+This wrapper will run each Promise to resolution, and if one or more
+rejected, reject at the end with a concatenated error message.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">promises</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Promise></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The promises to wait on.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;*></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves with null if all the promises resolve.
+                       Otherwise, rejects with a concatenated error.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="updateVersionedBundles"><span class="this">this.</span>updateVersionedBundles<span class="signature">(<span class="signature-args">projectPath</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Updates the fields in package.json that contain version string to match
+the latest version from lerna.json.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">projectPath</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The path to a project directory.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves if updating succeeds, and rejects if it fails.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>
