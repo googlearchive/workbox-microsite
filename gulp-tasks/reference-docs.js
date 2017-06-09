@@ -17,6 +17,8 @@ const GIT_REPO = 'github.com/GoogleChrome/workbox';
 const TMP_PATH = path.join(__dirname, '..', 'tmp-' + Date.now());
 
 const downloadTaggedRelease = (tagName) => {
+  console.log(`    Downloading tagged release: ${tagName}`);
+
   const docPath = path.join(TMP_PATH, tagName);
   return new Promise((resolve, reject) => {
     const gitDownload = spawn('git', [
@@ -49,6 +51,8 @@ const generateReferenceDocs = (tagName) => {
 };
 
 const buildJSDocs = (docPath, version) => {
+  console.log(`    Building JSDocs @ '${docPath}'. Version: ${version}`);
+
   const jsdocConf = path.join(process.cwd(), 'jsdoc.conf');
 
     try {
@@ -69,6 +73,10 @@ const buildJSDocs = (docPath, version) => {
     const jsdocPath = findup(path.join('node_modules', '.bin', 'jsdoc'));
 
     return new Promise((resolve, reject) => {
+      console.log(`        JSDoc path: ${jsdocPath}`);
+      console.log(`        JSDoc params: ` +
+        `${JSON.stringify(jsDocParams, null, 2)}`);
+
       const jsdocProcess = spawn(jsdocPath, jsDocParams, {
         cwd: docPath,
         stdio: 'inherit',
@@ -163,6 +171,7 @@ const refDocsProd = () => {
         console.log(`    Skipping build reference docs for ${tag}`);
         return false;
       } catch (err) {
+        console.log(`    Building reference docs for ${tag}`);
         return true;
       }
     });
