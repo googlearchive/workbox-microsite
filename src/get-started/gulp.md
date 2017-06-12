@@ -11,19 +11,19 @@ install the module then cut and paste the code sample.
 1. [Install Node.js](https://nodejs.org/en/).
 1. Install the module with NPM.
 
-    ```
+    ```bash
     npm install workbox-build --save-dev
     ```
 
 1. Require `workbox-build` in your gulp `gulpfile.js`.
 
-    ```
+    ```javascript
     const wbBuild = require('workbox-build');
     ```
 
 1. Also in `gulpfile.js` add a task to build a service worker.
 
-    ```
+    ```javascript
     gulp.task('bundle-sw', () => {
       return wbBuild.generateSW({
         globDirectory: './app/',

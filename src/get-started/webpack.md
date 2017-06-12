@@ -11,13 +11,13 @@ update the service worker with the latest file changes.
 
 1. Install the plugin with NPM.
 
-    ```
+    ```bash
     npm install workbox-webpack-plugin --save-dev
     ```
 
 1. After installing the webpack plugin add the following to your `webpack.config.js`.
 
-    ```
+    ```javascript
     const path = require('path');
     const workboxPlugin = require('workbox-webpack-plugin');
 
@@ -41,4 +41,4 @@ update the service worker with the latest file changes.
 
     **Note:** Always run the plugin for generating the service worker as the
     last step in your site's build process. This ensures that your service
-    worker contains any changes made during development. 
+    worker contains any changes made during development.

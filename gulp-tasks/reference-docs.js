@@ -237,7 +237,7 @@ const refDocsDev = () => {
 gulp.task('ref-docs', () => {
   if (process.env.TRAVIS) {
     console.warn('Unable to build docs on Travis so skipping.');
-    return;
+    return Promise.resolve();
   }
   const cli = meow();
   if (!cli.flags.code) {
