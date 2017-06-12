@@ -1,0 +1,798 @@
+---
+layout: jsdoc
+title: "Class: SWCli"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>SWCli</h2>
+        
+            <p>This class is a wrapper to make test easier. This is used by
+./bin/index.js to pass in the args when the CLI is used.</p>
+        
+    
+
+    
+      
+
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="_askGenerateQuestions"><span class="this">this.</span>_askGenerateQuestions<span class="signature">(<span class="signature-args">config, requiredFields</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;object></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Ask questions required for input.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">config</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The config options.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">requiredFields</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The required fields to ask questions for.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;object></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Promise resolves to the config object.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="_generateSW"><span class="this">this.</span>_generateSW<span class="signature">(<span class="signature-args">flags</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will generate a working service worker with a file manifest.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">flags</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The flags supplied as part of the CLI input.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>The promise returned here will be used to exit the
+node process cleanly or not.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="_injectManifest"><span class="this">this.</span>_injectManifest<span class="signature">(<span class="signature-args">flags</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This function should ask questions or use config/flags to read in a sw
+and inject the manifest into the destination service worker.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">flags</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Flags from command line.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves on</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="handleCommand"><span class="this">this.</span>handleCommand<span class="signature">(<span class="signature-args">command, args, flags</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>If a command is given in the command line args, this method will handle
+the appropriate action.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">command</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The command name.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">args</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The arguments given to this command.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">flags</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The flags supplied with the command line.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>A promise for the provided task.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>
