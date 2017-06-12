@@ -3,6 +3,7 @@
 const gulp = require('gulp');
 const path = require('path');
 const spawn = require('child_process').spawn;
+const del = require('del');
 
 const runJekyllCommand = (command, additionalParams) => {
   return new Promise((resolve, reject) => {
@@ -49,13 +50,18 @@ const runJekyllCommand = (command, additionalParams) => {
   });
 };
 
-gulp.task('npm-dependencies', () => {
+gulp.task('clean-third-party', () => {
+  return del('src/themes/third_party/');
+});
+
+gulp.task('npm-dependencies', gulp.series('clean-third-party', () => {
   return gulp.src([
     'node_modules/anchor-js/anchor.min.js',
     'node_modules/autotrack/autotrack.js',
+    'node_modules/prismjs/prism.js',
   ])
   .pipe(gulp.dest('src/themes/third_party'));
-});
+}));
 
 gulp.task('jekyll:build', gulp.series('npm-dependencies', () => {
   return runJekyllCommand('build');
