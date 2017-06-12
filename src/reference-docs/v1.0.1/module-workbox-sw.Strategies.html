@@ -1,0 +1,1541 @@
+---
+layout: jsdoc
+title: "Class: Strategies"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>Strategies</h2>
+        
+            <p>This is a simple class used to namespace the supported caching strategies in
+workbox-sw.</p>
+<p>You would never access this class directly but instead use with
+<code>workboxSW.strategies.&lt;Strategy Name&gt;</code>.</p>
+        
+    
+
+    
+      
+
+      
+        <h2 class="subsection-title">Constructor</h2>
+
+        <div class="subsection-constructor">
+        
+
+<div class="collapsing-entry method-type-class start-open">
+
+
+    <h4 class="js-collapse-title" id="Strategies">new Strategies<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This constructor will configure shared options across each strategy.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input.cacheId</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The cacheId to be applied to the run
+time strategies cache names.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        </div>
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="cacheFirst"><span class="this">this.</span>cacheFirst<span class="signature">(<span class="signature-args">options</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> <a href="module-workbox-runtime-caching.CacheFirst.html#main">CacheFirst</a></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>A <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network">cache first</a>
+run-time caching strategy.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const = new WorkboxSW();
+const cacheFirstStrategy = workboxSW.strategies.cacheFirst();
+
+workboxSW.router.registerRoute('/styles/*', cacheFirstStrategy);</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">options</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-sw.Strategies.html#.StrategyOptions">StrategyOptions</a></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>To
+define any additional caching or broadcast plugins pass in option values.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type"><a href="module-workbox-runtime-caching.CacheFirst.html#main">CacheFirst</a></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>An instance of a
+<code>CacheFirst</code> handler.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="cacheOnly"><span class="this">this.</span>cacheOnly<span class="signature">(<span class="signature-args">options</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> <a href="module-workbox-runtime-caching.CacheOnly.html#main">CacheOnly</a></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>A <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-only">cache only</a>
+run-time caching strategy.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+const cacheOnlyStrategy = workboxSW.strategies.cacheOnly();
+
+workboxSW.router.registerRoute('/styles/*', cacheOnlyStrategy);</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">options</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-sw.Strategies.html#.StrategyOptions">StrategyOptions</a></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>To
+define any additional caching or broadcast plugins pass in option values.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type"><a href="module-workbox-runtime-caching.CacheOnly.html#main">CacheOnly</a></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>An instance of a
+<code>CacheOnly</code> handler.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="networkFirst"><span class="this">this.</span>networkFirst<span class="signature">(<span class="signature-args">options</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> <a href="module-workbox-runtime-caching.NetworkFirst.html#main">NetworkFirst</a></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>A <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#network-falling-back-to-cache">network first</a>
+run-time caching strategy.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+const networkFirstStrategy = workboxSW.strategies.networkFirst();
+
+workboxSW.router.registerRoute('/blog/', networkFirstStrategy);</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">options</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-sw.Strategies.html#.StrategyOptions">StrategyOptions</a></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>To
+define any additional caching or broadcast plugins pass in option values.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type"><a href="module-workbox-runtime-caching.NetworkFirst.html#main">NetworkFirst</a></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>An instance of a
+<code>NetworkFirst</code> handler.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="networkOnly"><span class="this">this.</span>networkOnly<span class="signature">(<span class="signature-args">options</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> <a href="module-workbox-runtime-caching.NetworkOnly.html#main">NetworkOnly</a></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>A <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#network-only">network only</a>
+run-time caching strategy.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+const networkOnlyStrategy = workboxSW.strategies.networkOnly();
+
+workboxSW.router.registerRoute('/admin/', networkOnlyStrategy);</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">options</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-sw.Strategies.html#.StrategyOptions">StrategyOptions</a></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>To
+define any additional caching or broadcast plugins pass in option values.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type"><a href="module-workbox-runtime-caching.NetworkOnly.html#main">NetworkOnly</a></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>An instance of a
+<code>NetworkOnly</code> handler.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="staleWhileRevalidate"><span class="this">this.</span>staleWhileRevalidate<span class="signature">(<span class="signature-args">options</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> <a href="module-workbox-runtime-caching.StaleWhileRevalidate.html#main">StaleWhileRevalidate</a></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>A <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#stale-while-revalidate">stale while revalidate</a>
+run-time caching strategy.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+const staleWhileRevalidateStrategy =
+ workboxSW.strategies.staleWhileRevalidate();
+
+workboxSW.router.registerRoute('/styles/*', staleWhileRevalidateStrategy);</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">options</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-sw.Strategies.html#.StrategyOptions">StrategyOptions</a></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>To
+define any additional caching or broadcast plugins pass in option values.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type"><a href="module-workbox-runtime-caching.StaleWhileRevalidate.html#main">StaleWhileRevalidate</a></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>An instance of a <code>StaleWhileRevalidate</code> handler.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>
+    
+
+    
+        <h2 class="subsection-title">Type Definitions</h2>
+
+        <div class="subsection-definitions">
+        
+                
+<div class="collapsing-entry member-type-typedef">
+<h4 class="js-collapse-title" id=".StrategyOptions">StrategyOptions</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>StrategyOptions is just a JavaScript object, but the structure
+explains the options for runtime strategies used in workbox-sw.</p>
+<p>See the example of how this can be used with the <code>cacheFirst()</code> caching
+strategy.</p>
+</div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+const cacheFirstStrategy = workboxSW.strategies.cacheFirst({
+  cacheName: 'example-cache',
+  cacheExpiration: {
+    maxEntries: 10,
+    maxAgeSeconds: 7 * 24 * 60 * 60
+  },
+  broadcastCacheUpdate: {
+    channelName: 'example-channel-name'
+  },
+  cacheableResponse: {
+    statuses: [0, 200, 404],
+    headers: {
+      'Example-Header-1': 'Header-Value-1',
+      'Example-Header-2': 'Header-Value-2'
+    }
+  }
+  plugins: [
+    // Additional Plugins
+  ]
+});</code></pre>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+        
+
+
+<p><strong>Properties</strong></p>
+
+
+<table class="method-info-table">
+  
+  <tr>
+    <td>
+    <table class="props">
+    
+    <tr>
+      
+          <td class="name"><code>cacheName</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Name of cache to use
+for caching (both lookup and updating).</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>cacheExpiration</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Object</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Defining this
+object will add a cache expiration plugins to this strategy.</p>
+        
+          
+
+
+<p><strong>Sub-properties</strong></p>
+
+
+<table class="method-info-table">
+  
+  <tr>
+    <td>
+    <table class="props">
+    
+    <tr>
+      
+          <td class="name"><code>maxEntries</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Number</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The maximum number of entries to store in a cache.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>maxAgeSeconds</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Number</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The maximum lifetime of a request to stay in the cache before it's removed.</p>
+        
+      </td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  
+</table>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>broadcastCacheUpdate</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Object</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Defining
+this object will add a broadcast cache update plugin.</p>
+        
+          
+
+
+<p><strong>Sub-properties</strong></p>
+
+
+<table class="method-info-table">
+  
+  <tr>
+    <td>
+    <table class="props">
+    
+    <tr>
+      
+          <td class="name"><code>channelName</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The name of the broadcast channel to dispatch messages on.</p>
+        
+      </td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  
+</table>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>plugins</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;plugins></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>For
+any additional plugins you wish to add, simply include them in this
+array.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>cacheableResponse</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Object</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Specifies types of responses to cache
+by status codes, headers, or both.</p>
+        
+          
+
+
+<p><strong>Sub-properties</strong></p>
+
+
+<table class="method-info-table">
+  
+  <tr>
+    <td>
+    <table class="props">
+    
+    <tr>
+      
+          <td class="name"><code>statuses</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;Number></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An array of status
+codes to cache.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>headers</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;Object></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An array of
+header-value pairs for HTTP headers to cache. See the example, above.</p>
+        
+      </td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  
+</table>
+
+        
+      </td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  
+</table>
+
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+            
+        </div>
