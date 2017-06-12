@@ -44,6 +44,7 @@
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",
     "postcss-url": "^6.0.4",
+    "prismjs": "^1.6.0",
     "remote-git-tags": "^2.0.0",
     "semver": "^5.3.0",
     "superstatic": "^4.1.0",
