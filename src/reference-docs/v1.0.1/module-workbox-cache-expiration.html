@@ -1,0 +1,178 @@
+---
+layout: jsdoc
+title: "Module: workbox-cache-expiration"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+
+    
+        
+            <div class="description"><h1 id="workbox-cache-expiration">workbox-cache-expiration</h1>
+<p>A helper library that enforces restrictions on a cache including:</p>
+<ul>
+<li>Allowing a specific number of requests to be cached. This prevents
+a cache from continuously growing in size.</li>
+<li>Define an expiration for request.</li>
+</ul>
+<p>This means stale requests aren't used and the cache size is kept under
+control.</p>
+<p>Most developers will use this module by instantiating a new
+<code>CacheExpirationPlugin</code> and passing it to a
+<a href="module-workbox-runtime-caching.RequestWrapper.html#main">RequestWrapper</a>,
+as shown in the first example below.</p></div>
+        
+
+        
+            
+
+<div class="collapsing-entry method-type-module ">
+
+
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Using the CacheExpirationPlugin to enforce caching
+rules.</p>
+    
+    <pre class="prettyprint"><code>// Add cache expiration plugin to `RequestWrapper`.
+const requestWrapper = new workbox.runtimeCaching.RequestWrapper({
+  cacheName: 'runtime-cache',
+  plugins: [
+    // The cache size will be capped at 10 entries.
+    new workbox.cacheExpiration.Plugin({maxEntries: 10})
+  ]
+});
+
+// Add `RequestWrapper` to a runtime cache handler.
+const route = new workbox.routing.RegExpRoute({
+  match: ({url}) => url.domain === 'example.com',
+  handler: new workbox.runtimeCaching.StaleWhileRevalidate({requestWrapper})
+});</code></pre>
+
+        <p class="code-caption">To use the cache expiration as it's own module, you can
+call the <code>expireEntries()</code> method to clean up the cache.</p>
+    
+    <pre class="prettyprint"><code>expirationPlugin.expireEntries({
+  cacheName: 'example-cache-name'
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+    
+
+    
+
+    
+        <h2 class="subsection-title">Classes</h2>
+
+        <div class="subsection-classes">
+        <dl>
+            <dt><a href="module-workbox-cache-expiration.CacheExpiration.html#main">CacheExpiration</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-cache-expiration.CacheExpirationPlugin.html#main">CacheExpirationPlugin</a></dt>
+            <dd></dd>
+        </dl>
+        </div>
