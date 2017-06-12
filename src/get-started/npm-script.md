@@ -5,18 +5,18 @@ title: Get Started > NPM Script
 
 # NPM
 
-If you already have a build process based on npm scripts you can use 
+If you already have a build process based on npm scripts you can use
 `workbox-cli` to generate a service worker.
 
 1. From your project folder, install the module with NPM.
 
-    ```
+    ```bash
     npm install --save-dev workbox-cli
     ```
 
 1. Add a command to the `scripts` section of your `package.json`:
 
-    ```
+    ```json
   "scripts": {
       "build": "node exising_build_script.js && workbox-cli generate:sw"
   },
@@ -25,11 +25,11 @@ If you already have a build process based on npm scripts you can use
     **Note:** The command for generating the service worker,
     `workbox-cli generate:sw`, should always be the last step in your site's
     build process. This ensures that your service worker contains any changes
-    made during development. 
+    made during development.
 
 1. Run your new command.
 
-    ```
+    ```bash
     npm run build
     ```
 
@@ -44,5 +44,5 @@ If you already have a build process based on npm scripts you can use
     rerun the wizard.
 
 
-	
+
 

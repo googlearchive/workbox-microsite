@@ -2,7 +2,7 @@
 @import "./variables/dimens.css";
 @import "./variables/z-index.css";
 
-@import "./pygments.css";
+@import "./prism.css";
 
 @import "./components/navigation.css";
 @import "./components/primary-header.css";
