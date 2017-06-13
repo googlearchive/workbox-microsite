@@ -1,17 +1,15 @@
-{% include variables.html %}
-
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/detabinator.js" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/nav-drawer.js" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/jsdocs-collapse.js" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/navigation-controller.js" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/sw-controller.js" async defer></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/scripts/toast.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/detabinator.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/nav-drawer.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/jsdocs-collapse.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/navigation-controller.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/sw-controller.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/toast.js" async defer></script>
 <script src="https://buttons.github.io/buttons.js" async defer></script>
 {% if layout.anchors != false and page.anchors != false %}
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/third_party/anchor.min.js" id="anchorjsscript" async defer></script>
+<script src="{{ site.theme_location }}/themes/third_party/anchor.min.js" id="anchorjsscript" async defer></script>
 {% endif %}
 
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/third_party/prism.js" id="prismjsscript" async defer></script>
+<script src="{{ site.theme_location }}/themes/third_party/prism.js" id="prismjsscript" async defer></script>
 
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};
@@ -39,4 +37,4 @@ ga('require', 'pageVisibilityTracker', {
 });
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async></script>
-<script src="{{ project_root_url }}{{ site.theme_location }}/themes/third_party/autotrack.js" async></script>
+<script src="{{ site.theme_location }}/themes/third_party/autotrack.js" async></script>
