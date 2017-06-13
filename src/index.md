@@ -1,7 +1,6 @@
 ---
 layout: index
 title: Welcome to Workbox
-excerpt: Workbox is a collection of JavaScript libraries for Progressive Web Apps
 styles:
  - /styles/index.css
 ---

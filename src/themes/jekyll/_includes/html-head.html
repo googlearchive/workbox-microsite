@@ -1,40 +1,38 @@
-{% include variables.html %}
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% if page.title %}{{ page.title | strip_html }}{% else %}{{ project_title | escape }}{% endif %}</title>
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.github.project_tagline }}{% endif %}">
+  <title>{% if page.title %}{{ page.title | strip_html }}{% else %}Workbox{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}Workbox is a collection of JavaScript libraries for Progressive Web Apps{% endif %}">
   <meta name="theme-color" content="#616261">
 
   <!-- Manifest -->
-  <link rel="manifest" href="{{ project_root_url }}/manifest.json">
+  <link rel="manifest" href="/manifest.json">
 
   <!-- The docs server over HTTPS, but site.github.url points to HTTP resouce causing mixed content -->
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: project_root_url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ project_title }}" href="{{ "/feed.xml" | prepend: project_root_url }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' }}">
+  <link rel="alternate" type="application/rss+xml" title="Workbox" href="{{ "/feed.xml" }}">
 
-  <link rel="shortcut icon" href="{{ project_root_url }}{{ site.theme_location }}/themes/images/favicon.ico">
+  <link rel="shortcut icon" href="{{ site.theme_location }}/themes/images/favicon.ico">
 
   <!-- Stylesheet -->
   <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans:300,300i,400,600,700" rel="stylesheet">
-  <link href="{{ project_root_url }}{{ site.theme_location }}/themes/styles/main.css" rel="stylesheet" type="text/css">
+  <link href="{{ site.theme_location }}/themes/styles/main.css" rel="stylesheet" type="text/css">
 
   {% if page.layout == 'jsdoc' %}
-  <link href="{{ project_root_url }}{{ site.theme_location }}/themes/styles/jsdoc.css" rel="stylesheet" type="text/css">
+  <link href="{{ site.theme_location }}/themes/styles/jsdoc.css" rel="stylesheet" type="text/css">
   {% endif %}
 
   {% if layout.styles %}
   {% for style in layout.styles %}
-    <link href="{{ project_root_url }}{{ site.theme_location }}{{style}}" rel="stylesheet" type="text/css">
+    <link href="{{ site.theme_location }}{{style}}" rel="stylesheet" type="text/css">
   {% endfor %}
   {% endif %}
 
   {% if page.styles %}
   {% for style in page.styles %}
-    <link href="{{ project_root_url }}{{ site.theme_location }}{{style}}" rel="stylesheet" type="text/css">
+    <link href="{{ site.theme_location }}{{style}}" rel="stylesheet" type="text/css">
   {% endfor %}
   {% endif %}
 </head>
