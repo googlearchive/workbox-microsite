@@ -10,13 +10,17 @@ publish: true
 
 [General Stuff/Intro]
 
-## Features
+## swPrecache.write()
 
-## staticGlobFiles
+Most features of `sw-precache.write()` have direct equivalents in `wbBuild.generateSW()`. Exceptions are described below.
 
-In Worbox, the `globPatterns` and `globDirectory` parameters replace sw-precache's `staticGlobFiles` parameter. 
+### staticGlobFiles
 
-For example, imagine a `staticGlobFiles` parameter like the following.
+In Worbox, the `globPatterns` and `globDirectory` parameters together replace sw-precache's `staticGlobFiles` parameter. To convert, the globs' root directory should be removed form the pattern paths and placed in a separate parameter.
+
+#### Example
+
+**In sw-precache:**
 
 
     staticFileGlobs: [
@@ -25,7 +29,7 @@ For example, imagine a `staticGlobFiles` parameter like the following.
       `${BUILD_DIR}/images/**/*`
     ]
 
-The Workbox equivalent would look like this:
+**In Workbox:**
 
     globDirectory: BUILD_DIR,
     globPatterns: [
