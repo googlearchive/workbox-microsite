@@ -2,11 +2,13 @@
 layout: page
 title: <a href="/how_tos/">How Tos</a> > Upgrade Guide
 short_title: Upgrade Guide
-description: How to upgrade specific features and techniques from sw-precache or sw-toolbox to Workbox.
+description: A catalog of upgrades to specific features and techniques from sw-precache or sw-toolbox to Workbox.
 publish: true
 ---
 
 # Upgrade from sw-precache
+
+A catalog of upgrades to specific features and techniques from sw-precache or sw-toolbox to Workbox.
 
 [General Stuff/Intro]
 
