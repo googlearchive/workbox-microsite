@@ -56,3 +56,12 @@ Below are a list of example sites that are using the Workbox modules.
    source='https://github.com/insin/react-hn'
    demo='https://react-hn.appspot.com/'
 %}
+
+{% include components/example-project-using-workbox.html
+   name='Next.js HN'
+   description='A Next.js-based web app using custom service worker generation in an npm scripts-based build process.'
+   img-src='/images/third_party/next-js-hn.png'
+   source='https://github.com/codebusking/next-hnpwa-guide-kit'
+   demo='https://next-hnpwa.now.sh/'
+%}
+
