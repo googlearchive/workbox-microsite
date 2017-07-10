@@ -32,7 +32,7 @@ update the service worker with the latest file changes.
       plugins: [ /* Call the plugin. */
         new workboxPlugin({
           globDirectory: DIST_DIR,
-          staticFileGlobs: ['**/*.{html,js,css}'],
+          globPatterns: ['**/*.{html,js,css}'],
           swDest: path.join(DIST_DIR, 'sw.js'),
         }),
       ]
