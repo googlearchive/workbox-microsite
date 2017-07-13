@@ -14,7 +14,7 @@
   margin: 0 auto;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 780px) {
   .page-header h1 {
     font-size: var(--base-font-size-desktop);
   }
