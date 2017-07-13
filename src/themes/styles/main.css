@@ -183,7 +183,7 @@ figure pre {
   background-color: var(--btn-bg-color-hover);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 780px) {
   body {
     font-size: var(--base-font-size-desktop);
   }

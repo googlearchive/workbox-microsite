@@ -50,7 +50,7 @@ footer {
   max-height: calc(var(--vertical-spacing) * 7);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 780px) {
   .footer__inner-section {
     flex-direction: row;
   }
