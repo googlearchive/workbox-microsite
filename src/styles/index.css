@@ -99,7 +99,7 @@
   margin-left: calc(-2 * var(--horizontal-spacing));
 }
 
-@media (min-width: 700px) {
+@media (min-width: 780px) {
   .index__install-options {
     flex-direction: row;
   }

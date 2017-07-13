@@ -28,7 +28,7 @@ install the module then cut and paste the code sample.
       return wbBuild.generateSW({
         globDirectory: './app/',
         swDest: './app/sw.js',
-        staticFileGlobs: ['**\/*.{html,js,css}'],
+        globPatterns: ['**\/*.{html,js,css}'],
         globIgnores: ['admin.html'],
         templatedUrls: {
           '/shell': ['shell.hbs', 'main.css', 'shell.css'],

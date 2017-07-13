@@ -70,7 +70,7 @@
   background-position: center;
 }**/
 
-@media (min-width: 700px) {
+@media (min-width: 780px) {
   /** .primary-header__inner-section {
     height: calc(var(--vertical-spacing) * 15);
     margin: calc(var(--vertical-spacing) * 12) calc(var(--horizontal-spacing) * 4);

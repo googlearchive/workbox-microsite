@@ -44,7 +44,7 @@
   border-color: var(--btn-bg-color);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 780px) {
   #content-and-messages {
     flex-direction: column;
   }
