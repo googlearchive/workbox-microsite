@@ -8,6 +8,19 @@ styles:
 
 <div class="content-sizing" markdown="1">
 
+# Overview
+
+Workbox is a collection of libraries and build tools that make it easy to
+store your website's files locally, on your users' devices. Consider Workbox if
+you want to:
+
+* Make your site work offline.
+* Improve load performance on repeat-visits. Even if you don't want to go
+  fully-offline, you can use Workbox to store and serve common files locally,
+  rather than from the network.
+
+[Learn more](/overview.html)
+
 # Get Started
 
 ## Choose your build tool to get started:
