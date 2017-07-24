@@ -65,3 +65,11 @@ Below are a list of example sites that are using the Workbox modules.
    demo='https://next-hnpwa.now.sh/'
 %}
 
+{% include components/example-project-using-workbox.html
+   name='ShadowReader'
+   description='A "vanilla" JS web app that uses workbox-build in a gulp-based build process.'
+   img-src='/images/third_party/shadowreader.png'
+   source='https://github.com/ampproject/amp-publisher-sample/tree/master/amp-pwa-reader'
+   demo='https://amp.cards/'
+%}
+
