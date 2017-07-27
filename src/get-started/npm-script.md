@@ -18,7 +18,7 @@ If you already have a build process based on npm scripts you can use
 
     ```json
   "scripts": {
-      "build": "node exising_build_script.js && workbox-cli generate:sw"
+      "build": "node existing_build_script.js && workbox-cli generate:sw"
   },
   ```
 
@@ -41,7 +41,7 @@ If you already have a build process based on npm scripts you can use
     The next time you run `npm run build`, Workbox uses the JSON file to
     regenerate the service worker. If you need to update the
     `workbox-cli-config.json`, you can either do it by hand or delete the file
-    rerun the wizard.
+    and rerun the wizard.
 
 
 
