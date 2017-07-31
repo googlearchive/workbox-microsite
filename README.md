@@ -46,12 +46,10 @@ gulp serve:prod
 
 ## Deploy
 
-If you want to deploy the site you can just create a PR and once it's merged
-with master it'll be pushed to workboxjs.com.
+https://workboxjs.org uses [Firebase Hosting](https://firebase.google.com/docs/hosting/).
+Users with administrative access to the Firebase project can deploy updates to
+the site by running
 
-If you need to do an immediate push you'll need to be a part of the Firebase
-project and can deploy with:
-
-```
+```sh
 npm run deploy
 ```
