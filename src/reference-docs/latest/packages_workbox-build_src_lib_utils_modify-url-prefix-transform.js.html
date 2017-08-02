@@ -1,6 +1,6 @@
 ---
 layout: jsdoc
-title: "Source: packages/workbox-build/src/lib/utils/modify-url-prefix.js"
+title: "Source: packages/workbox-build/src/lib/utils/modify-url-prefix-transform.js"
 jsdocNav: 
   - Modules:
     - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
@@ -23,7 +23,9 @@ jsdocNav:
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const errors = require('../errors');
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const errors = require('../errors');
 
 /**
  * Escaping user input to be treated as a literal string within a regular
@@ -40,18 +42,17 @@ const escapeRegExp = (string) => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&amp;');
 };
 
-module.exports = (urlString, modifyUrlPrefix) => {
-  if (typeof urlString !== 'string') {
-    throw new Error(errors['modify-url-prefix-bad-url']);
-  }
-
-  if (!modifyUrlPrefix || typeof modifyUrlPrefix !== 'object' ||
-    Array.isArray(modifyUrlPrefix)) {
+module.exports = (modifyUrlPrefix) => {
+  if (!modifyUrlPrefix ||
+      typeof modifyUrlPrefix !== 'object' ||
+      Array.isArray(modifyUrlPrefix)) {
     throw new Error(errors['modify-url-prefix-bad-prefixes']);
   }
 
+  // If there are no entries in modifyUrlPrefix, just return an identity
+  // function as a shortcut.
   if (Object.keys(modifyUrlPrefix).length === 0) {
-    return urlString;
+    return (entry) => entry;
   }
 
   Object.keys(modifyUrlPrefix).forEach((key) => {
@@ -68,8 +69,16 @@ module.exports = (urlString, modifyUrlPrefix) => {
   // a string.
   const modifyRegex = new RegExp(`^(${prefixMatchesStrings})`);
 
-  return urlString.replace(modifyRegex, (match) => {
-    return modifyUrlPrefix[match];
+  return (manifest) => manifest.map((entry) => {
+    if (typeof entry.url !== 'string') {
+      throw new Error(errors['manifest-entry-bad-url']);
+    }
+
+    entry.url = entry.url.replace(modifyRegex, (match) => {
+      return modifyUrlPrefix[match];
+    });
+
+    return entry;
   });
 };
 </code></pre>

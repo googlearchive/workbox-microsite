@@ -25,7 +25,7 @@ describe('Check for Broken Links', function() {
   });
 
   it('should have no broken links', function() {
-    this.timeout(60000);
+    this.timeout(2 * 60 * 1000);
     return new Promise((resolve, reject) => {
       const brokenLinks = [];
       const warningLinks = [];

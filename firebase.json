@@ -1,6 +1,13 @@
 {
   "hosting": {
     "public": "build-prod",
+    "headers": [{
+      "source" : "/sw.js",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "no-cache"
+      }]
+    }],
     "redirects": [{
       "source" : "/get-started/webpack",
       "destination" : "/get-started/webpack.html",

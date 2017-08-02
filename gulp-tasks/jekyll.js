@@ -44,7 +44,7 @@ const runJekyllCommand = (command, additionalParams) => {
       if (code === 0) {
         resolve();
       } else {
-        reject();
+        reject(`Error ${code} returned from: jekyll ${params.join(' ')}`);
       }
     });
   });
