@@ -21,13 +21,14 @@ const downloadTaggedRelease = (tagName) => {
 
   const docPath = path.join(TMP_PATH, tagName);
   return new Promise((resolve, reject) => {
-    const gitDownload = spawn('git', [
+    const params = [
       'clone',
       '--branch', tagName,
       '--depth', '1',
       `http://${GIT_REPO}.git`,
       docPath,
-    ], {
+    ];
+    const gitDownload = spawn('git', params, {
       stdio: 'inherit',
     });
 
@@ -40,7 +41,7 @@ const downloadTaggedRelease = (tagName) => {
       if (code === 0) {
         resolve(docPath);
       } else {
-        reject();
+        reject(`Error ${code} returned from: git ${params.join(' ')}`);
       }
     });
   });
