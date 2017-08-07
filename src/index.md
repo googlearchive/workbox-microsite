@@ -19,7 +19,7 @@ you want to:
   fully-offline, you can use Workbox to store and serve common files locally,
   rather than from the network.
 
-[Learn more](/overview.html)
+<a href="/overview.html" class="btn">Learn more</a>
 
 # Get Started
 
