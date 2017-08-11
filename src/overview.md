@@ -102,31 +102,35 @@ up some custom routing logic. In that case, you can write a custom service
 worker that injects the Workbox code into your service worker. For example,
 the code that you write may look something like this:
 
-    importScripts('/path/to/workbox-sw.js'); // not the actual filename
-    const workbox = new WorkboxSW();
+```javascript
+importScripts('/path/to/workbox-sw.js'); // not the actual filename
+const workbox = new WorkboxSW();
 
-    // your custom service worker logic here
+// your custom service worker logic here
 
-    workbox.precache([]);
+workbox.precache([]);
+```
 
 After running the code through a Workbox tool, the final, generated code looks
 like this:
 
-    importScripts('/path/to/workbox-sw.js'); // not the actual filename
-    const workbox = new WorkboxSW();
+```javascript
+importScripts('/path/to/workbox-sw.js'); // not the actual filename
+const workbox = new WorkboxSW();
 
-    // your custom service worker logic here
+// your custom service worker logic here
 
-    workbox.precache([
-      {
-        "url": "/index.html",
-        "revision": "b3e78d93b20c49d0c927050682c99df3"
-      },
-      {
-        "url": "/images/hamburger.svg",
-        "revision": "d2cb0dda3e8313b990e8dcf5e25d2d0f"
-      },
-    ]);
+workbox.precache([
+  {
+    "url": "/index.html",
+    "revision": "b3e78d93b20c49d0c927050682c99df3"
+  },
+  {
+    "url": "/images/hamburger.svg",
+    "revision": "d2cb0dda3e8313b990e8dcf5e25d2d0f"
+  },
+]);
+```
 
 See [`injectManifest()`][injectManifest] for an example.
 
