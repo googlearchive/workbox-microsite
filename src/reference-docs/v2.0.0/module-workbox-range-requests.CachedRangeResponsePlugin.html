@@ -1,0 +1,57 @@
+---
+layout: jsdoc
+title: "Class: CachedRangeResponsePlugin"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-range-requests.html#main">workbox-range-requests</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>CachedRangeResponsePlugin</h2>
+        
+            <p>This class is meant to be automatically invoked as a plugin to a
+<a href="module-workbox-runtime-caching.RequestWrapper.html#main">RequestWrapper</a>, which
+is used by the <code>workbox-sw</code> and <code>workbox-runtime-caching</code> modules. If you
+are not using <code>workbox-sw</code> or <code>workbox-runtime-caching</code>, then using the
+handleRangeRequest function directly is recommended.</p>
+<p>Under the hood, this will call <code>handleRangeRequest()</code>, passing
+in the appropriate request and response objects.</p>
+        
+    
+
+    
+      
+          <h3>Example</h3>
+          
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+
+const cacheFirstRangeHandler = workboxSW.strategies.cacheFirst({
+  cacheName: 'range-requests',
+  // There's no need to instantiate the class; all methods are static.
+  plugins: [workbox.rangedRequests.CachedRangeResponsePlugin]
+});
+
+// Create a route which will match all requests that have a Range: header,
+// and handle them using a cache-first strategy, taking the Range: header
+// into account.
+workboxSW.registerRoute(
+  ({event}) => event.request.headers.has('range'),
+  cacheFirstRangeHandler
+);</code></pre>
