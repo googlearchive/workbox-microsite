@@ -10,6 +10,7 @@ jsdocNav:
     - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
     - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
     - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-range-requests.html#main">workbox-range-requests</a>
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
@@ -25,7 +26,7 @@ jsdocNav:
         <article>
             <pre class="prettyprint source linenums"><code>const swBuild = require('workbox-build');
 const path = require('path');
-
+const url = require('url');
 /**
  * Use the instance of this in the plugins array of the webpack config.
  *
@@ -85,6 +86,30 @@ class WorkboxBuildWebpackPlugin {
 
     if (!config.globPatterns) {
       config.globPatterns = ['**/*.{html,js,css}'];
+    }
+
+    if (compilation.options.output.publicPath) {
+      const {publicPath} = compilation.options.output;
+      const compiledAssets = [];
+      for (let key in compilation.assets) {
+        if (Object.prototype.hasOwnProperty.call(compilation.assets, key)) {
+          compiledAssets.push(url.resolve(publicPath, key));
+        }
+      }
+
+      const publicPathTransform = (manifestEntries) =>
+          manifestEntries.map((entry) => {
+            if (compilation.assets[entry.url]) {
+              entry.url = url.resolve(publicPath, entry.url);
+            }
+              return entry;
+          });
+
+      if (Array.isArray(config.manifestTransforms)) {
+        config.manifestTransforms.unshift(publicPathTransform);
+      } else {
+        config.manifestTransforms = [publicPathTransform];
+      }
     }
 
     return config;

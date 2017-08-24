@@ -10,6 +10,7 @@ jsdocNav:
     - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
     - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
     - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-range-requests.html#main">workbox-range-requests</a>
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
@@ -79,7 +80,7 @@ class CacheExpirationPlugin extends CacheExpiration {
    * @return {Response} Either the `cachedResponse`, if it's
    *         fresh, or `null` if the `Response` is older than `maxAgeSeconds`.
    */
-  cacheWillMatch({cacheName, cachedResponse, now} = {}) {
+  cachedResponseWillBeUsed({cacheName, cachedResponse, now} = {}) {
     if (this.isResponseFresh({cacheName, cachedResponse, now})) {
       return cachedResponse;
     }

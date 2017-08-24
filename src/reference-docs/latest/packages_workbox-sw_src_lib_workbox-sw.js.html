@@ -10,6 +10,7 @@ jsdocNav:
     - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
     - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
     - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-range-requests.html#main">workbox-range-requests</a>
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
@@ -85,7 +86,8 @@ class WorkboxSW {
    *
    * Defaults to `'precache-updates'`
    */
-  constructor({cacheId, skipWaiting, clientsClaim, handleFetch,
+  constructor({cacheId, skipWaiting, clientsClaim,
+               handleFetch = true,
                directoryIndex = 'index.html',
                precacheChannelName = 'precache-updates',
                ignoreUrlParametersMatching = [/^utm_/]} = {}) {
@@ -154,8 +156,12 @@ class WorkboxSW {
 
     this._router = new Router(
       this._revisionedCacheManager.getCacheName(),
-      handleFetch
     );
+
+    if (handleFetch) {
+      this._router.addFetchListener();
+    }
+
     this._registerInstallActivateEvents(skipWaiting, clientsClaim);
     this._registerDefaultRoutes(ignoreUrlParametersMatching, directoryIndex);
   }
@@ -183,7 +189,7 @@ class WorkboxSW {
    *
    * // ...precache() can also take objects to cache
    * // non-revisioned URLs.
-   * // Please use workbox-build or workbox-cli to generate the manifest for
+   * // Please use workbox-build or the workbox CLI to generate the manifest for
    * // you.
    * workboxSW.precache([
    *     {
@@ -325,6 +331,12 @@ class WorkboxSW {
     const cacheFirstHandler = this.strategies.cacheFirst({
       cacheName: this._revisionedCacheManager.getCacheName(),
       plugins,
+      // this._revisionedCacheManager.getCacheName() already includes a cacheId
+      // prefix if the developer set one. We want to tell the cacheFirst()
+      // factory method to exclude the cacheId to ensure that it doesn't prepend
+      // the cacheId twice when it determines its cache name.
+      // See https://github.com/GoogleChrome/workbox/issues/714
+      excludeCacheId: true,
     });
 
     const capture = ({url}) => {
@@ -390,7 +402,7 @@ class WorkboxSW {
       });
     };
 
-    return {cacheWillMatch: cacheMatchFunction};
+    return {cachedResponseWillBeUsed: cacheMatchFunction};
   }
 
   /**

@@ -10,6 +10,7 @@ jsdocNav:
     - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
     - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
     - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-range-requests.html#main">workbox-range-requests</a>
     - <a href="module-workbox-routing.html#main">workbox-routing</a>
     - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
     - <a href="module-workbox-sw.html#main">workbox-sw</a>
@@ -35,7 +36,7 @@ jsdocNav:
 precached in a service worker, generating a hash that can be used to
 intelligently update a cache when the service worker is updated.</p>
 <p>This module will use glob patterns to find assets in a given directory
-and use the resulting URL and hash data for one of the follow uses:</p>
+and use the resulting URL and revision data for one of the follow uses:</p>
 <ol>
 <li>Generate a complete service worker with precaching and some basic
 configurable options. See
@@ -63,61 +64,6 @@ See <a href="module-workbox-build.html#.getFileManifestEntries">getFileManifestE
 <div class="collapse-details js-collapse-details">
 
 
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">Generate a complete service worker that will precache
-the discovered assets.</p>
-    
-    <pre class="prettyprint"><code>const swBuild = require('workbox-build');
-
-swBuild.generateSW({
-  globDirectory: './build/',
-  globPatterns: ['**\/*.{html,js,css}'],
-  globIgnores: ['service-worker.js','admin.html'],
-  swDest: './build/sw.js',
-  templatedUrls: {
-    '/shell': ['shell.hbs', 'main.css', 'shell.css'],
-  },
-})
-.then(() => {
-  console.log('Service worker generated.');
-});</code></pre>
-
-        <p class="code-caption">Generate a file containing the assets to precache.
-</p>
-    
-    <pre class="prettyprint"><code>const swBuild = require('workbox-build');
-
-swBuild.generateFileManifest({
-  globDirectory: './build/',
-  globPatterns: ['**\/*.{html,js,css}'],
-  globIgnores: ['service-worker.js','admin.html'],
-  manifestDest: './build/scripts/manifest.js',
-  templatedUrls: {
-    '/shell': ['shell.hbs', 'main.css', 'shell.css'],
-  },
-})
-.then(() => {
-  console.log('Build file has been created.');
-});</code></pre>
-
-        <p class="code-caption">Get an Array of files with revision details.</p>
-    
-    <pre class="prettyprint"><code>const swBuild = require('workbox-build');
-
-swBuild.getFileManifestEntries({
-  globDirectory: './build/',
-  globPatterns: ['**\/*.{html,js,css}'],
-  globIgnores: ['service-worker.js','admin.html'],
-  templatedUrls: {
-    '/shell': ['shell.hbs', 'main.css', 'shell.css'],
-  },
-})
-.then((fileDetails) => {
-  // An array of file details include a `url` and `revision` parameter.
-});</code></pre>
 
 
 
@@ -237,9 +183,9 @@ worker to precache assets.</p>
         <p class="code-caption">Generate a build manifest of static assets, which can
 used with a service worker.</p>
     
-    <pre class="prettyprint"><code>const swBuild = require('workbox-build');
+    <pre class="prettyprint"><code>const workboxBuild = require('workbox-build');
 
-swBuild.generateFileManifest({
+workboxBuild.generateFileManifest({
   manifestDest: './build/manifest.js'
   globDirectory: './build/',
   globPatterns: ['**\/*.{html,js,css}'],
@@ -247,7 +193,7 @@ swBuild.generateFileManifest({
   format: 'iife', // alternatively, use 'es'
 })
 .then(() => {
-  console.log('Build Manifest generated.');
+  console.log('Build manifest generated.');
 });</code></pre>
 
 
@@ -277,7 +223,7 @@ swBuild.generateFileManifest({
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
 
 
 
@@ -391,356 +337,6 @@ manifest should be written (i.e. <code>./build/precache-manifest.js</code>).</p>
         </tr>
 
     
-
-        <tr>
-            
-              <td class="name">globDirectory</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>The directory you wish to run the
-<code>globPatterns</code> against.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globPatterns</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any of
-these glob patterns will be included in the file manifest.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globIgnores</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any
-of these glob patterns will be excluded from the file manifest, even if the
-file matches against a <code>globPatterns</code> pattern.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">templatedUrls</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object.&lt;String, (Array|String)></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>If a URL is rendered with templates on the server, its contents may
-depend on multiple files. This maps URLs to an array of file names, or to a
-string value, that uniquely determines the URL's contents.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">modifyUrlPrefix</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An object of key value pairs
-where URL's starting with the key value will be replaced with the
-corresponding value.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">maximumFileSizeToCacheInBytes</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>This value can be used
-to determine the maximum size of files that will be precached.</p>
-<p>Defaults to 2MB.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">dontCacheBustUrlsMatching</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Assets that match this
-regex will not have their revision details included in the precache. This
-is useful for assets that have revisioning details in the filename.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">manifestTransforms</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;ManifestTransform></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>A list of
-manifest transformations, which will be applied sequentially against the
-generated manifest. If <code>modifyUrlPrefix</code> or <code>dontCacheBustUrlsMatching</code> are
-also specified, their corresponding transformations will be applied first.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
 </table>
 
                 
@@ -826,8 +422,7 @@ also specified, their corresponding transformations will be applied first.</p>
 
 
 <div class="param-desc">
-    <p>The returned promise resolves once the manifest file has
-been generated.</p>
+    <p>Resolves once the manifest file has been created.</p>
 </div>
 
 
@@ -857,26 +452,26 @@ been generated.</p>
   
 
   <div class="description">
-    <p>This method will generate a working service worker with an inlined
-file manifest.</p>
+    <p>This method will generate a working service worker with code to precache
+any assets found during the build process.</p>
   </div>
 
 
 
     <h5>Example</h5>
     
-        <p class="code-caption">Generate a service worker with precaching support.
-</p>
+        <p class="code-caption">Generate a complete service worker that will precache
+the discovered assets.</p>
     
-    <pre class="prettyprint"><code>const swBuild = require('workbox-build');
+    <pre class="prettyprint"><code>const workboxBuild = require('workbox-build');
 
-swBuild.generateSW({
-  swDest: './build/sw.js',
-  globDirectory: './build/',
+workboxBuild.generateSW({
+  globDirectory: './dist/',
   globPatterns: ['**\/*.{html,js,css}'],
   globIgnores: ['admin.html'],
+  swDest: './dist/sw.js',
   templatedUrls: {
-    '/shell': ['shell.hbs', 'main.css', 'shell.css'],
+    '/shell': ['dev/templates/app-shell.hbs', 'dev/**\/*.css'],
   },
 })
 .then(() => {
@@ -910,7 +505,7 @@ swBuild.generateSW({
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
 
 
 
@@ -927,806 +522,6 @@ swBuild.generateSW({
               <td></td>
               <td class="description last">
                 
-                
-                  <h6>Properties</h6>
-                  
-
-<table class="params">
-    
-
-        <tr>
-            
-              <td class="name">swDest</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>The file path and name you wish to write the
-service worker file to.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globDirectory</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>The directory you wish to run the
-<code>globPatterns</code> against.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globPatterns</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any of
-these glob patterns will be included in the file manifest.</p>
-<p>Defaults to ['<em>*\/</em>.{js,css}']</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globIgnores</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any
-of these glob patterns will be excluded from the file manifest, even if the
-file matches against a <code>globPatterns</code> pattern. Defaults to ignoring
-'node_modules'.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">templatedUrls</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object.&lt;String, (Array|String)></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>If a URL is rendered with templates on the server, its contents may
-depend on multiple files. This maps URLs to an array of file names, or to a
-string value, that uniquely determines the URL's contents.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">navigateFallback</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>This URL will be used as a fallback
-if a navigation request can't be fulfilled. Normally this URL would be
-precached so it's always available. This is particularly useful for single
-page apps where requests should go to a single URL.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">navigateFallbackWhitelist</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Regexp></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An optional Array
-of regexs to restrict which URL's use the <code>navigateFallback</code> URL.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">cacheId</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An optional ID to be prepended to caches
-used by workbox-build. This is primarily useful for local development where
-multiple sites may be served from the same <code>http://localhost</code> origin.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">skipWaiting</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>When set to true the generated service
-worker activate immediately.</p>
-<p>Defaults to false.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">clientsClaim</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>When set to true the generated service
-worker will claim any currently open pages.</p>
-<p>Defaults to false.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">directoryIndex</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>If a request for a URL ending in '/'
-fails, this value will be appended to the URL and a second request will be
-made.</p>
-<p>Defaults to 'index.html'.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">runtimeCaching</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Object></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Passing in an array of objects
-containing a <code>urlPattern</code> and a <code>handler</code> parameter will add the appropriate
-code to the service work to handle run time caching for URL's matching the
-pattern with the associated handler behavior.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">modifyUrlPrefix</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An object of key value pairs
-where URL's starting with the key value will be replaced with the
-corresponding value.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">ignoreUrlParametersMatching</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;RegExp></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Any search
-parameters matching against one of the regex's in this array will be removed
-before looking for a cache match.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">handleFetch</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>When set to false all requests will
-go to the network. This is useful during development if you don't want the
-service worker from preventing updates.</p>
-<p>Defaults to true.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">maximumFileSizeToCacheInBytes</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>This value can be used
-to determine the maximum size of files that will be precached.</p>
-<p>Defaults to 2MB.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">dontCacheBustUrlsMatching</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Assets that match this
-regex will not have their revision details included in the precache. This
-is useful for assets that have revisioning details in the filename.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">manifestTransforms</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;ManifestTransform></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>A list of
-manifest transformations, which will be applied sequentially against the
-generated manifest. If <code>modifyUrlPrefix</code> or <code>dontCacheBustUrlsMatching</code> are
-also specified, their corresponding transformations will be applied first.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-</table>
-
                 
               </td>
             </tr>
@@ -1810,8 +605,7 @@ also specified, their corresponding transformations will be applied first.</p>
 
 
 <div class="param-desc">
-    <p>Resolves once the service worker has been generated
-with a precache list.</p>
+    <p>Resolves once the service worker has been generated.</p>
 </div>
 
 
@@ -1873,7 +667,7 @@ precache assets in a service worker.</p>
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
 
 
 
@@ -1890,366 +684,6 @@ precache assets in a service worker.</p>
               <td></td>
               <td class="description last">
                 
-                
-                  <h6>Properties</h6>
-                  
-
-<table class="params">
-    
-
-        <tr>
-            
-              <td class="name">globDirectory</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>The directory you wish to run the
-<code>globPatterns</code> against.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globPatterns</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any of
-these glob patterns will be included in the file manifest.</p>
-<p>Defaults to ['<em>*\/</em>.{js,css}']</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globIgnores</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any
-of these glob patterns will be excluded from the file manifest, even if the
-file matches against a <code>globPatterns</code> pattern. Defaults to ignoring
-'node_modules'.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">templatedUrls</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object.&lt;String, (Array|String)></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>If a URL is rendered with templates on the server, its contents may
-depend on multiple files. This maps URLs to an array of file names, or to a
-string value, that uniquely determines the URL's contents.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">modifyUrlPrefix</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An object of key value pairs
-where URL's starting with the key value will be replaced with the
-corresponding value.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">maximumFileSizeToCacheInBytes</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>This value can be used
-to determine the maximum size of files that will be precached.</p>
-<p>Defaults to 2MB.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">dontCacheBustUrlsMatching</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An optional regex that will
-return a URL string and exclude the revision details for urls matching this
-regex. Useful if you have assets with file revisions in the URL.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">manifestTransforms</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;ManifestTransform></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>A list of
-manifest transformations, which will be applied sequentially against the
-generated manifest. If <code>modifyUrlPrefix</code> or <code>dontCacheBustUrlsMatching</code> are
-also specified, their corresponding transformations will be applied first.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-</table>
-
                 
               </td>
             </tr>
@@ -2364,30 +798,35 @@ which will include a url and revision parameter.</p>
   
 
   <div class="description">
-    <p>This method will read an existing service worker file and replace an empty
-precache() call, like: <code>.precache([])</code>, and replace the array with
-an array of assets to precache. This allows the service worker
-to efficiently cache assets for offline use.</p>
+    <p>This method will read an existing service worker file, find an instance of
+<code>.precache([])</code>, and replace the empty array with the contents of a precache
+manifest. This allows the service worker to efficiently cache assets for
+offline use, while still giving you control over the rest of the service
+worker's code.</p>
   </div>
 
 
 
     <h5>Example</h5>
     
-        <p class="code-caption">Generate a build manifest of static assets, which could
-then be used with a service worker.</p>
+        <p class="code-caption">Takes an existing service worker file that includes
+a <code>precache([])</code> placeholder, and injects a manifest of discovered
+assets into it.</p>
     
-    <pre class="prettyprint"><code>const swBuild = require('workbox-build');
+    <pre class="prettyprint"><code>const workboxBuild = require('workbox-build');
 
-swBuild.injectManifest({
-  globDirectory: './build/',
+workboxBuild.injectManifest({
+  swSrc: './dev/sw.js',
+  swDest: './dist/sw.js',
+  globDirectory: './dist/',
   globPatterns: ['**\/*.{html,js,css}'],
   globIgnores: ['admin.html'],
-  swSrc: './src/sw.js',
-  swDest: './build/sw.js',
+  templatedUrls: {
+    '/shell': ['dev/templates/app-shell.hbs', 'dev/**\/*.css'],
+  },
 })
 .then(() => {
-  console.log('Build Manifest generated.');
+  console.log('Service worker generated.');
 });</code></pre>
 
 
@@ -2417,7 +856,7 @@ swBuild.injectManifest({
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
 
 
 
@@ -2434,447 +873,6 @@ swBuild.injectManifest({
               <td></td>
               <td class="description last">
                 
-                
-                  <h6>Properties</h6>
-                  
-
-<table class="params">
-    
-
-        <tr>
-            
-              <td class="name">swSrc</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>File path and name of the service worker file
-to read and inject the manifest into before writing to <code>swDest</code>.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">swDest</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>The file path and name you wish to writh the
-service worker file to.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globDirectory</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>The directory you wish to run the
-<code>globPatterns</code> against.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globPatterns</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any of
-these glob patterns will be included in the file manifest.</p>
-<p>Defaults to ['<em>*\/</em>.{js,css}']</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">globIgnores</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Array.&lt;String></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>Files matching against any
-of these glob patterns will be excluded from the file manifest, even if the
-file matches against a <code>globPatterns</code> pattern.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">templatedUrls</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object.&lt;String, (Array|String)></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>If a URL is rendered with templates on the server, its contents may
-depend on multiple files. This maps URLs to an array of file names, or to a
-string value, that uniquely determines the URL's contents.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">modifyUrlPrefix</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An object of key value pairs
-where URL's starting with the key value will be replaced with the
-corresponding value.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">maximumFileSizeToCacheInBytes</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>This value can be used
-to determine the maximum size of files that will be precached.</p>
-<p>Defaults to 2MB.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">dontCacheBustUrlsMatching</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>An optional regex that will
-return a URL string and exclude the revision details for urls matching this
-regex. Useful if you have assets with file revisions in the URL.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-
-        <tr>
-            
-              <td class="name">manifestTransforms</td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;ManifestTransform></span>
-
-
-
-            
-
-            
-                
-                
-
-                
-
-                
-                
-                  <span class="param-attributes">(Optional)</span>
-                  
-            
-            </td>
-
-            
-              <td></td>
-            
-
-            <tr>
-              <td></td>
-              <td class="description last">
-                <p>A list of
-manifest transformations, which will be applied sequentially against the
-generated manifest. If <code>modifyUrlPrefix</code> or <code>dontCacheBustUrlsMatching</code> are
-also specified, their corresponding transformations will be applied first.</p>
-                
-              </td>
-            </tr>
-        </tr>
-
-    
-</table>
-
                 
               </td>
             </tr>
@@ -2983,6 +981,1111 @@ with the injected precache list.</p>
 
         <div class="subsection-definitions">
         
+                
+<div class="collapsing-entry member-type-typedef">
+<h4 class="js-collapse-title" id=".Configuration">Configuration</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>These are the full set of options that could potentially be used to configure
+one of the build tools. Each of the build tools has a slightly different way
+of providing this configuration:</p>
+<ul>
+<li><p>When using the <code>workbox-build</code> module directly, pass the
+configuration object to appropriate method. For example,
+<code>workboxBuild.injectManifest(configuration)</code> or
+<code>workboxBuild.generateSW(configuration)</code>.</p>
+</li>
+<li><p>When using the <code>workbox-cli</code> command line interface, use the
+<code>--config-file</code> flag to point to a
+<a href="https://nodejs.org/docs/latest/api/modules.html">CommonJS module file</a> that
+assigns the configuration object to <code>module.exports</code>.</p>
+</li>
+<li><p>When using <code>workbox-webpack-plugin</code> within a
+<a href="https://webpack.js.org/">Webpack</a> build, pass the configuration object to
+the plugin's constructor, like
+<code>new WorkboxBuildWebpackPlugin(configuration)</code>.</p>
+</li>
+</ul>
+<p>Some specific options might not make sense with certain combinations of
+interfaces. In those cases, the limitations are called out in the
+documentation, and may lead to build-time warnings or errors.</p>
+<p>Each option documented here includes an example, which, for the sake of
+illustration, assumes the following local filesystem setup. Please adjust
+the example values to match your actual setup.</p>
+<pre class="prettyprint source lang-sh"><code>./
+├── dev/
+│   ├── app.js
+│   ├── ignored.html
+│   ├── image.png
+│   ├── index.html
+│   ├── main.css
+│   ├── sw.js
+│   └── templates/
+│       └── app_shell.hbs
+└── dist/
+    ├── app.js
+    ├── image.png
+    ├── index.html
+    ├── main.css
+    └── sw.js</code></pre>
+</div>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+        
+
+
+<p><strong>Properties</strong></p>
+
+
+<table class="method-info-table">
+  
+  <tr>
+    <td>
+    <table class="props">
+    
+    <tr>
+      
+          <td class="name"><code>swDest</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The path to the final service worker
+file that will be created by the build process, relative to the current
+working directory.</p>
+<p>E.g.: <code>'./dist/sw.js'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>swSrc</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The path to the source service worker
+containing a <code>precache([])</code> placeholder, which will be replaced with the
+precache manifest generated by the build.</p>
+<p>E.g.: <code>'./dev/sw.js'</code></p>
+<p> Note: This option is only valid when used with
+ <a href="module-workbox-build.html#.injectManifest">injectManifest()</a>.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>globPatterns</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;String></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          ['**\/*.{js,css,html}']
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Files matching against any of these
+<a href="https://github.com/isaacs/node-glob">glob patterns</a> will be included in the
+precache manifest.</p>
+<p>E.g.: <code>'**\/*.{js,css,html,png}'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>globDirectory</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The base directory you wish to
+match <code>globPatterns</code> against, related to the current working directory.</p>
+<p>E.g.: <code>'./dev'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>globIgnores</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+|
+
+<span class="param-type">Array.&lt;String></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          'node_modules'
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Files matching against any of these glob patterns will be excluded from the
+file manifest, overriding any matches from <code>globPatterns</code>.</p>
+<p>E.g. <code>['**\/ignored.html']</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>templatedUrls</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Object.&lt;String, (Array|String)></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>If a URL is rendered generated based on some server-side logic, its contents
+may depend on multiple files or on some other unique string value.</p>
+<p>If used with an array of strings, they will be interpreted as
+<a href="https://github.com/isaacs/node-glob">glob patterns</a>, and the contents of
+any files matching the patterns will be used to uniquely version the URL.</p>
+<p>If used with a single string, it will be interpreted as unique versioning
+information that you've generated out of band for a given URL.</p>
+<p>E.g.</p>
+<pre class="prettyprint source lang-js"><code>{
+  '/app-shell': [
+    'dev/templates/app-shell.hbs',
+    'dev/**\/*.css',
+   ],
+  '/other-page': 'my-version-info',
+}</code></pre>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>maximumFileSizeToCacheInBytes</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">number</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          2097152
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>This value can be used to determine the maximum size of files that will be
+precached. This prevents you from inadvertantly precaching very large files
+that might have been accidentally match your <code>globPatterns</code> values.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>manifestTransforms</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;ManifestTransform></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An array of
+manifest transformations, which will be applied sequentially against the
+generated manifest. If <code>modifyUrlPrefix</code> or <code>dontCacheBustUrlsMatching</code> are
+also specified, their corresponding transformations will be applied first.</p>
+<p>See <a href="module-workbox-build.html#.ManifestTransform">ManifestTransform</a>.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>modifyUrlPrefix</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Object.&lt;String, String></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>A mapping of
+prefixes that, if present in an entry in the precache manifest, will be
+replaced with the corresponding value.</p>
+<p>This can be used to, for example, remove or add a path prefix from a manifest
+entry if your web hosting setup doesn't match your local filesystem setup.</p>
+<p>As an alternative with more flexibility, you can use the <code>manifestTransforms</code>
+option and provide a function that modifies the entries in the manifest using
+whatever logic you provide.</p>
+<p>E.g.</p>
+<pre class="prettyprint source lang-js"><code>{
+  '/prefix-to-remove': '',
+}</code></pre>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>dontCacheBustUrlsMatching</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">RegExp</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Assets that match this
+regex will be assumed to be uniquely versioned via their URL, an exempted
+from the normal HTTP cache-busting that's done when populating the precache.</p>
+<p>While not required, it's recommended that if your existing build process
+already inserts a <code>[hash]</code> value into each filename, you provide a RegExp
+that will detect those values, as it will reduce the amount of bandwidth
+consumed when precaching.</p>
+<p>E.g. <code>/\.\w{8}\./</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>navigateFallback</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>This will be used to create a
+<a href="module-workbox-routing.NavigationRoute.html#main">NavigationRoute</a> that will
+respond to navigation requests for URLs that that aren't precached.</p>
+<p>This is meant to be used in a
+<a href="https://en.wikipedia.org/wiki/Single-page_application">Single Page App</a>
+scenario, in which you want all navigations to result in common App Shell
+HTML being reused.</p>
+<p>It's <em>not</em> intended for use as a fallback that's displayed when the browser
+is offline.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly add in a call to
+<a href="module-workbox-sw.Router.html#registerNavigationRoute"> registerNavigationRoute()</a>
+in your <code>swSrc</code> file.</p>
+<p>E.g. <code>'/app-shell'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>navigateFallbackWhitelist</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;RegExp></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          /./
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An optional
+array of regular expressions that restrict which URLs the navigation route
+applies to.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly add in the whitelist when calling
+<a href="module-workbox-sw.Router.html#registerNavigationRoute"> registerNavigationRoute()</a>
+in your <code>swSrc</code> file.</p>
+<p>E.g. <code>[/pages/, /articles/]</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>cacheId</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An optional ID to be prepended to caches
+used by <code>workbox-sw</code>. This is primarily useful for local development where
+multiple sites may be served from the same <code>http://localhost</code> origin.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+<p>E.g. <code>'my-app-name'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>skipWaiting</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Boolean</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          false
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Whether or not the service worker
+should skip over the <a href="https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle#waiting">waiting</a>
+lifecycle stage.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>clientsClaim</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Boolean</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          false
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Whether or not the service worker
+should <a href="https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle#clientsclaim">start controlling</a>
+any existing clients as soon as it activates.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>directoryIndex</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">string</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          'index.html'
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>If a request for a URL
+ending in '/' fails, this value will be appended to the URL and a second
+request will be made.</p>
+<p>This should be configured to whatever your web server is using, if anything,
+for its <a href="https://httpd.apache.org/docs/2.0/mod/mod_dir.html">directory index</a>.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>runtimeCaching</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;Object></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Passing in an array of objects
+containing <code>urlPattern</code>s, <code>handler</code>s, and potentially <code>option</code>s that will add
+the appropriate code to the generated service worker to handle runtime
+caching.</p>
+<p>Requests for precached URLs that are picked up via <code>globPatterns</code> are handled
+by default, and don't need to be accomodated in <code>runtimeCaching</code>.</p>
+<p>The <code>handler</code> values correspond the names of the
+<a href="module-workbox-sw.Strategies.html#main">strategies</a> supported by <code>workbox-sw</code>.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly add in the corresponding runtime caching behavior via
+<a href="module-workbox-sw.Router.html#registerRoute">registerRoute()</a> in your
+<code>swSrc</code> file.</p>
+<p>E.g.</p>
+<pre class="prettyprint source lang-js"><code>[{
+  // You can use a RegExp as the pattern:
+  urlPattern: /.jpg$/,
+  handler: 'cacheFirst',
+  // Any options provided will be used when
+  // creating the caching strategy.
+  options: {
+    cacheName: 'image-cache',
+    cacheExpiration: {
+      maxEntries: 10,
+    },
+  },
+}, {
+  // You can also use Express-style strings:
+  urlPattern: 'https://example.com/path/to/:file',
+  handler: 'staleWhileRevalidate',
+  options: {
+    cacheableResponse: {
+         statuses: [0],
+    },
+  },
+}]</code></pre>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>ignoreUrlParametersMatching</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;RegExp></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          [/^utm_/]
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Any
+search parameter names that match against one of the regex's in this array
+will be removed before looking for a precache match.</p>
+<p>This is useful if your users might request URLs that contain, for example,
+URL parameters used to track the source of the traffic. Those URL parameters
+would normally cause the cache lookup to fail, since the URL strings used
+as cache keys would not be expected to include them.</p>
+<p>You can use <code>[/./]</code> to ignore all URL parameters.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+<p>E.g. <code>[/homescreen/]</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>handleFetch</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Boolean</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          true
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Whether or not <code>workbox-sw</code> should
+create a <code>fetch</code> event handler that responds to network requests. This is
+useful during development if you don't want the service worker serving stale
+content.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  
+</table>
+
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+            
                 
 <div class="collapsing-entry member-type-typedef">
 <h4 class="js-collapse-title" id=".ManifestEntry">ManifestEntry</h4>
