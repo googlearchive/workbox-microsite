@@ -1,0 +1,1387 @@
+---
+layout: jsdoc
+title: "Class: Router"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>Router</h2>
+        
+            <p>The Router takes one or more Routes and registers a <a href="https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent"><code>fetch</code>
+event listener</a>
+that will respond to network requests if there's a matching route.</p>
+<p>It also allows you to define a &quot;default&quot; handler that applies to any requests
+that don't explicitly match a <code>Route</code>, and a &quot;catch&quot; handler that responds
+to any requests that throw an exception while being routed.</p>
+        
+    
+
+    
+      
+          <h3>Example</h3>
+          
+    <pre class="prettyprint"><code>// The following example sets up two routes, one to match requests with
+// "assets" in their URL, and the other for requests with "images", along
+// different runtime caching handlers for each.
+// Both the routes are registered with the router, and any requests that
+// don't match either route will be handled using the default NetworkFirst
+// strategy.
+const assetRoute = new RegExpRoute({
+  regExp: /assets/,
+  handler: new workbox.runtimeCaching.StaleWhileRevalidate(),
+});
+const imageRoute = new RegExpRoute({
+  regExp: /images/,
+  handler: new workbox.runtimeCaching.CacheFirst(),
+});
+
+const router = new workbox.routing.Router();
+router.registerRoutes({routes: [assetRoute, imageRoute]});
+router.setDefaultHandler({
+  handler: new workbox.runtimeCaching.NetworkFirst(),
+});</code></pre>
+
+      
+
+      
+        <h2 class="subsection-title">Constructor</h2>
+
+        <div class="subsection-constructor">
+        
+
+<div class="collapsing-entry method-type-class start-open">
+
+
+    <h4 class="js-collapse-title" id="Router">new Router<span class="signature">(<span class="signature-args">handleFetch</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Start with an empty array of routes, and by default, sets up the <code>fetch</code>
+handler.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">handleFetch</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Whether or not the Router should
+register a <code>fetch</code> handler and respond to requests. This can be set to
+<code>false</code> in a development environment, to prevent the service worker
+from responding with cached responses.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        </div>
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="registerRoute"><span class="this">this.</span>registerRoute<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Registers a single route with the router.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>router.registerRoute({
+  route: new Route({ ... })
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">route</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-routing.Route.html#main">Route</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The route to register.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="registerRoutes"><span class="this">this.</span>registerRoutes<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Registers an array of routes with the router.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>router.registerRoutes({
+  routes: [
+    new RegExpRoute({ ... }),
+    new ExpressRoute({ ... }),
+    new Route({ ... }),
+  ]
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">routes</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-workbox-routing.Route.html#main">module:workbox-routing.Route</a>></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>An array of
+routes to register.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="setCatchHandler"><span class="this">this.</span>setCatchHandler<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>If a Route throws an error while handling a request, this <code>handler</code>
+will be called and given a chance to provide a response.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>router.setCatchHandler(({event}) => {
+  if (event.request.mode === 'navigate') {
+    return caches.match('/error-page.html');
+  }
+  return Response.error();
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">handler</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+|
+
+<span class="param-type"><a href="module-workbox-runtime-caching.Handler.html#main">Handler</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>This parameter can be either a function or an object which is a subclass
+of <code>Handler</code>.</p>
+<p>Either option should result in a <code>Response</code> that the <code>Route</code> can use to
+handle the <code>fetch</code> event.</p>
+<p>See <a href="module-workbox-routing.Route.html#~handlerCallback">handlerCallback</a>
+for full details on using a callback function as the <code>handler</code>.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="setDefaultHandler"><span class="this">this.</span>setDefaultHandler<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>An optional <code>handler</code> that's called by default when no routes
+explicitly match the incoming request.</p>
+<p>If the default is not provided, unmatched requests will go against the
+network as if there were no service worker present.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>router.setDefaultHandler({
+  handler: new workbox.runtimeCaching.NetworkFirst()
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">handler</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+|
+
+<span class="param-type"><a href="module-workbox-runtime-caching.Handler.html#main">Handler</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>This parameter can be either a function or an object which is a subclass
+of <code>Handler</code>.</p>
+<p>Either option should result in a <code>Response</code> that the <code>Route</code> can use to
+handle the <code>fetch</code> event.</p>
+<p>See <a href="module-workbox-routing.Route.html#~handlerCallback">handlerCallback</a>
+for full details on using a callback function as the <code>handler</code>.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="unregisterRoute"><span class="this">this.</span>unregisterRoute<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Unregisters a single route with the router.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const route = new RegExpRoute({ ... });
+router.registerRoute({route});
+
+// Later, if you no longer want the route to be used:
+router.unregisterRoute({route});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">route</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-routing.Route.html#main">Route</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The route to unregister.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="unregisterRoutes"><span class="this">this.</span>unregisterRoutes<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Unregisters an array of routes with the router.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const firstRoute = new RegExpRoute({ ... });
+const secondRoute = new RegExpRoute({ ... });
+router.registerRoutes({routes: [firstRoute, secondRoute]});
+
+// Later, if you no longer want the routes to be used:
+router.unregisterRoutes({routes: [firstRoute, secondRoute]});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">routes</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-workbox-routing.Route.html#main">module:workbox-routing.Route</a>></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>An array of
+routes to unregister.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>

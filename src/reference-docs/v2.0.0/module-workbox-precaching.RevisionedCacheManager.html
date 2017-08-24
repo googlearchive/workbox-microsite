@@ -1,0 +1,1058 @@
+---
+layout: jsdoc
+title: "Class: RevisionedCacheManager"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+    - <a href="workbox-range-requests%250A_%2520workbox-range-requests%250A%250AA%2520helper%2520library%2520that%2520instructs%2520a%2520service%2520worker%2520respond%2520to%2520HTTP%2520requests%250Athat%2520include%2520a%2520%255BRange_%255D(https___developer.mozilla.org_en-US_docs_Web_HTTP_Range_requests)%250Aheader%2520with%2520a%2520subset%2520of%2520a%2520full%2520response.%250A%250AIf%2520you%2520are%2520not%2520already%2520using%2520Workbox,%2520this%2520library%2520can%2520be%2520used%2520in%2520a%250Astandalone%2520form%2520via%250A%257B@link%2520handleRangeRequest_workbox.rangeRequests.handleRangeRequest%257D.%250A%250AIf%2520you%2520are%2520using%2520Workbox%2520for%2520routing%2520or%2520request%2520handling%2520already,%2520then%250A%257B@link%2520CacheRangeResponsePlugin%257D%2520will%2520offer%2520the%2520easiest%2520integration.%250A%250A__If%2520your%2520cached%2520resources%2520are%2520large,%2520use%2520caution%2520when%2520adding%2520this%2520library.%250ASome%2520browsers%2520need%2520to%2520read%2520the%2520entire%2520resource%2520into%2520memory%2520before%2520it%2520can%2520be%250Amodified%2520to%2520respond%2520to%2520the%2520request.__%250A%250AInspired%2520by%250A%250A-%2520https___github.com_jakearchibald_range-request-test_blob_master_static_sw.js%250A-%2520https___github.com_GoogleChrome_sample-media-pwa_blob_master_src_client_scripts_ranged-response.jsmodule_.html#main">workbox-range-requests
+# workbox-range-requests
+
+A helper library that instructs a service worker respond to HTTP requests
+that include a [Range:](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)
+header with a subset of a full response.
+
+If you are not already using Workbox, this library can be used in a
+standalone form via
+workbox.rangeRequests.handleRangeRequest.
+
+If you are using Workbox for routing or request handling already, then
+CacheRangeResponsePlugin will offer the easiest integration.
+
+**If your cached resources are large, use caution when adding this library.
+Some browsers need to read the entire resource into memory before it can be
+modified to respond to the request.**
+
+Inspired by
+
+- https://github.com/jakearchibald/range-request-test/blob/master/static/sw.js
+- https://github.com/GoogleChrome/sample-media-pwa/blob/master/src/client/scripts/ranged-response.js</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>RevisionedCacheManager <span class="extends">extends</span> <a href="module-workbox-precaching.BaseCacheManager.html#main">module:workbox-precaching.BaseCacheManager</a></span>
+        </h2>
+        
+            <p>You can instantiate this class to add requests to a precache list and
+eventually install the assets by calling <a href="module-workbox-precaching.BaseCacheManager.html#install">install()</a> and to remove
+old entries call <a href="module-workbox-precaching.RevisionedCacheManager.html#cleanup">cleanup()</a>.</p>
+        
+    
+
+    
+      
+
+      
+        <h2 class="subsection-title">Constructor</h2>
+
+        <div class="subsection-constructor">
+        
+
+<div class="collapsing-entry method-type-class start-open">
+
+
+    <h4 class="js-collapse-title" id="RevisionedCacheManager">new RevisionedCacheManager<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Constructs a new RevisionedCacheManager to handle caching of revisioned
+assets only.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">cacheName</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The cache to be used for precaching.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">cacheId</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The cacheId is prepended to the
+cache name. This is useful if you have multiple projects sharing
+the same <code>http://localhost</code> origin and want unique cache names.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">plugins</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Any plugins that should be
+invoked by the underlying <code>RequestWrapper</code>.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        </div>
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="addToCacheList"><span class="this">this.</span>addToCacheList<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will add the supplied entries to the install list and
+can be called multiple times.</p>
+<p>The <code>revisionedFiles</code> parameter of the input should contain an array
+of objects or strings.</p>
+<p>Objects in this array should have a <code>url</code> and <code>revision</code> parameter where
+the revision is a hash, unique to the files contents, which changes
+whenever the file is updated. (See our <a href="/#get-started">getting started guide to learn
+how to automate this</a>).</p>
+<p>Strings should be URL's that contain revisioning information
+i.e. <code>/styles/main.abcd.css</code> instead of <code>/styles/main.css</code>. If you supply
+a URL which <em>isn't</em> revisioned, the <code>install()</code> step will <strong>never</strong> update
+the precached asset.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>revisionedManager.addToCacheList({
+  revisionedFiles: [
+    '/styles/hello.1234.css',
+    {
+      url: '/images/logo.png',
+      revision: 'abcd1234'
+    }
+  ]
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">revisionedFiles</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;(String|Object)></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>This should be an
+array of either objects or strings.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="cleanup"><span class="this">this.</span>cleanup<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will compare the currently cached requests's and determine
+which requests are no longer in the cache list and can be removed from the
+cache.</p>
+<p>This should be called in a service worker's activate event to avoid
+removing requests that are still be used by currently open pages.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-workbox-precaching.BaseCacheManager.html#cleanup">module:workbox-precaching.BaseCacheManager#cleanup</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Promise that resolves once the cache entries have been
+cleaned.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="getCachedUrls"><span class="this">this.</span>getCachedUrls<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Array.&lt;String></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Returns an array of fully qualified URL's that will be cached by this
+cache manager.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-workbox-precaching.BaseCacheManager.html#getCachedUrls">module:workbox-precaching.BaseCacheManager#getCachedUrls</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Array.&lt;String></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>An array of URLs that will be cached.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="getCacheName"><span class="this">this.</span>getCacheName<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> String</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Gives access to the cache name used by this caching manager.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-workbox-precaching.BaseCacheManager.html#getCacheName">module:workbox-precaching.BaseCacheManager#getCacheName</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>The cache name used by this manager.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="install"><span class="this">this.</span>install<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;Array.&lt;Object>></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will go through each asset added to the cache list and
+fetch and update the cache for assets which have a new revision hash.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-workbox-precaching.BaseCacheManager.html#install">module:workbox-precaching.BaseCacheManager#install</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;Array.&lt;Object>></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>The promise resolves when all the
+desired assets are cached and up -to-date.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>

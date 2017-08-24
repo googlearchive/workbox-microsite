@@ -1,0 +1,246 @@
+---
+layout: jsdoc
+title: "Source: packages/workbox-range-requests/src/lib/handle-range-request.js"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+    - <a href="workbox-range-requests%250A_%2520workbox-range-requests%250A%250AA%2520helper%2520library%2520that%2520instructs%2520a%2520service%2520worker%2520respond%2520to%2520HTTP%2520requests%250Athat%2520include%2520a%2520%255BRange_%255D(https___developer.mozilla.org_en-US_docs_Web_HTTP_Range_requests)%250Aheader%2520with%2520a%2520subset%2520of%2520a%2520full%2520response.%250A%250AIf%2520you%2520are%2520not%2520already%2520using%2520Workbox,%2520this%2520library%2520can%2520be%2520used%2520in%2520a%250Astandalone%2520form%2520via%250A%257B@link%2520handleRangeRequest_workbox.rangeRequests.handleRangeRequest%257D.%250A%250AIf%2520you%2520are%2520using%2520Workbox%2520for%2520routing%2520or%2520request%2520handling%2520already,%2520then%250A%257B@link%2520CacheRangeResponsePlugin%257D%2520will%2520offer%2520the%2520easiest%2520integration.%250A%250A__If%2520your%2520cached%2520resources%2520are%2520large,%2520use%2520caution%2520when%2520adding%2520this%2520library.%250ASome%2520browsers%2520need%2520to%2520read%2520the%2520entire%2520resource%2520into%2520memory%2520before%2520it%2520can%2520be%250Amodified%2520to%2520respond%2520to%2520the%2520request.__%250A%250AInspired%2520by%250A%250A-%2520https___github.com_jakearchibald_range-request-test_blob_master_static_sw.js%250A-%2520https___github.com_GoogleChrome_sample-media-pwa_blob_master_src_client_scripts_ranged-response.jsmodule_.html#main">workbox-range-requests
+# workbox-range-requests
+
+A helper library that instructs a service worker respond to HTTP requests
+that include a [Range:](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)
+header with a subset of a full response.
+
+If you are not already using Workbox, this library can be used in a
+standalone form via
+{@link handleRangeRequest|workbox.rangeRequests.handleRangeRequest}.
+
+If you are using Workbox for routing or request handling already, then
+{@link CacheRangeResponsePlugin} will offer the easiest integration.
+
+**If your cached resources are large, use caution when adding this library.
+Some browsers need to read the entire resource into memory before it can be
+modified to respond to the request.**
+
+Inspired by
+
+- https://github.com/jakearchibald/range-request-test/blob/master/static/sw.js
+- https://github.com/GoogleChrome/sample-media-pwa/blob/master/src/client/scripts/ranged-response.js</a>
+---
+
+
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+ Copyright 2017 Google Inc. All Rights Reserved.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+
+import ErrorFactory from './error-factory.js';
+import logHelper from '../../../../lib/log-helper.js';
+import {isType, isInstance} from '../../../../lib/assert.js';
+
+/**
+ * @memberof module:workbox-range-requests
+ *
+ * The public function `handleRangeRequest()` takes a `Request` and `Response`
+ * object as input, and returns one of two things:
+ *
+ * - a new `Response` with a status of `206 Partial Content`, containing a
+ * subset of the original `Response`, as determined by a valid `Range:` header
+ * provided in the `Request`.
+ * - a new `Response` with a status of `416 Range Not Satisfiable` if the
+ * subset of the original `Response` could not be determined for any reason
+ * given the inputs.
+ *
+ * `handleRangeRequest()` is intended to be used from standalone service worker
+ * code. If you want the same functionality and are already using `workbox-sw`
+ * or `workbox-runtime-caching`, then please see the examples of using the
+ * `CacheRangeResponsePlugin` class, which will be easier to use.
+ *
+ * @example
+ * self.addEventListener('fetch', (event) => {
+ *   if (event.request.headers.has('range')) {
+ *     event.respondWith(
+ *       // You need to ensure that your resource was previously cached, e.g.
+ *       // inside of an install event handler.
+ *       caches.match(event.request).then((cachedResponse) => {
+ *         return workbox.rangeRequests.handleRangeRequest({
+ *           request: event.request,
+ *           response: cachedResponse,
+ *         });
+ *       })
+ *     );
+ *   }
+ * });
+ */
+
+/**
+ * @private
+ * @param {Object} input
+ * @param {string} input.rangeHeader A Range: header value.
+ * @return {Object} An object with `start` and `end` properties, reflecting
+ * the parsed value of the Range: header. If either the `start` or `end` are
+ * omitted, then `null` will be returned.
+ */
+export function parseRangeHeader({rangeHeader} = {}) {
+  isType({rangeHeader}, 'string');
+
+  const normalizedRangeHeader = rangeHeader.trim().toLowerCase();
+  if (!normalizedRangeHeader.startsWith('bytes=')) {
+    throw ErrorFactory.createError('unit-must-be-bytes');
+  }
+
+  // Specifying multiple ranges separate by commas is valid syntax, but this
+  // library only attempts to handle a single, contiguous sequence of bytes.
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range#Syntax
+  if (normalizedRangeHeader.includes(',')) {
+    throw ErrorFactory.createError('single-range-only');
+  }
+
+  const rangeParts = /(\d*)-(\d*)/.exec(normalizedRangeHeader);
+  // We need either at least one of the start or end values.
+  if (rangeParts === null || !(rangeParts[1] || rangeParts[2])) {
+    throw ErrorFactory.createError('invalid-range-values');
+  }
+
+  return {
+    start: rangeParts[1] === '' ? null : Number(rangeParts[1]),
+    end: rangeParts[2] === '' ? null : Number(rangeParts[2]),
+  };
+}
+
+/**
+ * @private
+ * @param {Object} input
+ * @param {Blob} input.blob A source blob.
+ * @param {Number|null} input.start The offset to use as the start of the
+ * slice.
+ * @param {Number|null} input.end The offset to use as the end of the slice.
+ * @return {Object} An object with `start` and `end` properties, reflecting
+ * the effective boundaries to use given the size of the blob.
+ */
+export function calculateEffectiveBoundaries({blob, start, end} = {}) {
+  isInstance({blob}, Blob);
+  const blobSize = blob.size;
+
+  if (end > blobSize || start &lt; 0) {
+    throw ErrorFactory.createError('range-not-satisfiable');
+  }
+
+  let effectiveStart;
+  let effectiveEnd;
+
+  if (start === null) {
+    effectiveStart = blobSize - end;
+    effectiveEnd = blobSize;
+  } else if (end === null) {
+    effectiveStart = start;
+    effectiveEnd = blobSize;
+  } else {
+    effectiveStart = start;
+    // Range values are inclusive, so add 1 to the value.
+    effectiveEnd = end + 1;
+  }
+
+  return {
+    start: effectiveStart,
+    end: effectiveEnd,
+  };
+}
+
+/**
+ * Given a `Request` and `Response` objects as input, this will return a
+ * promise for a new `Response`.
+ *
+ * @param {Object} input
+ * @param {Request} input.request A request, which should contain a Range:
+ * header.
+ * @param {Response} input.response An original response containing the full
+ * content.
+ * @return {Promise&lt;Response>} Either a `206 Partial Content` response, with
+ * the response body set to the slice of content specified by the request's
+ * `Range:` header, or a `416 Range Not Satisfiable` response if the
+ * conditions of the `Range:` header can't be met.
+ */
+export default async function handleRangeRequest({request, response} = {}) {
+  try {
+    isInstance({request}, Request);
+    isInstance({response}, Response);
+
+    const rangeHeader = request.headers.get('range');
+    if (!rangeHeader) {
+      throw ErrorFactory.createError('no-range-header');
+    }
+
+    const boundaries = parseRangeHeader({rangeHeader});
+    const originalBlob = await response.blob();
+
+    const effectiveBoundaries = calculateEffectiveBoundaries({
+      blob: originalBlob,
+      start: boundaries.start,
+      end: boundaries.end,
+    });
+
+    const slicedBlob = originalBlob.slice(effectiveBoundaries.start,
+      effectiveBoundaries.end);
+    const slicedBlobSize = slicedBlob.size;
+
+    const slicedResponse = new Response(slicedBlob, {
+      // Status code 206 is for a Partial Content response.
+      // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/206
+      status: 206,
+      statusText: 'Partial Content',
+      headers: response.headers,
+    });
+
+    slicedResponse.headers.set('Content-Length', slicedBlobSize);
+    slicedResponse.headers.set('Content-Range',
+      `bytes ${effectiveBoundaries.start}-${effectiveBoundaries.end - 1}/` +
+      originalBlob.size);
+
+    return slicedResponse;
+  } catch (error) {
+    logHelper.warn({
+      message: `Unable to construct a sliced response; returning a 416 Range
+        Not Satisfiable response instead.`,
+      data: {request, response, error},
+    });
+
+    return new Response('', {
+      status: 416,
+      statusText: 'Range Not Satisfiable',
+    });
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+

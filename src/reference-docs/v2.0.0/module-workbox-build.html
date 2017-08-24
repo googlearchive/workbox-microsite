@@ -1,0 +1,2433 @@
+---
+layout: jsdoc
+title: "Module: workbox-build"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+    - <a href="workbox-range-requests%250A_%2520workbox-range-requests%250A%250AA%2520helper%2520library%2520that%2520instructs%2520a%2520service%2520worker%2520respond%2520to%2520HTTP%2520requests%250Athat%2520include%2520a%2520%255BRange_%255D(https___developer.mozilla.org_en-US_docs_Web_HTTP_Range_requests)%250Aheader%2520with%2520a%2520subset%2520of%2520a%2520full%2520response.%250A%250AIf%2520you%2520are%2520not%2520already%2520using%2520Workbox,%2520this%2520library%2520can%2520be%2520used%2520in%2520a%250Astandalone%2520form%2520via%250A%257B@link%2520handleRangeRequest_workbox.rangeRequests.handleRangeRequest%257D.%250A%250AIf%2520you%2520are%2520using%2520Workbox%2520for%2520routing%2520or%2520request%2520handling%2520already,%2520then%250A%257B@link%2520CacheRangeResponsePlugin%257D%2520will%2520offer%2520the%2520easiest%2520integration.%250A%250A__If%2520your%2520cached%2520resources%2520are%2520large,%2520use%2520caution%2520when%2520adding%2520this%2520library.%250ASome%2520browsers%2520need%2520to%2520read%2520the%2520entire%2520resource%2520into%2520memory%2520before%2520it%2520can%2520be%250Amodified%2520to%2520respond%2520to%2520the%2520request.__%250A%250AInspired%2520by%250A%250A-%2520https___github.com_jakearchibald_range-request-test_blob_master_static_sw.js%250A-%2520https___github.com_GoogleChrome_sample-media-pwa_blob_master_src_client_scripts_ranged-response.jsmodule_.html#main">workbox-range-requests
+# workbox-range-requests
+
+A helper library that instructs a service worker respond to HTTP requests
+that include a [Range:](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)
+header with a subset of a full response.
+
+If you are not already using Workbox, this library can be used in a
+standalone form via
+workbox.rangeRequests.handleRangeRequest.
+
+If you are using Workbox for routing or request handling already, then
+CacheRangeResponsePlugin will offer the easiest integration.
+
+**If your cached resources are large, use caution when adding this library.
+Some browsers need to read the entire resource into memory before it can be
+modified to respond to the request.**
+
+Inspired by
+
+- https://github.com/jakearchibald/range-request-test/blob/master/static/sw.js
+- https://github.com/GoogleChrome/sample-media-pwa/blob/master/src/client/scripts/ranged-response.js</a>
+---
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+
+    
+        
+            <div class="description"><h1 id="workbox-build">workbox-build</h1>
+<p>This Node module can be used to generate a list of assets that should be
+precached in a service worker, generating a hash that can be used to
+intelligently update a cache when the service worker is updated.</p>
+<p>This module will use glob patterns to find assets in a given directory
+and use the resulting URL and revision data for one of the follow uses:</p>
+<ol>
+<li>Generate a complete service worker with precaching and some basic
+configurable options. See
+<a href="module-workbox-build.html#.generateSW">generateSW()</a>.</li>
+<li>Inject a manifest into an existing service worker. This allows you
+to control your own service worker while still taking advantage of
+<a href="module-workbox-sw.WorkboxSW.html#precache">workboxSW.precache()</a> logic.
+See <a href="module-workbox-build.html#.injectManifest">injectManifest()</a>.</li>
+<li>Generate a manifest file. This is useful if you want to read in the
+urls and revision details via an import script or ES2015 module import.
+See <a href="module-workbox-build.html#.generateFileManifest">generateFileManifest()</a>.</li>
+<li>Get a JS object of the manifest details. Can be used in a build process
+if you want to inject the manifest into a file or template yourself.
+See <a href="module-workbox-build.html#.getFileManifestEntries">getFileManifestEntries()</a>.</li>
+</ol></div>
+        
+
+        
+            
+
+<div class="collapsing-entry method-type-module ">
+
+
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id=".generateFileManifest"><span class="type-attribs">(static) </span><span class="this">this.</span>generateFileManifest<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will generate a file manifest that can be used in a service
+worker to precache assets.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Generate a build manifest of static assets, which can
+used with a service worker.</p>
+    
+    <pre class="prettyprint"><code>const workboxBuild = require('workbox-build');
+
+workboxBuild.generateFileManifest({
+  manifestDest: './build/manifest.js'
+  globDirectory: './build/',
+  globPatterns: ['**\/*.{html,js,css}'],
+  globIgnores: ['admin.html'],
+  format: 'iife', // alternatively, use 'es'
+})
+.then(() => {
+  console.log('Build manifest generated.');
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">format</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>There are some options for how the file
+manifest is formatted in the final output. The format can be one of the
+following values:</p>
+<ul>
+<li><strong>'iife'</strong> - Output the manifest as an
+<a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression">immediately invoked function</a>.</li>
+<li><strong>'es'</strong> - Output as an ES2015 module.</li>
+</ul>
+<p>Default value is 'iife'.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">manifestDest</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The file path and name where the file
+manifest should be written (i.e. <code>./build/precache-manifest.js</code>).</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves once the manifest file has been created.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id=".generateSW"><span class="type-attribs">(static) </span><span class="this">this.</span>generateSW<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will generate a working service worker with code to precache
+any assets found during the build process.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Generate a complete service worker that will precache
+the discovered assets.</p>
+    
+    <pre class="prettyprint"><code>const workboxBuild = require('workbox-build');
+
+workboxBuild.generateSW({
+  globDirectory: './dist/',
+  globPatterns: ['**\/*.{html,js,css}'],
+  globIgnores: ['admin.html'],
+  swDest: './dist/sw.js',
+  templatedUrls: {
+    '/shell': ['dev/templates/app-shell.hbs', 'dev/**\/*.css'],
+  },
+})
+.then(() => {
+  console.log('Service worker generated.');
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves once the service worker has been generated.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id=".getFileManifestEntries"><span class="type-attribs">(static) </span><span class="this">this.</span>getFileManifestEntries<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;Array.&lt;ManifestEntry>></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>To get a list of files and revision details that can be used to ultimately
+precache assets in a service worker.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;Array.&lt;ManifestEntry>></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>An array of ManifestEntries
+which will include a url and revision parameter.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id=".injectManifest"><span class="type-attribs">(static) </span><span class="this">this.</span>injectManifest<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This method will read an existing service worker file, find an instance of
+<code>.precache([])</code>, and replace the empty array with the contents of a precache
+manifest. This allows the service worker to efficiently cache assets for
+offline use, while still giving you control over the rest of the service
+worker's code.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Takes an existing service worker file that includes
+a <code>precache([])</code> placeholder, and injects a manifest of discovered
+assets into it.</p>
+    
+    <pre class="prettyprint"><code>const workboxBuild = require('workbox-build');
+
+workboxBuild.injectManifest({
+  swSrc: './dev/sw.js',
+  swDest: './dist/sw.js',
+  globDirectory: './dist/',
+  globPatterns: ['**\/*.{html,js,css}'],
+  globIgnores: ['admin.html'],
+  templatedUrls: {
+    '/shell': ['dev/templates/app-shell.hbs', 'dev/**\/*.css'],
+  },
+})
+.then(() => {
+  console.log('Service worker generated.');
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-workbox-build.html#.Configuration">Configuration</a></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>Resolves once the service worker has been written
+with the injected precache list.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>
+    
+
+    
+        <h2 class="subsection-title">Type Definitions</h2>
+
+        <div class="subsection-definitions">
+        
+                
+<div class="collapsing-entry member-type-typedef">
+<h4 class="js-collapse-title" id=".Configuration">Configuration</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>These are the full set of options that could potentially be used to configure
+one of the build tools. Each of the build tools has a slightly different way
+of providing this configuration:</p>
+<ul>
+<li><p>When using the <code>workbox-build</code> module directly, pass the
+configuration object to appropriate method. For example,
+<code>workboxBuild.injectManifest(configuration)</code> or
+<code>workboxBuild.generateSW(configuration)</code>.</p>
+</li>
+<li><p>When using the <code>workbox-cli</code> command line interface, use the
+<code>--config-file</code> flag to point to a
+<a href="https://nodejs.org/docs/latest/api/modules.html">CommonJS module file</a> that
+assigns the configuration object to <code>module.exports</code>.</p>
+</li>
+<li><p>When using <code>workbox-webpack-plugin</code> within a
+<a href="https://webpack.js.org/">Webpack</a> build, pass the configuration object to
+the plugin's constructor, like
+<code>new WorkboxBuildWebpackPlugin(configuration)</code>.</p>
+</li>
+</ul>
+<p>Some specific options might not make sense with certain combinations of
+interfaces. In those cases, the limitations are called out in the
+documentation, and may lead to build-time warnings or errors.</p>
+<p>Each option documented here includes an example, which, for the sake of
+illustration, assumes the following local filesystem setup. Please adjust
+the example values to match your actual setup.</p>
+<pre class="prettyprint source lang-sh"><code>./
+├── dev/
+│   ├── app.js
+│   ├── ignored.html
+│   ├── image.png
+│   ├── index.html
+│   ├── main.css
+│   ├── sw.js
+│   └── templates/
+│       └── app_shell.hbs
+└── dist/
+    ├── app.js
+    ├── image.png
+    ├── index.html
+    ├── main.css
+    └── sw.js</code></pre>
+</div>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+        
+
+
+<p><strong>Properties</strong></p>
+
+
+<table class="method-info-table">
+  
+  <tr>
+    <td>
+    <table class="props">
+    
+    <tr>
+      
+          <td class="name"><code>swDest</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The path to the final service worker
+file that will be created by the build process, relative to the current
+working directory.</p>
+<p>E.g.: <code>'./dist/sw.js'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>swSrc</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The path to the source service worker
+containing a <code>precache([])</code> placeholder, which will be replaced with the
+precache manifest generated by the build.</p>
+<p>E.g.: <code>'./dev/sw.js'</code></p>
+<p> Note: This option is only valid when used with
+ <a href="module-workbox-build.html#.injectManifest">injectManifest()</a>.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>globPatterns</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;String></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          ['**\/*.{js,css,html}']
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Files matching against any of these
+<a href="https://github.com/isaacs/node-glob">glob patterns</a> will be included in the
+precache manifest.</p>
+<p>E.g.: <code>'**\/*.{js,css,html,png}'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>globDirectory</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The base directory you wish to
+match <code>globPatterns</code> against, related to the current working directory.</p>
+<p>E.g.: <code>'./dev'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>globIgnores</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+|
+
+<span class="param-type">Array.&lt;String></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          'node_modules'
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Files matching against any of these glob patterns will be excluded from the
+file manifest, overriding any matches from <code>globPatterns</code>.</p>
+<p>E.g. <code>['**\/ignored.html']</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>templatedUrls</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Object.&lt;String, (Array|String)></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>If a URL is rendered generated based on some server-side logic, its contents
+may depend on multiple files or on some other unique string value.</p>
+<p>If used with an array of strings, they will be interpreted as
+<a href="https://github.com/isaacs/node-glob">glob patterns</a>, and the contents of
+any files matching the patterns will be used to uniquely version the URL.</p>
+<p>If used with a single string, it will be interpreted as unique versioning
+information that you've generated out of band for a given URL.</p>
+<p>E.g.</p>
+<pre class="prettyprint source lang-js"><code>{
+  '/app-shell': [
+    'dev/templates/app-shell.hbs',
+    'dev/**\/*.css',
+   ],
+  '/other-page': 'my-version-info',
+}</code></pre>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>maximumFileSizeToCacheInBytes</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">number</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          2097152
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>This value can be used to determine the maximum size of files that will be
+precached. This prevents you from inadvertantly precaching very large files
+that might have been accidentally match your <code>globPatterns</code> values.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>manifestTransforms</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;ManifestTransform></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An array of
+manifest transformations, which will be applied sequentially against the
+generated manifest. If <code>modifyUrlPrefix</code> or <code>dontCacheBustUrlsMatching</code> are
+also specified, their corresponding transformations will be applied first.</p>
+<p>See <a href="module-workbox-build.html#.ManifestTransform">ManifestTransform</a>.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>modifyUrlPrefix</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Object.&lt;String, String></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>A mapping of
+prefixes that, if present in an entry in the precache manifest, will be
+replaced with the corresponding value.</p>
+<p>This can be used to, for example, remove or add a path prefix from a manifest
+entry if your web hosting setup doesn't match your local filesystem setup.</p>
+<p>As an alternative with more flexibility, you can use the <code>manifestTransforms</code>
+option and provide a function that modifies the entries in the manifest using
+whatever logic you provide.</p>
+<p>E.g.</p>
+<pre class="prettyprint source lang-js"><code>{
+  '/prefix-to-remove': '',
+}</code></pre>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>dontCacheBustUrlsMatching</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">RegExp</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Assets that match this
+regex will be assumed to be uniquely versioned via their URL, an exempted
+from the normal HTTP cache-busting that's done when populating the precache.</p>
+<p>While not required, it's recommended that if your existing build process
+already inserts a <code>[hash]</code> value into each filename, you provide a RegExp
+that will detect those values, as it will reduce the amount of bandwidth
+consumed when precaching.</p>
+<p>E.g. <code>/\.\w{8}\./</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>navigateFallback</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>This will be used to create a
+<a href="module-workbox-routing.NavigationRoute.html#main">NavigationRoute</a> that will
+respond to navigation requests for URLs that that aren't precached.</p>
+<p>This is meant to be used in a
+<a href="https://en.wikipedia.org/wiki/Single-page_application">Single Page App</a>
+scenario, in which you want all navigations to result in common App Shell
+HTML being reused.</p>
+<p>It's <em>not</em> intended for use as a fallback that's displayed when the browser
+is offline.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly add in a call to
+<a href="module-workbox-sw.Router.html#registerNavigationRoute"> registerNavigationRoute()</a>
+in your <code>swSrc</code> file.</p>
+<p>E.g. <code>'/app-shell'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>navigateFallbackWhitelist</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;RegExp></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          /./
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An optional
+array of regular expressions that restrict which URLs the navigation route
+applies to.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly add in the whitelist when calling
+<a href="module-workbox-sw.Router.html#registerNavigationRoute"> registerNavigationRoute()</a>
+in your <code>swSrc</code> file.</p>
+<p>E.g. <code>[/pages/, /articles/]</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>cacheId</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>An optional ID to be prepended to caches
+used by <code>workbox-sw</code>. This is primarily useful for local development where
+multiple sites may be served from the same <code>http://localhost</code> origin.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+<p>E.g. <code>'my-app-name'</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>skipWaiting</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Boolean</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          false
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Whether or not the service worker
+should skip over the <a href="https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle#waiting">waiting</a>
+lifecycle stage.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>clientsClaim</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Boolean</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          false
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Whether or not the service worker
+should <a href="https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/lifecycle#clientsclaim">start controlling</a>
+any existing clients as soon as it activates.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>directoryIndex</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">string</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          'index.html'
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>If a request for a URL
+ending in '/' fails, this value will be appended to the URL and a second
+request will be made.</p>
+<p>This should be configured to whatever your web server is using, if anything,
+for its <a href="https://httpd.apache.org/docs/2.0/mod/mod_dir.html">directory index</a>.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>runtimeCaching</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;Object></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Passing in an array of objects
+containing <code>urlPattern</code>s, <code>handler</code>s, and potentially <code>option</code>s that will add
+the appropriate code to the generated service worker to handle runtime
+caching.</p>
+<p>Requests for precached URLs that are picked up via <code>globPatterns</code> are handled
+by default, and don't need to be accomodated in <code>runtimeCaching</code>.</p>
+<p>The <code>handler</code> values correspond the names of the
+<a href="module-workbox-sw.Strategies.html#main">strategies</a> supported by <code>workbox-sw</code>.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly add in the corresponding runtime caching behavior via
+<a href="module-workbox-sw.Router.html#registerRoute">registerRoute()</a> in your
+<code>swSrc</code> file.</p>
+<p>E.g.</p>
+<pre class="prettyprint source lang-js"><code>[{
+  // You can use a RegExp as the pattern:
+  urlPattern: /.jpg$/,
+  handler: 'cacheFirst',
+  // Any options provided will be used when
+  // creating the caching strategy.
+  options: {
+    cacheName: 'image-cache',
+    cacheExpiration: {
+      maxEntries: 10,
+    },
+  },
+}, {
+  // You can also use Express-style strings:
+  urlPattern: 'https://example.com/path/to/:file',
+  handler: 'staleWhileRevalidate',
+  options: {
+    cacheableResponse: {
+         statuses: [0],
+    },
+  },
+}]</code></pre>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>ignoreUrlParametersMatching</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Array.&lt;RegExp></span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          [/^utm_/]
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Any
+search parameter names that match against one of the regex's in this array
+will be removed before looking for a precache match.</p>
+<p>This is useful if your users might request URLs that contain, for example,
+URL parameters used to track the source of the traffic. Those URL parameters
+would normally cause the cache lookup to fail, since the URL strings used
+as cache keys would not be expected to include them.</p>
+<p>You can use <code>[/./]</code> to ignore all URL parameters.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+<p>E.g. <code>[/homescreen/]</code></p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>handleFetch</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">Boolean</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="attributes">
+        
+          &lt;optional><br>
+        
+
+        
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="default">
+        
+          true
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>Whether or not <code>workbox-sw</code> should
+create a <code>fetch</code> event handler that responds to network requests. This is
+useful during development if you don't want the service worker serving stale
+content.</p>
+<p>Note: This option is only valid when used with
+generateSW(). When using
+<a href="module-workbox-build.html#.injectManifest">injectManifest()</a>, you can
+explicitly pass the desired value in to the
+<a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW() constructor</a> in your <code>swSrc</code>
+file.</p>
+        
+      </td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  
+</table>
+
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+            
+                
+<div class="collapsing-entry member-type-typedef">
+<h4 class="js-collapse-title" id=".ManifestEntry">ManifestEntry</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+        
+
+
+<p><strong>Properties</strong></p>
+
+
+<table class="method-info-table">
+  
+  <tr>
+    <td>
+    <table class="props">
+    
+    <tr>
+      
+          <td class="name"><code>url</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The URL to the asset in the manifest.</p>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      
+          <td class="name"><code>revision</code></td>
+      
+      <td class="type">
+      
+          
+<span class="param-type">String</span>
+
+
+
+      
+      </td>
+    </tr>
+    
+    
+    <tr>
+      <td></td>
+      <td class="description last">
+        <p>The revision details for the file. This is a
+hash generated by node based on the file contents.</p>
+        
+      </td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  
+</table>
+
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+            
+                
+
+<div class="collapsing-entry method-type-typedef ">
+
+
+    <h4 class="js-collapse-title" id=".ManifestTransform"><span class="this">this.</span>ManifestTransform<span class="signature">(<span class="signature-args">manifestEntries</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Array.&lt;ManifestEntry></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>A <code>ManifestTransform</code> function can be used to modify the modify the <code>url</code> or
+<code>revision</code> properties of some or all of the
+ManifestEntries in the manifest.</p>
+<p>Deleting the <code>revision</code> property of an entry will cause
+the corresponding <code>url</code> to be precached without cache-busting parameters
+applied, which is to say, it implies that the URL itself contains
+proper versioning info. If the <code>revision</code> property is present, it must be
+set to a string.</p>
+  </div>
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">A transformation that prepended the origin of a CDN for any
+URL starting with '/assets/' could be implemented as:</p>
+    
+    <pre class="prettyprint"><code>const cdnTransform = (manifestEntries) => manifestEntries.map(entry => {
+  const cdnOrigin = 'https://example.com';
+  if (entry.url.startsWith('/assets/')) {
+    entry.url = cdnOrigin + entry.url;
+  }
+  return entry;
+});</code></pre>
+
+        <p class="code-caption">A transformation that removes the revision field when the
+URL contains an 8-character hash surrounded by '.', indicating that it
+already contains revision information:</p>
+    
+    <pre class="prettyprint"><code>const removeRevisionTransform = (manifestEntries) => {
+  return manifestEntries.map(entry => {
+    const hashRegExp = /\.\w{8}\./;
+    if (entry.url.match(hashRegExp)) {
+      delete entry.revision;
+    }
+    return entry;
+  });
+};</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">manifestEntries</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;ManifestEntry></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The full array of entries,
+prior to the current transformation.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Array.&lt;ManifestEntry></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>The array of entries with the transformation
+applied.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+            
+        </div>

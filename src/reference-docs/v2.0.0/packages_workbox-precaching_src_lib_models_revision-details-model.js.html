@@ -1,0 +1,114 @@
+---
+layout: jsdoc
+title: "Source: packages/workbox-precaching/src/lib/models/revision-details-model.js"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+    - <a href="workbox-range-requests%250A_%2520workbox-range-requests%250A%250AA%2520helper%2520library%2520that%2520instructs%2520a%2520service%2520worker%2520respond%2520to%2520HTTP%2520requests%250Athat%2520include%2520a%2520%255BRange_%255D(https___developer.mozilla.org_en-US_docs_Web_HTTP_Range_requests)%250Aheader%2520with%2520a%2520subset%2520of%2520a%2520full%2520response.%250A%250AIf%2520you%2520are%2520not%2520already%2520using%2520Workbox,%2520this%2520library%2520can%2520be%2520used%2520in%2520a%250Astandalone%2520form%2520via%250A%257B@link%2520handleRangeRequest_workbox.rangeRequests.handleRangeRequest%257D.%250A%250AIf%2520you%2520are%2520using%2520Workbox%2520for%2520routing%2520or%2520request%2520handling%2520already,%2520then%250A%257B@link%2520CacheRangeResponsePlugin%257D%2520will%2520offer%2520the%2520easiest%2520integration.%250A%250A__If%2520your%2520cached%2520resources%2520are%2520large,%2520use%2520caution%2520when%2520adding%2520this%2520library.%250ASome%2520browsers%2520need%2520to%2520read%2520the%2520entire%2520resource%2520into%2520memory%2520before%2520it%2520can%2520be%250Amodified%2520to%2520respond%2520to%2520the%2520request.__%250A%250AInspired%2520by%250A%250A-%2520https___github.com_jakearchibald_range-request-test_blob_master_static_sw.js%250A-%2520https___github.com_GoogleChrome_sample-media-pwa_blob_master_src_client_scripts_ranged-response.jsmodule_.html#main">workbox-range-requests
+# workbox-range-requests
+
+A helper library that instructs a service worker respond to HTTP requests
+that include a [Range:](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)
+header with a subset of a full response.
+
+If you are not already using Workbox, this library can be used in a
+standalone form via
+{@link handleRangeRequest|workbox.rangeRequests.handleRangeRequest}.
+
+If you are using Workbox for routing or request handling already, then
+{@link CacheRangeResponsePlugin} will offer the easiest integration.
+
+**If your cached resources are large, use caution when adding this library.
+Some browsers need to read the entire resource into memory before it can be
+modified to respond to the request.**
+
+Inspired by
+
+- https://github.com/jakearchibald/range-request-test/blob/master/static/sw.js
+- https://github.com/GoogleChrome/sample-media-pwa/blob/master/src/client/scripts/ranged-response.js</a>
+---
+
+
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import IDBHelper from '../../../../../lib/idb-helper.js';
+import {dbName, dbVersion, dbStorename} from '../constants';
+
+/**
+ * This class is a simple model that stores EntryID's with their current
+ * revision. This is used when caching revisioned assets so that only entries
+ * with different revisions are downloaded and updated.
+ *
+ * @private
+ * @memberof module:workbox-precaching
+ */
+class RevisionDetailsModel {
+  /**
+   * Constructor for RevisionDetails Model.
+   */
+  constructor() {
+    this._idbHelper = new IDBHelper(dbName, dbVersion, dbStorename);
+  }
+
+  /**
+   * This method gets the revision details for a given entryID.
+   * @param {String} entryID The ID of the revision.
+   * @return {Promise&lt;String|null>} Returns a revision string or
+   * null if there is no revision information.
+   */
+  get(entryID) {
+    return this._idbHelper.get(entryID);
+  }
+
+  /**
+   * This method saves the revision details to indexedDB.
+   * @param {String} entryID The ID of the revision.
+   * @param {String} revision The current revision for this entryID.
+   * @return {Promise} Promise that resolves once the data has been saved.
+   */
+  put(entryID, revision) {
+    return this._idbHelper.put(entryID, revision);
+  }
+
+  /**
+   * This method deletes the revision details from indexedDB for a given entry.
+   * @param {String} entryID The ID of the revision.
+   * @return {Promise} Promise that resolves once the data has been deleted.
+   */
+  delete(entryID) {
+    return this._idbHelper.delete(entryID);
+  }
+
+  /**
+   * This method closes the indexdDB helper. This is only used for unit testing
+   * to ensure clean state between tests.
+   *
+   * @private
+   */
+  _close() {
+    this._idbHelper.close();
+  }
+}
+
+export default RevisionDetailsModel;
+</code></pre>
+        </article>
+    </section>
+
+
+
+

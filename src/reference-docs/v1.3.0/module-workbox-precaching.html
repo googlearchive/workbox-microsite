@@ -1,0 +1,175 @@
+---
+layout: jsdoc
+title: "Module: workbox-precaching"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+
+    
+        
+            <div class="description"><h1 id="workbox-precaching">workbox-precaching</h1>
+<p>The precaching library intelligently caches and updates files
+during the install step of your service worker.</p>
+<p>When given a list of URL's to precache, this module will go through
+each URL and check if the URL is already cached and, if it is, compare
+the hash to see if revision hash has changed.</p>
+<p>If the revision is old or the entry isn't cached, this library will make
+a request for the asset and cache it, ensuring the the browsers HTTP cache
+is skipped by using <code>Request.cache = 'reload'</code> or adding a cache busting
+search parameter to the request.</p></div>
+        
+
+        
+            
+
+<div class="collapsing-entry method-type-module ">
+
+
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>importScripts('/&lt;Path to Module>/build/workbox-precaching.min.js');
+
+const revCacheManager = new workbox.precaching.RevisionedCacheManager();
+revCacheManager.addToCacheList({
+  revisionedFiles: [
+    '/styles/main.1234.css',
+    {
+      url: '/',
+      revision: '1234'
+    }
+  ],
+});
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    revCacheManager.install()
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    revCacheManager.cleanup()
+  );
+});</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+    
+
+    
+
+    
+        <h2 class="subsection-title">Classes</h2>
+
+        <div class="subsection-classes">
+        <dl>
+            <dt><a href="module-workbox-precaching.BaseCacheManager.html#main">BaseCacheManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-precaching.RevisionedCacheManager.html#main">RevisionedCacheManager</a></dt>
+            <dd></dd>
+        </dl>
+        </div>
