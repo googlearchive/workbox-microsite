@@ -1,0 +1,123 @@
+---
+layout: jsdoc
+title: "Source: packages/workbox-build/src/index.js"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+// This will be the logic that powers both module and CLI
+const generateSW = require('./lib/generate-sw');
+const getFileManifestEntries = require('./lib/get-file-manifest-entries');
+const generateFileManifest = require('./lib/generate-file-manifest');
+const injectManifest = require('./lib/inject-manifest');
+
+/**
+ * # workbox-build
+ *
+ * This Node module can be used to generate a list of assets that should be
+ * precached in a service worker, generating a hash that can be used to
+ * intelligently update a cache when the service worker is updated.
+ *
+ * This module will use glob patterns to find assets in a given directory
+ * and use the resulting URL and hash data for one of the follow uses:
+ *
+ * 1. Generate a complete service worker with precaching and some basic
+ * configurable options. See
+ * [generateSW()]{@link module:workbox-build.generateSW}.
+ * 1. Inject a manifest into an existing service worker. This allows you
+ * to control your own service worker while still taking advantage of
+ * [workboxSW.precache()]{@link module:workbox-sw.WorkboxSW#precache} logic.
+ * See [injectManifest()]{@link module:workbox-build.injectManifest}.
+ * 1. Generate a manifest file. This is useful if you want to read in the
+ * urls and revision details via an import script or ES2015 module import.
+ * See [generateFileManifest()]{@link
+ *  module:workbox-build.generateFileManifest}.
+ * 1. Get a JS object of the manifest details. Can be used in a build process
+ * if you want to inject the manifest into a file or template yourself.
+ * See [getFileManifestEntries()]{@link
+ *  module:workbox-build.getFileManifestEntries}.
+ *
+ * @example &lt;caption>Generate a complete service worker that will precache
+ * the discovered assets.&lt;/caption>
+ * const swBuild = require('workbox-build');
+ *
+ * swBuild.generateSW({
+ *   globDirectory: './build/',
+ *   globPatterns: ['**\/*.{html,js,css}'],
+ *   globIgnores: ['service-worker.js','admin.html'],
+ *   swDest: './build/sw.js',
+ *   templatedUrls: {
+ *     '/shell': ['shell.hbs', 'main.css', 'shell.css'],
+ *   },
+ * })
+ * .then(() => {
+ *   console.log('Service worker generated.');
+ * });
+ *
+ * @example &lt;caption>Generate a file containing the assets to precache.
+ * &lt;/caption>
+ * const swBuild = require('workbox-build');
+ *
+ * swBuild.generateFileManifest({
+ *   globDirectory: './build/',
+ *   globPatterns: ['**\/*.{html,js,css}'],
+ *   globIgnores: ['service-worker.js','admin.html'],
+ *   manifestDest: './build/scripts/manifest.js',
+ *   templatedUrls: {
+ *     '/shell': ['shell.hbs', 'main.css', 'shell.css'],
+ *   },
+ * })
+ * .then(() => {
+ *   console.log('Build file has been created.');
+ * });
+ *
+ * @example &lt;caption>Get an Array of files with revision details.&lt;/caption>
+ * const swBuild = require('workbox-build');
+ *
+ * swBuild.getFileManifestEntries({
+ *   globDirectory: './build/',
+ *   globPatterns: ['**\/*.{html,js,css}'],
+ *   globIgnores: ['service-worker.js','admin.html'],
+ *   templatedUrls: {
+ *     '/shell': ['shell.hbs', 'main.css', 'shell.css'],
+ *   },
+ * })
+ * .then((fileDetails) => {
+ *   // An array of file details include a `url` and `revision` parameter.
+ * });
+ *
+ * @module workbox-build
+ */
+
+module.exports = {
+  generateSW,
+  generateFileManifest,
+  getFileManifestEntries,
+  injectManifest,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+

@@ -1,0 +1,94 @@
+@import "../variables/dimens.css";
+@import "../variables/colors.css";
+
+.primary-header {
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+
+.primary-header__inner-section {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding-top: calc(var(--vertical-spacing) * 6);
+  padding-bottom: calc(var(--vertical-spacing) * 6);
+}
+
+.primary-header__left-section {
+  flex: 1;
+}
+
+.primary-header__wb-logo {
+  width: 100%;
+  margin-bottom: calc(var(--vertical-spacing) * 3);
+}
+
+.primary-header__tagline {
+    text-align: center;
+}
+
+.primary-header__right-section {
+  display: none;
+}
+
+.primary-header__feature-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.primary-header__feature-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: var(--h5-font-size-desktop);
+}
+
+.primary-header__feature-list li img {
+  width: var(--primary-header-feature-icon-size);
+  height: var(--primary-header-feature-icon-size);
+  padding-right: var(--horizontal-spacing);
+}
+
+/** .primary-header__inner-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 80%;
+  height: calc(var(--vertical-spacing) * 8);
+  margin: calc(var(--vertical-spacing) * 12) calc(var(--horizontal-spacing) * 4);
+  background-image: url('../../images/workbox-logo-grey.min.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}**/
+
+@media (min-width: 780px) {
+  /** .primary-header__inner-section {
+    height: calc(var(--vertical-spacing) * 15);
+    margin: calc(var(--vertical-spacing) * 12) calc(var(--horizontal-spacing) * 4);
+  }**/
+
+  .primary-header__wb-logo {
+    width: 50%;
+  }
+
+  .primary-header__tagline {
+    text-align: left;
+  }
+
+  .primary-header__right-section {
+    display: block;
+  }
+
+  .primary-header__github-buttons {
+    display: block;
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "workbox-microsite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The microsite for https://workboxjs.com",
+  "scripts": {
+    "lint": "eslint '.'",
+    "test": "npm run lint && gulp build && mocha ./test/node/**/*.js",
+    "deploy": "npm run test && firebase deploy",
+    "serve": "superstatic"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoogleChrome/workbox-microsite.git"
+  },
+  "keywords": [
+    "workbox"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/GoogleChrome/workbox-microsite/issues"
+  },
+  "homepage": "https://github.com/GoogleChrome/workbox-microsite#readme",
+  "devDependencies": {
+    "anchor-js": "^3.2.2",
+    "autotrack": "^2.3.3",
+    "broken-link-checker": "^0.7.5",
+    "chokidar": "^1.7.0",
+    "cssnano": "^3.10.0",
+    "del": "^2.2.2",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "findup-sync": "^1.0.0",
+    "firebase-tools": "^3.7.0",
+    "fs-extra": "^3.0.1",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-postcss": "^7.0.0",
+    "jsdoc": "^3.4.3",
+    "jsdoc-strip-async-await": "^0.1.0",
+    "meow": "^3.7.0",
+    "mocha": "^3.4.1",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-import": "^9.1.0",
+    "postcss-url": "^6.0.4",
+    "prismjs": "^1.6.0",
+    "remote-git-tags": "^2.0.0",
+    "semver": "^5.3.0",
+    "superstatic": "^4.1.0",
+    "workbox-build": "0.0.2"
+  }
+}

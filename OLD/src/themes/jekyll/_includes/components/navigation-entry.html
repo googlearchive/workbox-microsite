@@ -1,0 +1,12 @@
+{% if include.entry.url %}
+{% assign entryUrl = include.entry.url %}
+{% if site.docDebug %}
+{% assign entryUrl = entryUrl | replace: "/reference-docs/latest/", "/reference-docs/v0.0.0/" %}
+{% endif %}
+<li><a href="{{ entryUrl }}">{{ include.entry.title }}</a></li>
+{% elsif include.entry.dropdown %}
+{% include components/navigation-drop-down.html entry=include.entry %}
+{% elsif include.entry.reference == true %}
+{% assign referenceEntry = site.data.reference | first %}
+{% include components/navigation-entry.html entry=referenceEntry %}
+{% endif %}

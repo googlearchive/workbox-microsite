@@ -1,0 +1,83 @@
+---
+layout: jsdoc
+title: "Source: packages/workbox-precaching/src/lib/models/revision-details-model.js"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import IDBHelper from '../../../../../lib/idb-helper.js';
+import {dbName, dbVersion, dbStorename} from '../constants';
+
+/**
+ * This class is a simple model that stores EntryID's with their current
+ * revision. This is used when caching revisioned assets so that only entries
+ * with different revisions are downloaded and updated.
+ *
+ * @private
+ * @memberof module:workbox-precaching
+ */
+class RevisionDetailsModel {
+  /**
+   * Constructor for RevisionDetails Model.
+   */
+  constructor() {
+    this._idbHelper = new IDBHelper(dbName, dbVersion, dbStorename);
+  }
+
+  /**
+   * This method gets the revision details for a given entryID.
+   * @param {String} entryID The ID of the revision.
+   * @return {Promise&lt;String|null>} Returns a revision string or
+   * null if there is no revision information.
+   */
+  get(entryID) {
+    return this._idbHelper.get(entryID);
+  }
+
+  /**
+   * This method saves the revision details to indexedDB.
+   * @param {String} entryID The ID of the revision.
+   * @param {String} revision The current revision for this entryID.
+   * @return {Promise} Promise that resolves once the data has been saved.
+   */
+  put(entryID, revision) {
+    return this._idbHelper.put(entryID, revision);
+  }
+
+  /**
+   * This method closes the indexdDB helper. This is only used for unit testing
+   * to ensure clean state between tests.
+   *
+   * @private
+   */
+  _close() {
+    this._idbHelper.close();
+  }
+}
+
+export default RevisionDetailsModel;
+</code></pre>
+        </article>
+    </section>
+
+
+
+

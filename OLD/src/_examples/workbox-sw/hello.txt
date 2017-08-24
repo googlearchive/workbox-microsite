@@ -1,0 +1,2 @@
+I'm not precached, so I should be handled via the runtime caching route
+that matches /\.txt$/

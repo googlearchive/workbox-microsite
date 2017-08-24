@@ -1,0 +1,128 @@
+@import "./variables/dimens.css";
+@import "./variables/colors.css";
+
+.subsection-classes {
+  padding-bottom: calc(var(--vertical-spacing) * 3);
+}
+
+.subsection-title {
+  color: var(--workbox-orange);
+  margin-bottom: calc(var(--vertical-spacing) * 2);
+}
+
+.subsection-classes a {
+  text-decoration: none;
+}
+
+.subsection-classes dl {
+  margin: 0;
+}
+
+.collapsing-entry h4 {
+  cursor: pointer;
+}
+
+.collapsing-entry {
+  padding-bottom: calc(var(--vertical-spacing) * 4);
+  margin-bottom: calc(var(--vertical-spacing) * 4);
+
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: var(--hr-color);
+}
+
+.collapsing-entry:first-child {
+  padding-top: 0;
+}
+
+.collapsing-entry:last-child {
+  border-bottom-style: none;
+  margin-bottom: 0;
+}
+
+.collapsing-entry.method-type-module, .collapsing-entry.method-type-module .collapse-details {
+  padding-top: 0;
+}
+
+#example, .code-caption {
+  margin-bottom: var(--vertical-spacing);
+}
+
+.params .description h6 {
+  margin-top: var(--vertical-spacing);
+}
+
+.method-info-table {
+  font-size: var(--jsdoc-param-table-font-size);
+}
+
+.method-info-table {
+  display: block;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.method-info-table p {
+  margin-bottom: 0;
+}
+
+.method-name .signature-args, .method-info-table td.name {
+  color: var(--jsdoc-highlight-font-color);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.method-info-table td .param-type {
+  color: var(--jsdoc-highlight-font-color);
+}
+
+.method-info-table .params .type {
+  min-width: 100px;
+}
+
+/** This is the size of 'this.' on methods **/
+span.this, .method-info-table .param-attributes, .extends {
+  font-style: italic;
+  font-size: var(--small-jsdoc-font-size);
+  opacity: 0.7;
+}
+
+.method-info-table, .method-info-table th, .method-info-table td  {
+  text-align: left;
+  vertical-align: top;
+  padding: 0;
+}
+
+.method-info-table th, .method-info-table td {
+  padding-right: calc(var(--vertical-spacing) * 2);
+}
+
+.method-info-table td:last-child {
+  padding-right: 0;
+}
+
+.method-info-table .param-desc *:last-child {
+  margin-bottom: 0;
+}
+
+.collapse-details {
+  padding-top: calc(var(--vertical-spacing) * 2);
+}
+
+.collapse-details.is-closed {
+  padding-top: 0;
+}
+
+.collapse-details.is-closed {
+  height: 0;
+  overflow: hidden;
+}
+
+.code-caption {
+  font-style: italic;
+  font-size: var(--code-caption-font-size);
+}
+
+.type-attribs {
+  font-style: italic;
+}

@@ -1,0 +1,197 @@
+---
+layout: jsdoc
+title: "Module: workbox-sw"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+---
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+
+    
+        
+            <div class="description"><h1 id="workbox-sw">workbox-sw</h1>
+<p>A high-level library that makes it easier to configure routes with
+caching strategies as well as manage precaching
+of assets during the install step of a service worker.</p></div>
+        
+
+        
+            
+
+<div class="collapsing-entry method-type-module ">
+
+
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Adding the Library to your project.</p>
+    
+    <pre class="prettyprint"><code>importScripts('/node_modules/build/importScripts/workbox-sw.prod.vX.Y.Z.js');</code></pre>
+
+        <p class="code-caption">Caching assets and registering routes.</p>
+    
+    <pre class="prettyprint"><code>// DO NOT CREATE THIS MANIFEST OR EDIT IT MANUALLY!!
+// Use workbox-build or workbox-cli to generate the manifest for you.
+const swlib = new goog.SWLib();
+swlib.precache([
+  {
+    url: '/',
+    revision: '613e6c7332dd83e848a8b00c403827ed'
+  },
+  {
+    url: '/styles/main.css',
+    revision: '59a325f32baad11bd47a8c515ec44ae5'
+  }
+]);
+
+// Register runtime routes like so.
+swlib.router.registerRoute(
+  '/example/', swlib.staleWhileRevalidate());
+swlib.router.registerRoute(
+  /\/images\/(.*\/)?.*\.(png|jpg|jpeg|gif)/,
+  swlib.strategies.cacheFirst());
+swlib.router.registerRoute(
+  '/styles/:filename', swlib.strategies.cacheFirst());</code></pre>
+
+        <p class="code-caption">Using plugins with caching strategies.</p>
+    
+    <pre class="prettyprint"><code>const swlib = new goog.SWLib();
+swlib.router.registerRoute(/\/images\/(.*\/)?.*\.(png|jpg|jpeg|gif)/,
+  swlib.strategies.cacheFirst({
+    cacheName: 'example-cache',
+    cacheExpiration: {
+      maxEntries: 10,
+      maxAgeSeconds: 7 * 24 * 60 * 60
+    },
+    cacheableResponse: {
+      statuses: [0, 200]
+    },
+    broadcastCacheUpdate: {
+      channelName: 'example-channel-name'
+    },
+    plugins: [
+      // Additional Plugins
+    ]
+  })
+);</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+    
+
+    
+
+    
+        <h2 class="subsection-title">Classes</h2>
+
+        <div class="subsection-classes">
+        <dl>
+            <dt><a href="module-workbox-sw.Router.html#main">Router</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-sw.Strategies.html#main">Strategies</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-sw.WorkboxSW.html#main">WorkboxSW</a></dt>
+            <dd></dd>
+        </dl>
+        </div>

@@ -1,0 +1,72 @@
+---
+layout: jsdoc
+title: "Source: packages/workbox-background-sync/src/lib/response-manager.js"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+---
+
+
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import IDBHelper from '../../../../lib/idb-helper';
+
+/**
+ * Puts the fetched response in the IDB
+ *
+ * @param {Object} config
+ * @private
+ */
+async function putResponse({hash, idbObject, response, idbQDb}) {
+	const _idbQHelper = idbQDb;
+	idbObject.response = {
+		headers: JSON.stringify([...response.headers]),
+		status: response.status,
+		body: await response.blob(),
+	};
+	_idbQHelper.put(hash, idbObject);
+}
+
+/**
+ * This function returns the fetched response for the given id of the request
+ *
+ * @memberof module:workbox-background-sync
+ *
+ * @param {String} id The ID of the request given back by the broaadcast
+ * channel
+ * @return {Object} response Fetched response of the request.
+ */
+async function getResponse({id, dbName}) {
+	const _idbQHelper = new IDBHelper(dbName, 1, 'QueueStore');
+	const object = await _idbQHelper.get(id);
+	if (object &amp;&amp; object.response) {
+		return object.response;
+	} else {
+		return null;
+	}
+}
+
+export {
+	putResponse,
+	getResponse,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+

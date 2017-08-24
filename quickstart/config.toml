@@ -1,0 +1,12 @@
+baseURL = "https://workboxjs.org/"
+languageCode = "en-us"
+title = "Workbox"
+theme = "workbox"
+
+[[menu.main]]
+    name = "Guides"
+[[menu.main]]
+    name = "Modules"
+[[menu.main]]
+    name = "Service Worker"
+    parent = "Modules"

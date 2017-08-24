@@ -1,0 +1,61 @@
+@import "../variables/dimens.css";
+@import "../variables/colors.css";
+
+footer {
+  background-color: var(--dark-grey);
+}
+
+.footer__inner-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__logo-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  margin-bottom: calc(var(--vertical-spacing) * 4);
+}
+
+.footer__logo-row:last-child {
+  margin-bottom: 0;
+}
+
+.footer__project-logos a {
+  display: inline-block;
+  height: 42px;
+  text-decoration: none;
+}
+
+.footer__btn img {
+  height: 32px;
+}
+
+.footer__btn {
+  display: inline-block;
+}
+
+.footer__workbox-btn {
+  display: block;
+  text-align: center;
+  margin-bottom: calc(var(--vertical-spacing) * 4);
+}
+
+.footer__workbox-btn img {
+  max-height: calc(var(--vertical-spacing) * 7);
+}
+
+@media (min-width: 780px) {
+  .footer__inner-section {
+    flex-direction: row;
+  }
+
+  .footer__right-section {
+    padding-top: calc(var(--vertical-spacing) * 3);
+  }
+}

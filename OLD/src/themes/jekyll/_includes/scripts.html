@@ -1,0 +1,40 @@
+<script src="{{ site.theme_location }}/themes/scripts/detabinator.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/nav-drawer.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/jsdocs-collapse.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/navigation-controller.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/sw-controller.js" async defer></script>
+<script src="{{ site.theme_location }}/themes/scripts/toast.js" async defer></script>
+<script src="https://buttons.github.io/buttons.js" async defer></script>
+{% if layout.anchors != false and page.anchors != false %}
+<script src="{{ site.theme_location }}/themes/third_party/anchor.min.js" id="anchorjsscript" async defer></script>
+{% endif %}
+
+<script src="{{ site.theme_location }}/themes/third_party/prism.js" id="prismjsscript" async defer></script>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};
+ga('create', 'UA-98793201-1', 'auto');
+ga('set', 'transport', 'beacon');
+ga('require', 'cleanUrlTracker', {
+  stripQuery: true,
+  queryDimensionIndex: 1,
+  trailingSlash: 'add',
+  indexFilename: 'index.html',
+});
+ga('require', 'maxScrollTracker', {
+  sessionTimeout: 30,
+  timeZone: 'America/Los_Angeles',
+  maxScrollMetricIndex: 3,
+});
+ga('require', 'outboundLinkTracker', {
+  events: ['click', 'auxclick', 'contextmenu'],
+});
+ga('require', 'pageVisibilityTracker', {
+  sendInitialPageview: true,
+  pageLoadsMetricIndex: 1,
+  visibleMetricIndex: 2,
+  timeZone: 'America/Los_Angeles',
+});
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+<script src="{{ site.theme_location }}/themes/third_party/autotrack.js" async></script>

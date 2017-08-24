@@ -1,0 +1,860 @@
+---
+layout: jsdoc
+title: "Class: WorkboxSW"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>WorkboxSW</h2>
+        
+            <p>This class uses the Workbox libraries to create a clean and easy API for
+common caching and serving needs.</p>
+        
+    
+
+    
+      
+
+      
+        <h2 class="subsection-title">Constructor</h2>
+
+        <div class="subsection-constructor">
+        
+
+<div class="collapsing-entry method-type-class start-open">
+
+
+    <h4 class="js-collapse-title" id="WorkboxSW">new WorkboxSW<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>You should instantiate this class with <code>new self.WorkboxSW()</code>.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">cacheId</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Defining a cacheId is useful to ensure
+uniqueness across cache names. Useful if you have multiple sites served
+over localhost.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">skipWaiting</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>To activate the service worker as
+soon as the install step has finished set this value to true.</p>
+<p>Defaults to false.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">clientsClaim</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>To claim currently open clients set
+this value to true.</p>
+<p>Defaults to false.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">directoryIndex</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The directoryIndex will
+check cache entries for a URLs ending with '/' to see if there is a hit
+when appending the directoryIndex (i.e. '/index.html').</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">ignoreUrlParametersMatching</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;RegExp></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>An array of
+regex's to remove search params when looking for a cache match.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">precacheChannelName</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>This value will be used as
+the <code>channelName</code> to construct a BroadcastCacheUpdate plugin. The
+plugin sends a message whenever a precached URL is updated. To disable this
+plugin, set <code>precacheChannelName</code> to an empty string.</p>
+<p>Defaults to <code>'precache-updates'</code></p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        </div>
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h2 class="subsection-title">Member Variables</h2>
+
+        <div class="subsection-members">
+        
+            
+<div class="collapsing-entry member-type-member">
+<h4 class="js-collapse-title" id="router"><span class="this">this.</span>router <span class="return-arrow">&rarr;</span> <span class="type-signature">Router</span></h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>The router for this library is exposed via the <code>router</code> parameter.
+This is an instance of the <a href="module-workbox-sw.Router.html#main">Router</a>.</p>
+</div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+workboxSW.router.registerRoute('/', workboxSW.workbox.cacheFirst());</code></pre>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+        
+            
+<div class="collapsing-entry member-type-member">
+<h4 class="js-collapse-title" id="runtimeCacheName"><span class="this">this.</span>runtimeCacheName</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>The name of the cache used by default by the runtime caching strategies.</p>
+<p>Entries that are managed via <code>precache()</code> are stored in a separate cache
+with a different name.</p>
+<p>You can override the default cache name when constructing a strategy if
+you'd prefer, via
+<code>workboxSW.strategies.cacheFirst({cacheName: 'my-cache-name'});</code></p>
+<p>If you would like to explicitly add to, remove, or check the contents of
+the default cache, you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage">Cache Storage API</a>
+to pass in the default cache name to <code>caches.open()</code>. This can be useful if
+you want to &quot;prime&quot; your cache with remote resources that can't be properly
+managed via <code>precache()</code>.</p>
+</div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const cache = await caches.open(workboxSW.runtimeCacheName);
+await cache.add('https://third-party.com/path/to/file');
+const contentsOfRuntimeCache = await cache.keys();</code></pre>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+        
+            
+<div class="collapsing-entry member-type-member">
+<h4 class="js-collapse-title" id="strategies"><span class="this">this.</span>strategies</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>The supported caching strategies shipped with workbox-sw are provided via
+the <code>strategies</code> object.
+<a href="module-workbox-sw.Strategies.html#main">See Strategies for a complete list</a>.</p>
+</div>
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const workboxSW = new WorkboxSW();
+workboxSW.router.registerRoute('/styles/*',
+ workboxSW.strategies.cacheFirst());</code></pre>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+        
+        </div>
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="precache"><span class="this">this.</span>precache<span class="signature">(<span class="signature-args">revisionedFiles</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Revisioned assets can be cached intelligently
+during the install (i.e. old files are cleared from the cache, new files
+are added to the cache and unchanged files are left as is).</p>
+<p>The input needs to be an array of URL strings which having revisioning
+details in them otherwise the entry should be an object with <code>url</code> and
+<code>revision</code> parameters.</p>
+<p>In addition to maintaining the cache, this method will also set up the
+necessary routes to serve the precached assets using a cache-first
+strategy.</p>
+  </div>
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Cache revisioned assets.</p>
+    
+    <pre class="prettyprint"><code>// Cache a set of revisioned URLs
+const workboxSW = new WorkboxSW();
+workboxSW.precache([
+    '/styles/main.613e6c7332dd83e848a8b00c403827ed.css',
+    '/images/logo.59a325f32baad11bd47a8c515ec44ae5.jpg'
+]);
+
+// ...precache() can also take objects to cache
+// non-revisioned URLs.
+// Please use workbox-build or workbox-cli to generate the manifest for
+// you.
+workboxSW.precache([
+    {
+      url: '/index.html',
+      revision: '613e6c7332dd83e848a8b00c403827ed'
+    },
+    {
+      url: '/about.html',
+      revision: '59a325f32baad11bd47a8c515ec44ae5'
+    }
+]);</code></pre>
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">revisionedFiles</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;(String|Object)></span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>A set of urls to cache
+when the service worker is installed.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>

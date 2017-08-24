@@ -1,0 +1,913 @@
+---
+layout: jsdoc
+title: "Class: Route"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+    - <a href="module-workbox-webpack-plugin.html#main">workbox-webpack-plugin</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>Route</h2>
+        
+            <p>A <code>Route</code> allows you to tell a service worker that it should handle
+certain network requests using a specific response strategy.</p>
+<p>A consists or a matcher and a handler. A matcher needs to determine if a
+route should be used for a request. A handler should handle the request
+if it does match a Router.</p>
+<p>Instead of implementing your own handlers, you can use one of the
+pre-defined runtime caching strategies from the
+<a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a> module.</p>
+<p>There are also pre-defined Route's provided by this library:
+<a href="module-workbox-routing.RegExpRoute.html#main">RegExpRoute</a>
+and <a href="module-workbox-routing.ExpressRoute.html#main">ExpressRoute</a> subclasses
+which provide a convenient wrapper with a nicer interface for using regular
+expressions or Express-style routes as the <code>match</code> criteria.</p>
+        
+    
+
+    
+      
+          <h3>Example</h3>
+          
+    <pre class="prettyprint"><code>// Any navigate requests for URLs that start with /path/to/ will match.
+const route = new workbox.routing.Route({
+  match: ({url, event}) => {
+    return event.request.mode === 'navigate' &amp;&amp;
+           url.pathname.startsWith('/path/to/');
+  },
+  handler: ({event}) => {
+    // Do something that returns a Promise.&lt;Response>, like:
+    return caches.match(event.request);
+  },
+});
+
+const router = new workbox.routing.Router();
+router.registerRoute({route});</code></pre>
+
+      
+
+      
+        <h2 class="subsection-title">Constructor</h2>
+
+        <div class="subsection-constructor">
+        
+
+<div class="collapsing-entry method-type-class start-open">
+
+
+    <h4 class="js-collapse-title" id="Route">new Route<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Constructor for Route class.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">match</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The function that determines whether the
+route matches a given <code>fetch</code> event.</p>
+<p>See <a href="module-workbox-routing.Route.html#~matchCallback">matchCallback</a> for
+full details on this function.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">handler</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+|
+
+<span class="param-type"><a href="module-workbox-runtime-caching.Handler.html#main">Handler</a></span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>This parameter can be either a function or an object which is a subclass
+of <code>Handler</code>.</p>
+<p>Either option should result in a <code>Response</code> that the <code>Route</code> can use to
+handle the <code>fetch</code> event.</p>
+<p>See <a href="module-workbox-routing.Route.html#~handlerCallback">handlerCallback</a>
+for full details on using a callback function as the <code>handler</code>.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">method</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Only match requests that use this
+HTTP method.</p>
+<p>Defaults to <code>'GET'</code>.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        </div>
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Type Definitions</h2>
+
+        <div class="subsection-definitions">
+        
+                
+
+<div class="collapsing-entry method-type-typedef ">
+
+
+    <h4 class="js-collapse-title" id="~handlerCallback"><span class="this">this.</span>handlerCallback<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;Response></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This is the definition of the <code>handler</code> callback that can be passed into the
+<code>Route</code> constructor.</p>
+<p>The <code>handler</code> callback is called when a request has been matched by
+a <code>Route</code> and should return a Promise that resolves with a <code>Response</code>.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">url</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">URL</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The request's URL.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">event</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">FetchEvent</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The event that triggered the <code>fetch</code> handler.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">params</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>Parameters returned
+the Route's <a href="module-workbox-routing.Route.html#~matchCallback">match callback</a> function. This will be
+undefined if nothing was returned.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;Response></span>
+
+
+
+
+
+<div class="param-desc">
+    <p>The response that will fulfill the request.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+            
+                
+
+<div class="collapsing-entry method-type-typedef ">
+
+
+    <h4 class="js-collapse-title" id="~matchCallback"><span class="this">this.</span>matchCallback<span class="signature">(<span class="signature-args">input</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Object|null</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>This is the definition of the <code>match</code> callback passed into the
+<code>Route</code> constructor.</p>
+<p>This callback is used to determine if a new <code>fetch</code> event can be served
+by this <code>Route</code>. Returning a truthy value indicates that this <code>Route</code> can
+handle this <code>fetch</code> event. Return <code>null</code> if this shouldn't match against
+the <code>fetch</code> event.</p>
+<p>If you do return a truthy value, the object will be passed to the
+Route's <code>handler</code> (see the
+<a href="module-workbox-routing.Route.html#main">Route Constructor</a>).</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">input</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                
+                
+                  <h6>Properties</h6>
+                  
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">url</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">URL</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The request's URL.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">event</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">FetchEvent</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                <p>The event that triggered the <code>fetch</code> handler.</p>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+
+
+<div class="param-desc">
+    <p>To signify a match, return a truthy value, otherwise
+return null if the route shouldn't match. If you return an Object with
+contents it will be passed to the <code>handler</code> in the <code>Route</code> constructor.</p>
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+            
+        </div>

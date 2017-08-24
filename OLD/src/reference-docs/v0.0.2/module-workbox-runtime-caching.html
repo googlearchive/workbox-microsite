@@ -1,0 +1,244 @@
+---
+layout: jsdoc
+title: "Module: workbox-runtime-caching"
+jsdocNav: 
+  - Modules:
+    - <a href="module-workbox-background-sync.html#main">workbox-background-sync</a>
+    - <a href="module-workbox-broadcast-cache-update.html#main">workbox-broadcast-cache-update</a>
+    - <a href="module-workbox-build.html#main">workbox-build</a>
+    - <a href="module-workbox-cache-expiration.html#main">workbox-cache-expiration</a>
+    - <a href="module-workbox-cacheable-response.html#main">workbox-cacheable-response</a>
+    - <a href="module-workbox-google-analytics.html#main">workbox-google-analytics</a>
+    - <a href="module-workbox-precaching.html#main">workbox-precaching</a>
+    - <a href="module-workbox-routing.html#main">workbox-routing</a>
+    - <a href="module-workbox-runtime-caching.html#main">workbox-runtime-caching</a>
+    - <a href="module-workbox-sw.html#main">workbox-sw</a>
+---
+
+
+
+
+
+
+
+    
+        
+            
+        
+    
+
+    
+        
+            <div class="description"><h1 id="workbox-runtime-caching">workbox-runtime-caching</h1>
+<p>A service worker helper library that implements various runtime caching
+strategies.</p>
+<p><strong>Install:</strong> <code>npm install --save-dev workbox-runtime-caching</code></p>
+<p>You can learn more about each caching strategy on
+<a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/">Jake Archibald's blog post</a>
+which covers various ways of handling fetch events with a service worker.</p>
+<p>These strategies can be used as
+<a href="module-workbox-routing.html#.RouteHandler">RouteHandlers</a>
+that are automatically invoked by the lower-level
+<a href="module-workbox-routing.Router.html#main">workbox-routing Router</a>
+or the higher-level <a href="module-workbox-sw.Router.html#main">SWLib Router</a>
+interfaces.</p></div>
+        
+
+        
+            
+
+<div class="collapsing-entry method-type-module ">
+
+
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+    
+
+    
+
+    
+        <h2 class="subsection-title">Classes</h2>
+
+        <div class="subsection-classes">
+        <dl>
+            <dt><a href="module-workbox-runtime-caching.CacheFirst.html#main">CacheFirst</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-runtime-caching.CacheOnly.html#main">CacheOnly</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-runtime-caching.Handler.html#main">Handler</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-runtime-caching.NetworkFirst.html#main">NetworkFirst</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-runtime-caching.NetworkOnly.html#main">NetworkOnly</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-runtime-caching.RequestWrapper.html#main">RequestWrapper</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-workbox-runtime-caching.StaleWhileRevalidate.html#main">StaleWhileRevalidate</a></dt>
+            <dd></dd>
+        </dl>
+        </div>
+    
+
+     
+
+    
+
+    
+        <h2 class="subsection-title">Member Variables</h2>
+
+        <div class="subsection-members">
+        
+            
+<div class="collapsing-entry member-type-member">
+<h4 class="js-collapse-title" id=".exports.getDefaultCacheName"><span class="type-attribs">(static, constant) </span>exports.getDefaultCacheName</h4>
+
+<div class="collapse-details js-collapse-details">
+
+
+
+
+<div class="description">
+    <p>The default cache name, used by
+<a href="module-workbox-runtime-caching.RequestWrapper.html#main">RequestWrapper</a> when
+there's no name provided.</p>
+<p>It combines a constant prefix with the <code>registration.scope</code> value associated
+with the current service worker, ensuring that multiple service workers used
+on the same origin will have different default caches.</p>
+<p>Calling this method without any parameters, this will return
+<code>workbox-runtime-caching-&lt;service worker scope&gt;</code>.</p>
+<p>If you pass in a cacheId, it will prepend this, returning:
+<code>&lt;cacheid&gt;-workbox-runtime-caching-&lt;service worker scope&gt;</code>.</p>
+</div>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+</div>
+</div>
+
+        
+        </div>
