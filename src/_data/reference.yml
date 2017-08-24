@@ -14,6 +14,8 @@
     url: /reference-docs/latest/module-workbox-google-analytics.html
   - title: workbox-precaching
     url: /reference-docs/latest/module-workbox-precaching.html
+  - title: workbox-range-requests
+    url: /reference-docs/latest/module-workbox-range-requests.html
   - title: workbox-routing
     url: /reference-docs/latest/module-workbox-routing.html
   - title: workbox-runtime-caching
