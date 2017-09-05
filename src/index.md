@@ -49,7 +49,7 @@ Install our command-line interface:
 $ npm install workbox-cli --global
 
 # Generate a service worker with some smart defaults
-$ workbox-cli generate:sw
+$ workbox generate:sw
 ```
 
 <div class="content-sizing" markdown="1">
