@@ -1,25 +1,12 @@
 {
   "hosting": {
-    "public": "build-prod",
-    "headers": [{
-      "source" : "/sw.js",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "no-cache"
-      }]
-    }],
-    "redirects": [{
-      "source" : "/get-started/webpack",
-      "destination" : "/get-started/webpack.html",
-      "type" : 301
-    }, {
-      "source" : "/get-started/gulp",
-      "destination" : "/get-started/gulp.html",
-      "type" : 301
-    }, {
-      "source" : "/get-started/npm-script",
-      "destination" : "/get-started/npm-script.html",
-      "type" : 301
-    }]
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "/", "function": "app"
+      }, {
+        "source": "/**/*", "function": "app"
+      }
+    ]
   }
 }

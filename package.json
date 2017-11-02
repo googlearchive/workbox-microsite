@@ -7,7 +7,7 @@
     "lint": "eslint '.'",
     "test": "npm run lint && gulp build && mocha ./test/node/**/*.js",
     "deploy": "npm run test && firebase deploy",
-    "serve": "superstatic"
+    "serve": "firebase serve --only hosting,functions --project workbox-bab1f"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "findup-sync": "^1.0.0",
-    "firebase-tools": "^3.7.0",
+    "firebase-tools": "^3.13.1",
     "fs-extra": "^3.0.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-htmlmin": "^3.0.0",
